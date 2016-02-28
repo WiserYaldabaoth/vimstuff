@@ -1,0 +1,4 @@
+# Remove unnecessary dotfiles
+.VimballRecord
+.netrwhist
+
