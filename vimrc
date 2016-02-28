@@ -296,3 +296,12 @@ execute pathogen#infect()
 nnoremap <F8> :TagbarToggle<CR>
 
 let g:EclimCompletionMethod = 'omnifunc'
+
+
+
+"ext""""""""""""""s6
+""""""""""""""""""""
+"-----EXTERNAL-----"
+""""""""""""""""""""
+
+runtime MySessions.vim

@@ -2,3 +2,6 @@
 .VimballRecord
 .netrwhist
 
+
+# Ignore the sessions
+sessions/
