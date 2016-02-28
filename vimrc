@@ -10,6 +10,12 @@ syntax on                    " Set syntax highlighting
 filetype plugin indent on
 let mapleader = ","          " Leader for mapping
 
+
+" These are for my sanity when loading modified vimrc in Sessions
+set ssop-=options            " DO NOT STORE GLOBAL/LOCAL VARIABLES IN SESSION
+set ssop-=folds              " DO NOT STORE FOLDS IN SESSION
+
+
 set background=light         " Modify syntax highlighting color schemes
 
 set showcmd                  " Show typed commands
@@ -85,7 +91,7 @@ if exists('+colorcolumn')
     augroup coloring
         autocmd!
         au Filetype java,c,cpp,c#,python,ruby,sh,promela set colorcolumn=80
-    set colorcolumn=80
+    augroup END
 else
     augroup nocolor_error
         autocmd!
