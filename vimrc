@@ -52,9 +52,9 @@ endif
 
 
 " Set up command expansion for LaTeX
-"autocmd FileType * exec("setlocal dictionary+=".$HOME."/.vim/dictionaries/".expand('<amatch>'))
-"set completeopt=menuone,longest,preview
-"set complete+=k
+autocmd FileType * exec("setlocal dictionary+=".$HOME."/.vim/dictionaries/".expand('<amatch>'))
+set completeopt=menuone,longest,preview
+set complete+=k
 
 
 " Make comments more readable
@@ -101,6 +101,7 @@ augroup comments
     au Filetype python,ruby,sh  nnore <buffer> <localleader>c I#<ESC>
     au Filetype promela  nnore <buffer> <localleader>c I/* <ESC>$a */<ESC>
     au Filetype tex      nnore <buffer> <localleader>c I%<ESC>
+    au Filetype vim      nnore <buffer> <localleader>c I"<ESC>
 augroup END
 
 
@@ -279,7 +280,7 @@ let g:LatexBox_viewer = "C:\Program Files\Tracker Software\PDF Viewer\PDFXCview.
 
 let g:pathogen_disabled = []
 
-call add(g:pathogen_disabled, 'LatexBox')
+"call add(g:pathogen_disabled, 'LatexBox')
 
 execute pathogen#infect()
 
