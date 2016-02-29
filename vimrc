@@ -325,4 +325,6 @@ let g:EclimCompletionMethod = 'omnifunc'
 "-----EXTERNAL-----"
 """"""""""""""""""""
 
-runtime MySessions.vim
+runtime MySessions.vim   " Provides automatic session behavior
+
+runtime MoshTab.vim      " Adds smart tab autocomplete
