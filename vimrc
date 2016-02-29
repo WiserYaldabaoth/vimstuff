@@ -292,10 +292,29 @@ execute pathogen#infect()
 
 
 " Quickstart Tagbar
-
 nnoremap <F8> :TagbarToggle<CR>
 
+
+" Prepare Tagbar for TeX.
+" Idea borrowed from https://stackoverflow.com/q/26145505.
+" Note that this requires a .ctags file that is appropriately prepared.
+let g:tagbar_type_tex = {
+    \ 'ctagstype' : 'plaintex',
+    \ 'kinds'     : [
+        \ 's:sections',
+        \ 'g:graphics:0:0',
+        \ 'l:labels',
+        \ 'r:refs:1:0',
+        \ 'p:pagerefs:1:0'
+    \ ],
+    \ 'sort'    : 0,
+\ }
+
+
+" For eclim installations
 let g:EclimCompletionMethod = 'omnifunc'
+
+
 
 
 
