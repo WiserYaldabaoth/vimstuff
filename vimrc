@@ -189,15 +189,28 @@ noremap <M-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 
 """"" A TOOL FOR LEARNING 'THE VIM WAY'
 """"" USE MAPPING TO DISABLE ARROW KEYS!
-noremap <up> <nop>
-noremap <down> <nop>
-noremap <left> <nop>
-noremap <right> <nop> 
+"noremap <up> <nop>
+"noremap <down> <nop>
+"noremap <left> <nop>
+"noremap <right> <nop> 
 
-inoremap <up> <nop>
-inoremap <down> <nop>
-inoremap <left> <nop>
-inoremap <right> <nop>
+"inoremap <up> <nop>
+"inoremap <down> <nop>
+"inoremap <left> <nop>
+"inoremap <right> <nop>
+
+
+
+""""" USE THIS AFTER TRAINING YOURSELF OUT OF ARROW KEYS
+" Left and right arrow keys are for moving tabs...
+nnoremap <left> <C-C>:tabp<CR>
+nnoremap <right> <C-C>:tabn<CR>
+
+
+" Up and down arrow keys are for moving buffers
+nnoremap <up> <C-C>:bp<CR>
+nnoremap <down> <C-C>:bn<CR>
+
 
 
 """"""" THIS MAPPING DISABLES ESC IN INSERT MODE
