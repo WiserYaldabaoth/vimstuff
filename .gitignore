@@ -5,3 +5,7 @@
 
 # Ignore the sessions
 sessions/
+
+
+# Remove eclim folder
+eclim/

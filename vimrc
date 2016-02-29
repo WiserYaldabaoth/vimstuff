@@ -5,6 +5,9 @@
 "_____SETTINGS_____"
 """"""""""""""""""""
 
+call pathogen#infect()
+call pathogen#helptags()
+
 set nocompatible             " VIM ONLY, NO VI ALLOWED
 syntax on                    " Set syntax highlighting
 filetype plugin indent on
@@ -288,7 +291,6 @@ let g:pathogen_disabled = []
 
 "call add(g:pathogen_disabled, 'LatexBox')
 
-execute pathogen#infect()
 
 
 " Quickstart Tagbar
