@@ -110,14 +110,31 @@ else
 endif
 
 
-" Automatically comment out a line in the given filetypes
+" TODO Reduce this to a single function and some language plugins for
+" <leader>c mapping
 augroup comments
     autocmd!
-    au Filetype java,c,cpp,c#   nnore <buffer> <localleader>c I//<ESC>
-    au Filetype python,ruby,sh  nnore <buffer> <localleader>c I#<ESC>
-    au Filetype promela  nnore <buffer> <localleader>c I/* <ESC>$a */<ESC>
-    au Filetype tex      nnore <buffer> <localleader>c I%<ESC>
-    au Filetype vim      nnore <buffer> <localleader>c I"<ESC>
+
+    " Automatically comment out a line in the given filetypes
+    au Filetype java,c,cpp,c#   nnore <buffer> <localleader>c mqI//<ESC>`q
+    au Filetype python,ruby,sh  nnore <buffer> <localleader>c mqI#<ESC>`q
+    au Filetype promela         nnore <buffer> <localleader>c mqI/* <ESC>$a */<ESC>`q
+    au Filetype tex             nnore <buffer> <localleader>c mqI%<ESC>`q
+    au Filetype vim             nnore <buffer> <localleader>c mqI"<ESC>`q
+
+    " Automatically uncomment a line in the given filetypes
+    au Filetype java,c,cpp,c#   nnore <buffer> <localleader>nc mq^xx`q
+    au Filetype python,ruby,sh  nnore <buffer> <localleader>nc mq^x`q
+    au Filetype promela         nnore <buffer> <localleader>nc mq^xx$XX^`q
+    au Filetype tex             nnore <buffer> <localleader>nc mq^x`q
+    au Filetype vim             nnore <buffer> <localleader>nc mq^x`q
+augroup END
+
+
+ "Add a semicolon to the end of a line
+augroup semicolon
+    autocmd!
+    au Filetype java,c,cpp nnore <buffer> <localleader>sc :exec("normal! mqA;\<esc>`q")
 augroup END
 
 
@@ -184,16 +201,20 @@ noremap <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
 " Insert a single character
 nnoremap <Space> i_<C-C>r
 
-" Escape with jk
-inoremap jk <Esc>
-inoremap JK <Esc>
-inoremap jK <Esc>
-inoremap Jk <Esc>
+" Insert a single character into a block selection
+" OR: Replace an entire selection with a single selection
+vnoremap <Space> I_<ESC>gvr
 
-inoremap kj <Esc>
-inoremap Kj <Esc>
-inoremap kJ <Esc>
-inoremap KJ <Esc>
+" Escape with jk
+inoremap jk <ESC>
+inoremap JK <ESC>
+inoremap jK <ESC>
+inoremap Jk <ESC>
+
+inoremap kj <ESC>
+inoremap Kj <ESC>
+inoremap kJ <ESC>
+inoremap KJ <ESC>
 
 " Fix <M-]> behavior
 set <M-]>=^[]
@@ -227,9 +248,19 @@ nnoremap <up> <C-C>:bp<CR>
 nnoremap <down> <C-C>:bn<CR>
 
 
+" Alternatively, use arrow keys for moving about windows
+" It's really up to you how you use them!
+nnoremap <leader><left>  <C-W>h
+nnoremap <leader><right> <C-W>l
+nnoremap <leader><up>    <C-W>j
+nnoremap <leader><down>  <C-W>k
+
+
 
 """"""" THIS MAPPING DISABLES ESC IN INSERT MODE
+" 'If Escape is your friend, why is it so far away from you?'
 inoremap <ESC> <nop>
+
 
 
 " _s_ource my _v_imrc file
