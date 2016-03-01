@@ -354,3 +354,5 @@ let g:EclimCompletionMethod = 'omnifunc'
 runtime MySessions.vim   " Provides automatic session behavior
 
 runtime MoshTab.vim      " Adds smart tab autocomplete
+
+runtime CPrototypes.vim  " Prototype generation for C headers
