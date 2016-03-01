@@ -268,6 +268,10 @@ nnoremap <leader>fuuuuu qqqqqifuu<Esc>h@qq@q
 nnoremap - :Explore<CR>
 
 
+" Remove highlight after search
+nnoremap <leader>h :noh<CR>
+
+
 " Operator for 'inside next parantheses'
 onoremap in( :<C-U>normal! f(vi(<CR>
 

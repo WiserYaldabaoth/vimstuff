@@ -1,6 +1,6 @@
 " Usage: in normal mode, where you want the prototypes to be pasted:
 ":call GenerateProptotypes()
-function GeneratePrototypes()
+function! GeneratePrototypes()
     execute "silent !ctags --fields=+KS ".expand("%")
     redraw!
     let list = taglist('.*')
@@ -27,7 +27,7 @@ function GeneratePrototypes()
 endfunction
 
 
-function GeneratePrototypesFullSignature()
+function! GeneratePrototypesFullSignature()
     "execute "silent !ctags --fields=+KS ".expand("%")
     let dir = expand("%:p:h");
     execute "silent !ctags --fields=+KSi --extra=+q".dir."/* "
