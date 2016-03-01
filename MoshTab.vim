@@ -28,8 +28,10 @@ endfunction
 function! Mosh_Tab_Toggle()
     if g:MoshTabToggle
         let g:MoshTabToggle=0
+        echom "Mosh tabs are off."
     else
         let g:MoshTabToggle=1
+        echom "Mosh tabs are on."
     endif
 endfunction
 

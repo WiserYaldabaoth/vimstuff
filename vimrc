@@ -61,7 +61,10 @@ endif
 
 
 " Set up command expansion for LaTeX
-autocmd FileType * exec("setlocal dictionary+=".$HOME."/.vim/dictionaries/".expand('<amatch>'))
+augroup LaTeXexp
+    autocmd!
+    autocmd FileType * exec("setlocal dictionary+=".$HOME."/.vim/dictionaries/".expand('<amatch>'))
+augroup END
 set completeopt=menuone,longest,preview
 set complete+=k
 
@@ -253,6 +256,16 @@ inoremap <leader><leader> <C-P>
 
 " Center cursor automagically
 nnoremap <leader>cc  :call CenterToggle()<CR>
+
+
+" ffffuuuuuu
+nnoremap <leader>fuuuuu qqqqqifuu<Esc>h@qq@q
+
+
+" Insta-open explorer to show adjacent files
+" This provides seamless browsing of complex directory structures,
+" as the same button moves up one directory!
+nnoremap - :Explore<CR>
 
 
 " Operator for 'inside next parantheses'
