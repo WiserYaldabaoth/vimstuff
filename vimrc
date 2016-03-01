@@ -38,6 +38,8 @@ set incsearch                " Highlight matched regexps during search entry
 
 set scrolloff=0              " Always keep cursor in center
 
+set vb t_vb=                 " I don't want beeps
+
 " Vim recognizes shell alias commands
 let $BASH_ENV = "~/.bash_aliases"
 
@@ -63,7 +65,7 @@ endif
 " Set up command expansion for LaTeX
 augroup LaTeXexp
     autocmd!
-    autocmd FileType * exec("setlocal dictionary+=".$HOME."/.vim/dictionaries/".expand('<amatch>'))
+    autocmd FileType * :exec("setlocal dictionary+=".$HOME."/.vim/dictionaries/".expand('<amatch>'))
 augroup END
 set completeopt=menuone,longest,preview
 set complete+=k
@@ -71,6 +73,8 @@ set complete+=k
 
 " Make comments more readable
 hi Comment ctermfg=Cyan
+hi Search cterm=NONE ctermfg=black ctermbg=blue
+hi Visual cterm=NONE ctermfg=black ctermbg=lightgray
 
 
 " Don't always create newline comments
@@ -180,8 +184,16 @@ noremap <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
 " Insert a single character
 nnoremap <Space> i_<C-C>r
 
-" Escape with jj
+" Escape with jk
 inoremap jk <Esc>
+inoremap JK <Esc>
+inoremap jK <Esc>
+inoremap Jk <Esc>
+
+inoremap kj <Esc>
+inoremap Kj <Esc>
+inoremap kJ <Esc>
+inoremap KJ <Esc>
 
 " Fix <M-]> behavior
 set <M-]>=^[]
