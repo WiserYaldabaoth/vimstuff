@@ -29,6 +29,7 @@ g:LatexBox_split_width	latex-box.txt	/*g:LatexBox_split_width*
 g:LatexBox_templates	latex-box.txt	/*g:LatexBox_templates*
 g:LatexBox_viewer	latex-box.txt	/*g:LatexBox_viewer*
 g:vim_program	latex-box.txt	/*g:vim_program*
+grokvi.txt	grokvi.txt	/*grokvi.txt*
 latex-box	latex-box.txt	/*latex-box*
 latex-box-FAQ	latex-box.txt	/*latex-box-FAQ*
 latex-box-commands	latex-box.txt	/*latex-box-commands*
