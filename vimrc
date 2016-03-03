@@ -24,6 +24,30 @@ set ssop-=options            " DO NOT STORE GLOBAL/LOCAL VARIABLES IN SESSION
 set ssop-=folds              " DO NOT STORE FOLDS IN SESSION
 
 
+" TODO Move this to its own file
+""""""""""STATUSLINE"""""""""""""""""
+"""""""""""""""""""""""""""""""""""""
+set statusline=%t       "tail of the filename
+set statusline+=[%{strlen(&fenc)?&fenc:'none'}, "file encoding
+set statusline+=%{&ff}] "file format
+set statusline+=%h      "help file flag
+set statusline+=%m      "modified flag
+set statusline+=%r      "read only flag
+set statusline+=%y      "filetype
+
+" TODO Make sure fugitive is installed first
+set statusline+=%{fugitive#statusline()} " Add fugitive info
+
+set statusline+=%=      "left/right separator
+set statusline+=%c,     "cursor column
+set statusline+=%l/%L   "cursor line/total lines
+set statusline+=\ %P    "percent through file
+
+set laststatus=2
+"""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""
+
+
 set background=light         " Modify syntax highlighting color schemes
 
 set showcmd                  " Show typed commands
