@@ -40,6 +40,20 @@ set scrolloff=0              " Always keep cursor in center
 
 set vb t_vb=                 " I don't want beeps
 
+
+" Folding
+" Common key bindings:
+" za - toggles folding
+" zc - closes a fold
+" zo - opens a fold
+" zR - opens all folds
+" zM - closes all folds
+set foldmethod=syntax        " Fold based on syntax files
+set foldnestmax=10           " Deepest nesting is 10 levels
+set nofoldenable             " Don't automatically fold
+set foldlevel=1
+
+
 " Vim recognizes shell alias commands
 let $BASH_ENV = "~/.bash_aliases"
 
@@ -75,6 +89,7 @@ set complete+=k
 hi Comment ctermfg=Cyan
 hi Search cterm=NONE ctermfg=black ctermbg=blue
 hi Visual cterm=NONE ctermfg=black ctermbg=lightgray
+hi Folded cterm=NONE ctermfg=black ctermbg=darkgray
 
 
 " Don't always create newline comments
@@ -134,7 +149,7 @@ augroup END
  "Add a semicolon to the end of a line
 augroup semicolon
     autocmd!
-    au Filetype java,c,cpp nnore <buffer> <localleader>sc :exec("normal! mqA;\<esc>`q")
+    au Filetype java,c,cpp nnore <buffer> <localleader>sc mqA;<esc>`q
 augroup END
 
 
@@ -142,6 +157,7 @@ augroup latexstuff
     autocmd!
     au Filetype tex  nnore <buffer> <localleader>b :%!pdflatex --quiet --output-directory=build<CR>
 augroup END
+
 
 
 
@@ -189,6 +205,7 @@ noremap <F2> :retab <CR>
 
 
 " Remap command starter to save button presses
+"""""" THIS IS MY SECOND FAVORITE MAPPING IN THE UNIVERSE
 nore ; :
 
 " Set search mapping so that next found in search centers on line
@@ -206,6 +223,7 @@ nnoremap <Space> i_<C-C>r
 vnoremap <Space> I_<ESC>gvr
 
 " Escape with jk
+"""""" THIS IS MY FAVORITE MAPPING IN THE UNIVERSE
 inoremap jk <ESC>
 inoremap JK <ESC>
 inoremap jK <ESC>
@@ -302,7 +320,7 @@ nnoremap <leader>cc  :call CenterToggle()<CR>
 
 
 " ffffuuuuuu
-nnoremap <leader>fuuuuu qqqqqifuu<Esc>h@qq@q
+"nnoremap <leader>fuuuuu :exec "normal! qqqqqifuu\<lt>Esc>h@qq@q"<cr>
 
 
 " Insta-open explorer to show adjacent files
@@ -368,6 +386,10 @@ let g:pathogen_disabled = []
 
 " Quickstart Tagbar
 nnoremap <F8> :TagbarToggle<CR>
+
+
+" Quickstart Tagbar in autoclose mode
+nnoremap <leader>tt :TagbarOpenAutoClose<CR>
 
 
 " Prepare Tagbar for TeX.
