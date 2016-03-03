@@ -12,6 +12,11 @@ set nocompatible             " VIM ONLY, NO VI ALLOWED
 syntax on                    " Set syntax highlighting
 filetype plugin indent on
 let mapleader = ","          " Leader for mapping
+set shell=/bin/bash
+
+
+"In case /tmp get's clean out, make a new tmp directory for vim:               
+:command! Mktmpdir call mkdir(fnamemodify(tempname(),":p:h"),"",0700)  
 
 
 " These are for my sanity when loading modified vimrc in Sessions
@@ -143,6 +148,9 @@ augroup comments
     au Filetype promela         nnore <buffer> <localleader>nc mq^xx$XX^`q
     au Filetype tex             nnore <buffer> <localleader>nc mq^x`q
     au Filetype vim             nnore <buffer> <localleader>nc mq^x`q
+
+    " TODO Automatically produce a block comment
+    "au Filetype java,c,promela,c#  nnore <buffer> <localleader>bc I<TAB>/*<CR>*<CR>*/<ESC>kxlli
 augroup END
 
 
@@ -425,3 +433,8 @@ runtime MySessions.vim   " Provides automatic session behavior
 runtime MoshTab.vim      " Adds smart tab autocomplete
 
 runtime CPrototypes.vim  " Prototype generation for C headers
+
+" TODO Create a function for C-style languages :NewFunct
+" usage will be :NewFunct [name] [returntype] [param1] [param2] ...
+" In Java, will be :NewFunct [name] [returntype] [visibility] [params] ...
+" Automatically produces docs and prototype

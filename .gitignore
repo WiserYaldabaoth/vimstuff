@@ -7,5 +7,12 @@
 sessions/
 
 
-# Remove eclim folder
-eclim/
+# Ignore repos with git inside of them
+# I don't feel like dealing with submodules right now
+tagbar/
+bundle/vim-fugitive/
+
+
+# Ignore vim files
+*.swp
+*.swo
