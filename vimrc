@@ -5,6 +5,19 @@
 "_____SETTINGS_____"
 """"""""""""""""""""
 
+" Pathogen
+
+let g:pathogen_disabled = []
+
+"call add(g:pathogen_disabled, 'LatexBox')
+call add(g:pathogen_disabled, 'vim-airline')
+"call add(g:pathogen_disabled, 'vim-fugitive')
+"call add(g:pathogen_disabled, 'tagbar')
+
+let g:loaded_airline = 0
+"let g:loaded_fugitive = 0
+
+
 " Check if pathogen exists before running it
 if filereadable(expand("~/.vim/autoload/pathogen.vim"))
     runtime! autoload/pathogen.vim
@@ -21,38 +34,14 @@ let mapleader = ","          " Leader for mapping
 set shell=/bin/bash
 
 
-"In case /tmp get's clean out, make a new tmp directory for vim:               
-:command! Mktmpdir call mkdir(fnamemodify(tempname(),":p:h"),"",0700)  
+
+"In case /tmp get's clean out, make a new tmp directory for vim:
+:command! Mktmpdir call mkdir(fnamemodify(tempname(),":p:h"),"",0700)
 
 
 " These are for my sanity when loading modified vimrc in Sessions
 set ssop-=options            " DO NOT STORE GLOBAL/LOCAL VARIABLES IN SESSION
 set ssop-=folds              " DO NOT STORE FOLDS IN SESSION
-
-
-" TODO Move this to its own file
-""""""""""STATUSLINE"""""""""""""""""
-"""""""""""""""""""""""""""""""""""""
-set statusline=%t       "tail of the filename
-set statusline+=[%{strlen(&fenc)?&fenc:'none'}, "file encoding
-set statusline+=%{&ff}] "file format
-set statusline+=%h      "help file flag
-set statusline+=%m      "modified flag
-set statusline+=%r      "read only flag
-set statusline+=%y      "filetype
-
-" TODO Make sure fugitive is installed first
-set statusline+=%{fugitive#statusline()} " Add fugitive info
-
-set statusline+=%=      "left/right separator
-set statusline+=%c,     "cursor column
-set statusline+=%l/%L   "cursor line/total lines
-set statusline+=\ %P    "percent through file
-
-set laststatus=2
-"""""""""""""""""""""""""""""""""""""
-"""""""""""""""""""""""""""""""""""""
-
 
 set background=light         " Modify syntax highlighting color schemes
 
@@ -296,7 +285,7 @@ noremap <M-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 "noremap <up> <nop>
 "noremap <down> <nop>
 "noremap <left> <nop>
-"noremap <right> <nop> 
+"noremap <right> <nop>
 
 "inoremap <up> <nop>
 "inoremap <down> <nop>
@@ -426,11 +415,6 @@ let g:LatexBox_latexmk_options = "-pvc -pdf -output-directory=build"
 let g:LatexBox_viewer = "C:\Program Files\Tracker Software\PDF Viewer\PDFXCview.exe"
 
 
-" Pathogen
-
-let g:pathogen_disabled = []
-
-"call add(g:pathogen_disabled, 'LatexBox')
 
 
 
@@ -462,6 +446,9 @@ let g:tagbar_type_tex = {
 let g:EclimCompletionMethod = 'omnifunc'
 
 
+" Airline customization
+let g:airline_powerline_fonts = 0
+
 
 
 
@@ -470,11 +457,10 @@ let g:EclimCompletionMethod = 'omnifunc'
 "-----EXTERNAL-----"
 """"""""""""""""""""
 
-runtime MySessions.vim   " Provides automatic session behavior
-
-runtime MoshTab.vim      " Adds smart tab autocomplete
-
-runtime CPrototypes.vim  " Prototype generation for C headers
+runtime MySessions.vim       " Provides automatic session behavior
+runtime MoshTab.vim          " Adds smart tab autocomplete
+runtime CPrototypes.vim      " Prototype generation for C headers
+runtime BuildStatusline.vim  " Load up custom statusline
 
 " TODO Create a function for C-style languages :NewFunct
 " usage will be :NewFunct [name] [returntype] [param1] [param2] ...
