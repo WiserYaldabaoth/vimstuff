@@ -5,8 +5,14 @@
 "_____SETTINGS_____"
 """"""""""""""""""""
 
-call pathogen#infect()
-call pathogen#helptags()
+" Check if pathogen exists before running it
+if filereadable(expand("~/.vim/autoload/pathogen.vim"))
+    runtime! autoload/pathogen.vim
+    if exists("g:loaded_pathogen")
+       call pathogen#infect()
+       call pathogen#helptags()
+    endif
+endif
 
 set nocompatible             " VIM ONLY, NO VI ALLOWED
 syntax on                    " Set syntax highlighting
@@ -202,26 +208,38 @@ augroup END
 "
 " Toggles whether the cursor should appear in the center.
 " Returns falsey if scrolloff is not 9999 or 0.
-:if !exists("*CenterToggle()")
-:    function CenterToggle()
-:        if !exists("&scrolloff")
-:            echom "scrolloff dons exits!"
-:            return 0
-:        elseif &scrolloff ==# 0
-:            set scrolloff=9999
-:            echom "Cursor is now centered."
-:            return 1
-:        elseif &scrolloff ==# 9999
-:            set scrolloff=0
-:            echom "Cursor is now uncentered."
-:            return 1
-:        else
-:            echom "scrolloff setting must be 0 or 9999 for toggle."
-:            return 0
+:function! CenterToggle()
+:    if !exists("&scrolloff")
+:        echom "scrolloff dons exits!"
+:        return 0
+:    elseif &scrolloff ==# 0
+:        set scrolloff=9999
+:        echom "Cursor is now centered."
+:        return 1
+:    elseif &scrolloff ==# 9999
+:        set scrolloff=0
+:        echom "Cursor is now uncentered."
+:        return 1
+:    else
+:        echom "scrolloff setting must be 0 or 9999 for toggle."
+:        return 0
+:    endif
+:endfunction
+
+
+" RefreshVim()
+"
+" Re-sources the vimrc document and toggles any settings that need to be
+" re-toggled afterward.
+:if !exists("*RefreshVim")
+:    function! RefreshVim()
+:        source $MYVIMRC
+:        if( g:loaded_airline ==# 1 )
+:            AirlineRefresh
 :        endif
 :    endfunction
+:    command! Recfg call RefreshVim()
 :endif
-
 
 
 
@@ -314,7 +332,7 @@ inoremap <ESC> <nop>
 
 
 " _s_ource my _v_imrc file
-nnoremap <leader>sv :source $MYVIMRC<CR>
+nnoremap <leader>sv :call RefreshVim()<CR>
 
 " _e_dit my _v_imrc file in a new window split
 nnoremap <leader>ev :vsp $MYVIMRC <CR>
