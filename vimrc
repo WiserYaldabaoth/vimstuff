@@ -10,7 +10,7 @@
 let g:pathogen_disabled = []
 
 "call add(g:pathogen_disabled, 'LatexBox')
-call add(g:pathogen_disabled, 'vim-airline')
+"call add(g:pathogen_disabled, 'vim-airline')
 "call add(g:pathogen_disabled, 'vim-fugitive')
 "call add(g:pathogen_disabled, 'tagbar')
 
@@ -168,8 +168,9 @@ augroup comments
     au Filetype tex             nnore <buffer> <localleader>nc mq^x`q
     au Filetype vim             nnore <buffer> <localleader>nc mq^x`q
 
-    " TODO Automatically produce a block comment
-    "au Filetype java,c,promela,c#  nnore <buffer> <localleader>bc I<TAB>/*<CR>*<CR>*/<ESC>kxlli
+    " TODO Automatically produce a doc comment
+    au Filetype java,c,promela,c#  nnore <buffer> <localleader>dc o/**<CR><BS>*<ESC>jkka<SPACE>
+    au Filetype python             nnore <buffer> <localleader>dc o"""<CR><CR>"""<ESC>ka
 augroup END
 
 

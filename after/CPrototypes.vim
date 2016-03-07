@@ -6,23 +6,23 @@ function! GeneratePrototypes()
     let list = taglist('.*')
     let line = line(".")
     for item in list
-    	if item.kind == "function"  &&  item.name != "main"
-    		let name = item.name
-    		let retType = item.cmd
-    		let retType = substitute( retType, '^/\^\s*','','' )
-    		let retType = substitute( retType, '\s*'.name.'.*', '', '' ) 
+        if item.kind == "function"  &&  item.name != "main"
+            let name = item.name
+            let retType = item.cmd
+            let retType = substitute( retType, '^/\^\s*','','' )
+            let retType = substitute( retType, '\s*'.name.'.*', '', '' )
 
-    		if has_key( item, 'signature' )
-    			let sig = item.signature
-    			let sig = substitute( sig, '\s*\w\+\s*,',        ',', 	'g')
-    			let sig = substitute( sig, '\s*\w\+\(\s)\)', '\1', '' )
-    		else
-    			let sig = '()'
-    		endif
-    		let proto = retType . "\t" . name . sig . ';'
-    		call append( line, proto )
-    		let line = line + 1
-    	endif
+            if has_key( item, 'signature' )
+                let sig = item.signature
+                let sig = substitute( sig, '\s*\w\+\s*,',        ',',   'g')
+                let sig = substitute( sig, '\s*\w\+\(\s)\)', '\1', '' )
+            else
+                let sig = '()'
+            endif
+            let proto = retType . "\t" . name . sig . ';'
+            call append( line, proto )
+            let line = line + 1
+        endif
     endfor
 endfunction
 
@@ -35,21 +35,21 @@ function! GeneratePrototypesFullSignature()
     let list = taglist('.*')
     let line = line(".")
     for item in list
-    	if item.kind == "function"  &&  item.name != "main"
-    		let name = item.name
-    		let retType = item.cmd
-    		let retType = substitute( retType, '^/\^\s*','','' )
-    		let retType = substitute( retType, '\s*'.name.'.*', '', '' ) 
+        if item.kind == "function"  &&  item.name != "main"
+            let name = item.name
+            let retType = item.cmd
+            let retType = substitute( retType, '^/\^\s*','','' )
+            let retType = substitute( retType, '\s*'.name.'.*', '', '' )
 
-    		if has_key( item, 'signature' )
-    			let sig = item.signature
-    		else
-    			let sig = '(void)'
-    		endif
-    		let proto = retType . "\t" . name . sig . ';'
-    		call append( line, proto )
-    		let line = line + 1
-    	endif
+            if has_key( item, 'signature' )
+                let sig = item.signature
+            else
+                let sig = '(void)'
+            endif
+            let proto = retType . "\t" . name . sig . ';'
+            call append( line, proto )
+            let line = line + 1
+        endif
     endfor
 endfunction
 
