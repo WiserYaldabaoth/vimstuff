@@ -3,7 +3,7 @@
 "stng"""""""""""""s1
 """"""""""""""""""""
 "_____SETTINGS_____"
-""""""""""""""""""""
+"""""""""""""""""{{{1
 
 " Pathogen
 
@@ -101,10 +101,11 @@ endif
 
 
 " Set up command expansion for LaTeX
-augroup LaTeXexp
+augroup LaTeXexp "{{{2
     autocmd!
     autocmd FileType * :exec("setlocal dictionary+=".$HOME."/.vim/dictionaries/".expand('<amatch>'))
 augroup END
+"}}}2
 set completeopt=menuone,longest,preview
 set complete+=k
 
@@ -136,7 +137,7 @@ endif
 
 
 " Create 80-character line like in most IDEs
-if exists('+colorcolumn')
+if exists('+colorcolumn') "{{{2
     augroup coloring
         autocmd!
         au Filetype java,c,cpp,c#,python,ruby,sh,promela set colorcolumn=80
@@ -147,11 +148,12 @@ else
         au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>81v.\+', -1)
     augroup END
 endif
+"}}}2
 
 
 " TODO Reduce this to a single function and some language plugins for
 " <leader>c mapping
-augroup comments
+augroup comments "{{{2
     autocmd!
 
     " Automatically comment out a line in the given filetypes
@@ -172,33 +174,36 @@ augroup comments
     au Filetype java,c,promela,c#  nnore <buffer> <localleader>dc o/**<CR><BS>*<ESC>jkka<SPACE>
     au Filetype python             nnore <buffer> <localleader>dc o"""<CR><CR>"""<ESC>ka
 augroup END
+"}}}2
 
 
  "Add a semicolon to the end of a line
-augroup semicolon
+augroup semicolon "{{{2
     autocmd!
     au Filetype java,c,cpp nnore <buffer> <localleader>sc mqA;<esc>`q
 augroup END
+"}}}2
 
 
-augroup latexstuff
+augroup latexstuff "{{{2
     autocmd!
     au Filetype tex  nnore <buffer> <localleader>b :%!pdflatex --quiet --output-directory=build<CR>
 augroup END
+"}}}2
 
 
 
-
+"}}}1
 "fnc""""""""""""""""s2
 """"""""""""""""""""""
 "-----FUNCTIONS------"
-""""""""""""""""""""""
+"""""""""""""""""""{{{1
 
 " CenterToggle()
 "
 " Toggles whether the cursor should appear in the center.
 " Returns falsey if scrolloff is not 9999 or 0.
-:function! CenterToggle()
+:function! CenterToggle() "{{{2
 :    if !exists("&scrolloff")
 :        echom "scrolloff dons exits!"
 :        return 0
@@ -215,13 +220,14 @@ augroup END
 :        return 0
 :    endif
 :endfunction
+"}}}2
 
 
 " RefreshVim()
 "
 " Re-sources the vimrc document and toggles any settings that need to be
 " re-toggled afterward.
-:if !exists("*RefreshVim")
+:if !exists("*RefreshVim") "{{{2
 :    function! RefreshVim()
 :        source $MYVIMRC
 :        if( g:loaded_airline ==# 1 )
@@ -230,14 +236,15 @@ augroup END
 :    endfunction
 :    command! Recfg call RefreshVim()
 :endif
+"}}}2
 
 
 
-
+"}}}1
 "rmp""""""""""""""""s3
 """"""""""""""""""""""
 "-----REMAPPINGS-----"
-""""""""""""""""""""""
+"""""""""""""""""""{{{1
 
 
 " Retab automatically reconfigures tabs to spaces
@@ -388,11 +395,11 @@ onoremap il( :<C-U>normal! F)vi(<CR>
 " onoremap al( :<C-U>normal! F)viW<CR>
 
 
-
+"}}}1
 "abbr""""""""""""""s4
 """""""""""""""""""""
 "---ABBREVIATIONS---"
-"""""""""""""""""""""
+""""""""""""""""""{{{1
 
 
 " Email abbrevation
@@ -403,11 +410,11 @@ iabbrev mname  Brian Alexander Mejorado
 
 
 
-
+"}}}1
 "plgn"""""""""""""s5
 """"""""""""""""""""
 "-----PLUGINS------"
-""""""""""""""""""""
+"""""""""""""""""{{{1
 
 
 " LatexBox
@@ -452,11 +459,11 @@ let g:airline_powerline_fonts = 0
 
 
 
-
+"}}}1
 "ext""""""""""""""s6
 """"""""""""""""""""
 "-----EXTERNAL-----"
-""""""""""""""""""""
+"""""""""""""""""{{{1
 
 runtime MySessions.vim       " Provides automatic session behavior
 runtime MoshTab.vim          " Adds smart tab autocomplete
@@ -467,3 +474,4 @@ runtime BuildStatusline.vim  " Load up custom statusline
 " usage will be :NewFunct [name] [returntype] [param1] [param2] ...
 " In Java, will be :NewFunct [name] [returntype] [visibility] [params] ...
 " Automatically produces docs and prototype
+"}}}1

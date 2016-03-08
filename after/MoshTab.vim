@@ -13,19 +13,20 @@ let g:MoshTabToggle=1   " Setting to toggle mosh tabs or not
 "
 " Based on the current line, determines whether to input a tab or a 
 " Ctrl+N. 
-function! Mosh_Tab_Or_Complete()
+function! Mosh_Tab_Or_Complete() "{{{1
     if g:MoshTabToggle && col('.')>1 && strpart( getline('.'), col('.')-2, 3 ) =~ '^\w'
         return "\<C-N>"
     else
         return "\<Tab>"
 endfunction
+"}}}1
 
 
 
 " Mosh_Tab_Toggle
 "
 " Toggles whether or not Mosh Tab behavior should occur.
-function! Mosh_Tab_Toggle()
+function! Mosh_Tab_Toggle() "{{{1
     if g:MoshTabToggle
         let g:MoshTabToggle=0
         echom "Mosh tabs are off."
@@ -34,6 +35,7 @@ function! Mosh_Tab_Toggle()
         echom "Mosh tabs are on."
     endif
 endfunction
+"}}}1
 
 
 

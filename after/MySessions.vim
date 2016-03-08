@@ -9,7 +9,7 @@
 " MakeSession
 "
 " This function creates a session file for the current directory.
-function! MakeSession()
+function! MakeSession() "{{{1
     let b:sessiondir = $HOME . "/.vim/sessions" . getcwd()
     if (filewritable(b:sessiondir) != 2)
         exe 'silent !mkdir -p ' b:sessiondir
@@ -18,12 +18,13 @@ function! MakeSession()
     let b:filename = b:sessiondir . '/session.vim'
     exe "mksession! " . b:filename
 endfunction
+"}}}1
 
 
 " LoadSession
 "
 " This function loads an existing session file for the current directory.
-function! LoadSession()
+function! LoadSession() "{{{1
     let b:sessiondir = $HOME . "/.vim/sessions" . getcwd()
     let b:sessionfile = b:sessiondir . "/session.vim"
     if (filereadable(b:sessionfile))
@@ -32,6 +33,7 @@ function! LoadSession()
         echo "No session loaded."
     endif
 endfunction
+"}}}1
 
 
 " Automatically try to load a session when calling vim without args

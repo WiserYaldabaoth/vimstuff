@@ -1,6 +1,6 @@
 " Usage: in normal mode, where you want the prototypes to be pasted:
-":call GenerateProptotypes()
-function! GeneratePrototypes()
+":call GeneratePrototypes()
+function! GeneratePrototypes() "{{{1
     execute "silent !ctags --fields=+KS ".expand("%")
     redraw!
     let list = taglist('.*')
@@ -25,9 +25,10 @@ function! GeneratePrototypes()
         endif
     endfor
 endfunction
+"}}}1
 
 
-function! GeneratePrototypesFullSignature()
+function! GeneratePrototypesFullSignature() "{{{1
     "execute "silent !ctags --fields=+KS ".expand("%")
     let dir = expand("%:p:h");
     execute "silent !ctags --fields=+KSi --extra=+q".dir."/* "
@@ -52,11 +53,13 @@ function! GeneratePrototypesFullSignature()
         endif
     endfor
 endfunction
+"}}}1
 
 
 " Mappings to quickly call autogen prototypes
-augroup cprototypes
+augroup cprototypes "{{{1
     autocmd!
     au Filetype c   nnore <buffer> <localleader>pro :call GeneratePrototypes()<CR>
     au Filetype c   nnore <buffer> <localleader>proful :call GeneratePrototypesFullSignature()<CR>
 augroup END
+"}}}1
