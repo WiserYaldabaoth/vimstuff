@@ -460,6 +460,16 @@ let g:EclimCompletionMethod = 'omnifunc'
 let g:airline_powerline_fonts = 0
 
 
+" Supertab customization
+if has("autocmd") && exists("+omnifunc") " prepare omnifunc
+autocmd Filetype *
+		\	if &omnifunc == "" |
+		\		setlocal omnifunc=syntaxcomplete#Complete |
+		\	endif
+endif
+
+let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
+
 
 "}}}1
 "ext""""""""""""""s6
@@ -468,7 +478,7 @@ let g:airline_powerline_fonts = 0
 """""""""""""""""{{{1
 
 runtime MySessions.vim       " Provides automatic session behavior
-runtime MoshTab.vim          " Adds smart tab autocomplete
+"runtime MoshTab.vim          " Adds smart tab autocomplete
 runtime CPrototypes.vim      " Prototype generation for C headers
 runtime BuildStatusline.vim  " Load up custom statusline
 
