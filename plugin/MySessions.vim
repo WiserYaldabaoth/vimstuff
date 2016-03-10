@@ -1,7 +1,6 @@
-" MySessions.vim
+"File: MySessions.vim
 "
-" This file contains functions to automatically save and load new sessions to a
-" specialized directory in .vim settings dir. 
+" Description: Automatically save and load sessions to a specialized directory. 
 "
 " Idea acquired from https://stackoverflow.com/a/31978241
 
@@ -9,7 +8,7 @@
 " MakeSession
 "
 " This function creates a session file for the current directory.
-function! MakeSession() "{{{1
+function! s:MakeSession() "{{{1
     let b:sessiondir = $HOME . "/.vim/sessions" . getcwd()
     if (filewritable(b:sessiondir) != 2)
         exe 'silent !mkdir -p ' b:sessiondir
@@ -24,7 +23,7 @@ endfunction
 " LoadSession
 "
 " This function loads an existing session file for the current directory.
-function! LoadSession() "{{{1
+function! s:LoadSession() "{{{1
     let b:sessiondir = $HOME . "/.vim/sessions" . getcwd()
     let b:sessionfile = b:sessiondir . "/session.vim"
     if (filereadable(b:sessionfile))
@@ -38,9 +37,9 @@ endfunction
 
 " Automatically try to load a session when calling vim without args
 if (argc() ==# 0 )
-    au VimEnter * nested :call LoadSession()
+    au VimEnter * nested :call <SID>LoadSession()
 endif
 
 " Automatically create a session file when leaving vim
-au VimLeave * :call MakeSession()
+au VimLeave * :call <SID>MakeSession()
 

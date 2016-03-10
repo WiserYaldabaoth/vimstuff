@@ -1,1 +1,3 @@
-This is my vim configuration.
+#Vimstuff
+
+This is my vim configuration. It is very neat.
