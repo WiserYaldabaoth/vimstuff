@@ -456,18 +456,39 @@ let g:tagbar_type_tex = {
 let g:EclimCompletionMethod = 'omnifunc'
 
 
-" Airline customization
-let g:airline_powerline_fonts = 0
+" Define some mappings
+try "{{{2
+    silent! PingEclim   " Triggers error before defining mappings
+    " Eclim General
+    " leader = <leader>ec
+    nnoremap <leader>ecp :Projects<CR>
+    nnoremap <leader>ecd :ProjectProblems<CR>
+    nnoremap <leader>ecb :Buffers<CR>
+    nnoremap <leader>ecl :LocateFile<CR>
+
+    " Eclim Java
+    " leader = <leader>ja
+    nnoremap <leader>jaf :%JavaFormat<CR>
+    nnoremap <leader>jai :JavaImportOrganize<CR>
+    nnoremap <leader>jan :JavaRename<CR>
+catch
+    echom "No Eclim daemon configured. No Eclim mappings made."
+endtry
+"}}}2
 
 
 " Supertab customization
 if has("autocmd") && exists("+omnifunc") " prepare omnifunc
 autocmd Filetype *
-		\	if &omnifunc == "" |
-		\		setlocal omnifunc=syntaxcomplete#Complete |
-		\	endif
+        \   if &omnifunc == "" |
+        \       setlocal omnifunc=syntaxcomplete#Complete |
+        \   endif
 endif
 
+" Disable preview window
+set completeopt-=preview
+
+" Use omnifunc for completion
 let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
 
 

@@ -31,6 +31,8 @@ fun! CustomAirline() "{{{1
         let g:airline_symbols = {}
     endif
 
+    let g:airline_powerline_fonts = 0
+
     " Unicode separators so terminal can understand
     let g:airline_left_sep = '»'
     let g:airline_right_sep = '«'
