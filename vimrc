@@ -14,7 +14,7 @@ let g:pathogen_disabled = []
 "call add(g:pathogen_disabled, 'vim-fugitive')
 "call add(g:pathogen_disabled, 'tagbar')
 
-let g:loaded_airline = 0
+"let g:loaded_airline = 0
 "let g:loaded_fugitive = 0
 
 
@@ -421,8 +421,9 @@ iabbrev mname  Brian Alexander Mejorado
 
 " LatexBox
 
+" TODO This is computer-dependent; make this portable!
 let g:LatexBox_latexmk_options = "-pvc -pdf -output-directory=build"
-let g:LatexBox_viewer = "C:\Program Files\Tracker Software\PDF Viewer\PDFXCview.exe"
+let g:LatexBox_viewer = "C:\Program Files (x86)\Adobe\Reader 11.0\Reader\AcroRd32.exe"
 
 
 
@@ -458,7 +459,12 @@ let g:EclimCompletionMethod = 'omnifunc'
 
 " Define some mappings
 try "{{{2
-    silent! PingEclim   " Triggers error before defining mappings
+    augroup enter_eclim "{{{3
+        autocmd!
+        au VimEnter * :PingEclim   " Triggers error before defining mappings
+    augroup END
+    "}}}3
+
     " Eclim General
     " leader = <leader>ec
     nnoremap <leader>ecp :Projects<CR>
