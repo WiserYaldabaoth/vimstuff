@@ -367,7 +367,7 @@ nnoremap <leader>cc  :call CenterToggle()<CR>
 
 
 " ffffuuuuuu
-"nnoremap <leader>fuuuuu :exec "normal! qqqqqifuu\<lt>Esc>h@qq@q"<cr>
+nnoremap <leader>fuuuuu qqqqqifuu<Esc>h@qq@q
 
 
 " Insta-open explorer to show adjacent files
@@ -455,6 +455,9 @@ let g:tagbar_type_tex = {
 
 " For eclim installations
 let g:EclimCompletionMethod = 'omnifunc'
+let g:EclimTodoSearchPattern = '\(\<fixme\>\|\<todo\>\|\<xxx\>\)\c'
+let g:EclimProjectTreeAutoOpen = 1
+let g:eclimProjectTreeExpandPathOnOpen = 1
 
 
 " Define some mappings
