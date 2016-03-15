@@ -203,23 +203,23 @@ augroup END
 "
 " Toggles whether the cursor should appear in the center.
 " Returns falsey if scrolloff is not 9999 or 0.
-:function! CenterToggle() "{{{2
-:    if !exists("&scrolloff")
-:        echom "scrolloff dons exits!"
-:        return 0
-:    elseif &scrolloff ==# 0
-:        set scrolloff=9999
-:        echom "Cursor is now centered."
-:        return 1
-:    elseif &scrolloff ==# 9999
-:        set scrolloff=0
-:        echom "Cursor is now uncentered."
-:        return 1
-:    else
-:        echom "scrolloff setting must be 0 or 9999 for toggle."
-:        return 0
-:    endif
-:endfunction
+fun! CenterToggle() "{{{2
+    if !exists("&scrolloff")
+        echom "scrolloff dons exits!"
+        return 0
+    elseif &scrolloff ==# 0
+        set scrolloff=9999
+        echom "Cursor is now centered."
+        return 1
+    elseif &scrolloff ==# 9999
+        set scrolloff=0
+        echom "Cursor is now uncentered."
+        return 1
+    else
+        echom "scrolloff setting must be 0 or 9999 for toggle."
+        return 0
+    endif
+endfun
 "}}}2
 
 
@@ -227,15 +227,36 @@ augroup END
 "
 " Re-sources the vimrc document and toggles any settings that need to be
 " re-toggled afterward.
-:if !exists("*RefreshVim") "{{{2
-:    function! RefreshVim()
-:        source $MYVIMRC
-:        if( g:loaded_airline ==# 1 )
-:            AirlineRefresh
-:        endif
-:    endfunction
-:    command! Recfg call RefreshVim()
-:endif
+if !exists("*RefreshVim") "{{{2
+    fun! RefreshVim()
+        source $MYVIMRC
+        if( g:loaded_airline ==# 1 )
+            AirlineRefresh
+        endif
+    endfun
+    command! Recfg call RefreshVim()
+endif
+"}}}2
+
+
+" EnterEclim()
+"
+" Checks if mappings should be made.
+fun! EnterEclim() "{{{2
+    PingEclim
+    " Eclim General
+    " leader = <leader>ec
+    nnoremap <silent> <leader>ecp :Projects<CR>
+    nnoremap <silent> <leader>ecd :ProjectProblems<CR>
+    nnoremap <silent> <leader>ecb :Buffers<CR>
+    nnoremap <silent> <leader>ecl :LocateFile<CR>
+
+    " Eclim Java
+    " leader = <leader>ja
+    nnoremap <silent> <leader>jaf :%JavaFormat<CR>
+    nnoremap <silent> <leader>jai :JavaImportOrganize<CR>
+    nnoremap <silent> <leader>jan :JavaRename<CR>
+endfun
 "}}}2
 
 
@@ -248,7 +269,7 @@ augroup END
 
 
 " Retab automatically reconfigures tabs to spaces
-noremap <F2> :retab <CR>
+noremap <silent> <F2> :retab <CR>
 
 
 " Remap command starter to save button presses
@@ -276,10 +297,10 @@ inoremap JK <ESC>
 inoremap jK <ESC>
 inoremap Jk <ESC>
 
-inoremap kj <ESC>
-inoremap Kj <ESC>
-inoremap kJ <ESC>
-inoremap KJ <ESC>
+"inoremap kj <ESC>
+"inoremap Kj <ESC>
+"inoremap kJ <ESC>
+"inoremap KJ <ESC>
 
 " Fix <M-]> behavior
 set <M-]>=^[]
@@ -304,21 +325,29 @@ noremap <M-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 
 """"" USE THIS AFTER TRAINING YOURSELF OUT OF ARROW KEYS
 " Left and right arrow keys are for moving tabs...
-nnoremap <left> <C-C>:tabp<CR>
-nnoremap <right> <C-C>:tabn<CR>
+nnoremap <silent> <left> :tabp<CR>
+nnoremap <silent> <right> :tabn<CR>
+inoremap <silent> <ESC>[D <C-C>:tabp<CR>
+inoremap <silent> <ESC>[C <C-C>:tabn<CR>
+vnoremap <silent> <left> :tabp<CR>
+vnoremap <silent> <right> :tabn<CR>
 
 
 " Up and down arrow keys are for moving buffers
-nnoremap <up> <C-C>:bp<CR>
-nnoremap <down> <C-C>:bn<CR>
+nnoremap <silent> <up> :bp<CR>
+nnoremap <silent> <down> :bn<CR>
+inoremap <silent> <ESC>[A <C-C>:bp<CR>
+inoremap <silent> <ESC>[B <C-C>:bn<CR>
+vnoremap <silent> <left> :bp<CR>
+vnoremap <silent> <right> :bn<CR>
 
 
 " Alternatively, use arrow keys for moving about windows
 " It's really up to you how you use them!
-nnoremap <leader><left>  <C-W>h
-nnoremap <leader><right> <C-W>l
-nnoremap <leader><up>    <C-W>j
-nnoremap <leader><down>  <C-W>k
+nnoremap <silent> <leader><left>  <C-W>h
+nnoremap <silent> <leader><right> <C-W>l
+nnoremap <silent> <leader><up>    <C-W>j
+nnoremap <silent> <leader><down>  <C-W>k
 
 
 
@@ -329,41 +358,41 @@ inoremap <ESC> <nop>
 
 
 " _s_ource my _v_imrc file
-nnoremap <leader>sv :call RefreshVim()<CR>
+nnoremap <silent> <leader>sv :call RefreshVim()<CR>
 
 " _e_dit my _v_imrc file in a new window split
-nnoremap <leader>ev :vsp $MYVIMRC <CR>
+nnoremap <silent> <leader>ev :vsp $MYVIMRC <CR>
 
 
 " Surround a word in quotes in normal mode
-nnoremap <leader>" viW<ESC>a"<ESC>hbi"<ESC>lel
+nnoremap <silent> <leader>" viW<ESC>a"<ESC>hbi"<ESC>lel
 
 " Surround a word in quotes in visual mode
 "vnoremap <leader>" i`<
 
 
 " Toggle spellcheck on/off
-nnoremap <leader>ss :set spell!<CR>
+nnoremap <silent> <leader>ss :set spell!<CR>
 
 
 " Save current session
-nnoremap <leader>ses :mkses!<CR>
+nnoremap <silent> <leader>ses :mkses!<CR>
 
 
 " Make
-nnoremap <leader>m :make<CR>
+nnoremap <silent> <leader>m :make<CR>
 
 
 " Switch windows quickly, no control required
-nnoremap <leader>w <C-W>
+nnoremap <silent> <leader>w <C-W>
 
 
 " Suggestions pop up
-inoremap <leader><leader> <C-P>
+inoremap <silent> <leader><leader> <C-P>
 
 
 " Center cursor automagically
-nnoremap <leader>cc  :call CenterToggle()<CR>
+nnoremap <silent> <leader>cc  :call CenterToggle()<CR>
 
 
 " ffffuuuuuu
@@ -377,7 +406,7 @@ nnoremap - :Explore<CR>
 
 
 " Remove highlight after search
-nnoremap <leader>h :noh<CR>
+nnoremap <silent> <leader>h :noh<CR>
 
 
 " Operator for 'inside next parantheses'
@@ -430,11 +459,11 @@ let g:LatexBox_viewer = "C:\Program Files (x86)\Adobe\Reader 11.0\Reader\AcroRd3
 
 
 " Quickstart Tagbar
-nnoremap <F8> :TagbarToggle<CR>
+nnoremap <silent> <F8> :TagbarToggle<CR>
 
 
 " Quickstart Tagbar in autoclose mode
-nnoremap <leader>tt :TagbarOpenAutoClose<CR>
+nnoremap <silent> <leader>tt :TagbarOpenAutoClose<CR>
 
 
 " Prepare Tagbar for TeX.
@@ -461,28 +490,10 @@ let g:eclimProjectTreeExpandPathOnOpen = 1
 
 
 " Define some mappings
-try "{{{2
-    augroup enter_eclim "{{{3
-        autocmd!
-        au VimEnter * :PingEclim   " Triggers error before defining mappings
-    augroup END
-    "}}}3
-
-    " Eclim General
-    " leader = <leader>ec
-    nnoremap <leader>ecp :Projects<CR>
-    nnoremap <leader>ecd :ProjectProblems<CR>
-    nnoremap <leader>ecb :Buffers<CR>
-    nnoremap <leader>ecl :LocateFile<CR>
-
-    " Eclim Java
-    " leader = <leader>ja
-    nnoremap <leader>jaf :%JavaFormat<CR>
-    nnoremap <leader>jai :JavaImportOrganize<CR>
-    nnoremap <leader>jan :JavaRename<CR>
-catch
-    echom "No Eclim daemon configured. No Eclim mappings made."
-endtry
+augroup enter_eclim "{{{2
+    autocmd!
+    au VimEnter * try | call EnterEclim() | catch /.*/ | echom "No Eclim installation." | endtry
+augroup END
 "}}}2
 
 
@@ -497,8 +508,11 @@ endif
 " Disable preview window
 set completeopt-=preview
 
-" Use omnifunc for completion
-let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
+" Use context for completion
+let g:SuperTabDefaultCompletionType = "context"
+
+let g:SuperTabCompletionContexts = ['s:ContextText']
+let g:SuperTabContextTextOmniPrecedence = ['&omnifunc', '&completefunc']
 
 
 "}}}1
