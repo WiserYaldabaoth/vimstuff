@@ -6,6 +6,9 @@
 # Ignore the sessions
 sessions/
 
+# Ignore spelling
+/spell/
+
 
 # Ignore vim files
 *.swp
