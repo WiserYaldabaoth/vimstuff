@@ -140,63 +140,6 @@ else                             " but if it isn't a makefile...
 endif
 
 
-" Create 80-character line like in most IDEs
-if exists('+colorcolumn') "{{{2
-    augroup coloring
-        autocmd!
-        au Filetype java,c,cpp,c#,python,ruby,sh,promela set colorcolumn=80
-    augroup END
-else
-    augroup nocolor_error
-        autocmd!
-        au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>81v.\+', -1)
-    augroup END
-endif
-"}}}2
-
-
-" TODO Reduce this to a single function and some language plugins for
-" <leader>c mapping
-augroup comments "{{{2
-    autocmd!
-
-    " Automatically comment out a line in the given filetypes
-    au Filetype java,c,cpp,c#   nnore <buffer> <localleader>c mqI//<ESC>`q
-    au Filetype python,ruby,sh  nnore <buffer> <localleader>c mqI#<ESC>`q
-    au Filetype promela         nnore <buffer> <localleader>c mqI/* <ESC>$a */<ESC>`q
-    au Filetype tex             nnore <buffer> <localleader>c mqI%<ESC>`q
-    au Filetype vim             nnore <buffer> <localleader>c mqI"<ESC>`q
-
-    " Automatically uncomment a line in the given filetypes
-    au Filetype java,c,cpp,c#   nnore <buffer> <localleader>nc mq^xx`q
-    au Filetype python,ruby,sh  nnore <buffer> <localleader>nc mq^x`q
-    au Filetype promela         nnore <buffer> <localleader>nc mq^xx$XX^`q
-    au Filetype tex             nnore <buffer> <localleader>nc mq^x`q
-    au Filetype vim             nnore <buffer> <localleader>nc mq^x`q
-
-    " TODO Automatically produce a doc comment
-    au Filetype java,c,promela,c#  nnore <buffer> <localleader>dc o/**<CR><BS>*<ESC>jkka<SPACE>
-    au Filetype python             nnore <buffer> <localleader>dc o"""<CR><CR>"""<ESC>ka
-augroup END
-"}}}2
-
-
- "Add a semicolon to the end of a line
-augroup semicolon "{{{2
-    autocmd!
-    au Filetype java,c,cpp nnore <buffer> <localleader>sc mqA;<esc>`q
-augroup END
-"}}}2
-
-
-augroup latexstuff "{{{2
-    autocmd!
-    au Filetype tex  nnore <buffer> <localleader>b :%!pdflatex --quiet --output-directory=build<CR>
-augroup END
-"}}}2
-
-
-
 "}}}1
 "rmp""""""""""""""""s2
 """"""""""""""""""""""
