@@ -50,7 +50,7 @@ set ssop-=folds              " DO NOT STORE FOLDS IN SESSION
 set background=light         " Modify syntax highlighting color schemes
 
 set showcmd                  " Show typed commands
-set cmdheight=2              " Commandline height of 2 lines
+set cmdheight=1              " Commandline height of 1 lines
 
 set showmatch                " Show matching pairs of brackets
 
@@ -198,75 +198,7 @@ augroup END
 
 
 "}}}1
-"fnc""""""""""""""""s2
-""""""""""""""""""""""
-"-----FUNCTIONS------"
-"""""""""""""""""""{{{1
-
-" CenterToggle()
-"
-" Toggles whether the cursor should appear in the center.
-" Returns falsey if scrolloff is not 9999 or 0.
-fun! CenterToggle() "{{{2
-    if !exists("&scrolloff")
-        echom "scrolloff dons exits!"
-        return 0
-    elseif &scrolloff ==# 0
-        set scrolloff=9999
-        echom "Cursor is now centered."
-        return 1
-    elseif &scrolloff ==# 9999
-        set scrolloff=0
-        echom "Cursor is now uncentered."
-        return 1
-    else
-        echom "scrolloff setting must be 0 or 9999 for toggle."
-        return 0
-    endif
-endfun
-"}}}2
-
-
-" RefreshVim()
-"
-" Re-sources the vimrc document and toggles any settings that need to be
-" re-toggled afterward.
-if !exists("*RefreshVim") "{{{2
-    fun! RefreshVim()
-        source $MYVIMRC
-        if( g:loaded_airline ==# 1 )
-            AirlineRefresh
-        endif
-    endfun
-    command! Recfg call RefreshVim()
-endif
-"}}}2
-
-
-" EnterEclim()
-"
-" Checks if mappings should be made.
-fun! EnterEclim() "{{{2
-    PingEclim
-    " Eclim General
-    " leader = <leader>ec
-    nnoremap <silent> <leader>ecp :Projects<CR>
-    nnoremap <silent> <leader>ecd :ProjectProblems<CR>
-    nnoremap <silent> <leader>ecb :Buffers<CR>
-    nnoremap <silent> <leader>ecl :LocateFile<CR>
-
-    " Eclim Java
-    " leader = <leader>ja
-    nnoremap <silent> <leader>jaf :%JavaFormat<CR>
-    nnoremap <silent> <leader>jai :JavaImportOrganize<CR>
-    nnoremap <silent> <leader>jan :JavaRename<CR>
-endfun
-"}}}2
-
-
-
-"}}}1
-"rmp""""""""""""""""s3
+"rmp""""""""""""""""s2
 """"""""""""""""""""""
 "-----REMAPPINGS-----"
 """""""""""""""""""{{{1
@@ -362,7 +294,7 @@ inoremap <ESC> <nop>
 
 
 " _s_ource my _v_imrc file
-nnoremap <silent> <leader>sv :call RefreshVim()<CR>
+nnoremap <silent> <leader>sv :call functions#RefreshVim()<CR>
 
 " _e_dit my _v_imrc file in a new window split
 nnoremap <silent> <leader>ev :vsp $MYVIMRC <CR>
@@ -396,7 +328,7 @@ inoremap <silent> <leader><leader> <C-P>
 
 
 " Center cursor automagically
-nnoremap <silent> <leader>cc  :call CenterToggle()<CR>
+nnoremap <silent> <leader>cc  :call functions#CenterToggle()<CR>
 
 
 " ffffuuuuuu
@@ -431,7 +363,7 @@ onoremap il( :<C-U>normal! F)vi(<CR>
 
 
 "}}}1
-"abbr""""""""""""""s4
+"abbr""""""""""""""s3
 """""""""""""""""""""
 "---ABBREVIATIONS---"
 """"""""""""""""""{{{1
@@ -446,7 +378,7 @@ iabbrev mname  Brian Alexander Mejorado
 
 
 "}}}1
-"plgn"""""""""""""s5
+"plgn"""""""""""""s4
 """"""""""""""""""""
 "-----PLUGINS------"
 """""""""""""""""{{{1
@@ -496,7 +428,7 @@ let g:eclimProjectTreeExpandPathOnOpen = 1
 " Define some mappings
 augroup enter_eclim "{{{2
     autocmd!
-    au VimEnter * try | call EnterEclim() | catch /.*/ | echom "No Eclim installation." | endtry
+    au VimEnter * try | call functions#EnterEclim() | catch /.*/ | echom "No Eclim installation." | endtry
 augroup END
 "}}}2
 
@@ -522,18 +454,17 @@ let g:SuperTabContextTextOmniPrecedence = ['&omnifunc', '&completefunc']
 " MBE Bindings
 augroup mbe
     au VimEnter * MBEOpen
-augroup ENDGROUP
+augroup END
 
-nnoremap <leader>bt :MBEToggle<CR>
+nnoremap <leader>mt :MBEToggle<CR>
 
 
 "}}}1
-"ext""""""""""""""s6
+"ext""""""""""""""s5
 """"""""""""""""""""
 "-----EXTERNAL-----"
 """""""""""""""""{{{1
 
-runtime MySessions.vim       " Provides automatic session behavior
 "runtime MoshTab.vim          " Adds smart tab autocomplete
 runtime CPrototypes.vim      " Prototype generation for C headers
 runtime BuildStatusline.vim  " Load up custom statusline
