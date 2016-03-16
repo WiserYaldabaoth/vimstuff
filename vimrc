@@ -12,7 +12,11 @@ let g:pathogen_disabled = []
 "call add(g:pathogen_disabled, 'LatexBox')
 "call add(g:pathogen_disabled, 'vim-airline')
 "call add(g:pathogen_disabled, 'vim-fugitive')
+"call add(g:pathogen_disabled, 'vim-merginal')
 "call add(g:pathogen_disabled, 'tagbar')
+"call add(g:pathogen_disabled, 'supertab')
+"call add(g:pathogen_disabled, 'vim-bufkill')
+"call add(g:pathogen_disabled, 'minibufexpl')
 
 "let g:loaded_airline = 0
 "let g:loaded_fugitive = 0
@@ -453,7 +457,7 @@ iabbrev mname  Brian Alexander Mejorado
 " TODO This is computer-dependent; make this portable!
 let g:LatexBox_latexmk_options = "-pvc -pdf -output-directory=build"
 let g:LatexBox_viewer = "C:\Program Files (x86)\Adobe\Reader 11.0\Reader\AcroRd32.exe"
-
+let g:LatexBox_Folding = 1  " LatexBox has folding, use it.
 
 
 
@@ -513,6 +517,14 @@ let g:SuperTabDefaultCompletionType = "context"
 
 let g:SuperTabCompletionContexts = ['s:ContextText']
 let g:SuperTabContextTextOmniPrecedence = ['&omnifunc', '&completefunc']
+
+
+" MBE Bindings
+augroup mbe
+    au VimEnter * MBEOpen
+augroup ENDGROUP
+
+nnoremap <leader>bt :MBEToggle<CR>
 
 
 "}}}1
