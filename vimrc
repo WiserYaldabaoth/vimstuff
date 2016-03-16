@@ -1,11 +1,8 @@
-" .vimrc
+"vim:fen:fdm=marker
 
-"stng"""""""""""""s1
-""""""""""""""""""""
-"_____SETTINGS_____"
-"""""""""""""""""{{{1
+"SETTINGS{{{1
 
-" Pathogen
+"" Pathogen{{{2
 
 let g:pathogen_disabled = []
 
@@ -30,19 +27,18 @@ if filereadable(expand("~/.vim/autoload/pathogen.vim"))
        call pathogen#helptags()
     endif
 endif
-
+"}}}2
+"" Preparations{{{2
 set nocompatible             " VIM ONLY, NO VI ALLOWED
 syntax on                    " Set syntax highlighting
 filetype plugin indent on
 let mapleader = ","          " Leader for mapping
 set shell=/bin/bash
-
-
-
-"In case /tmp get's clean out, make a new tmp directory for vim:
-:command! Mktmpdir call mkdir(fnamemodify(tempname(),":p:h"),"",0700)
-
-
+"}}}2
+" Mktmpdir recreates dir{{{2
+command! Mktmpdir call mkdir(fnamemodify(tempname(),":p:h"),"",0700)
+"}}}2
+"" Options{{{2
 " These are for my sanity when loading modified vimrc in Sessions
 set ssop-=options            " DO NOT STORE GLOBAL/LOCAL VARIABLES IN SESSION
 set ssop-=folds              " DO NOT STORE FOLDS IN SESSION
@@ -68,8 +64,7 @@ set scrolloff=0              " Always keep cursor in center
 
 set vb t_vb=                 " I don't want beeps
 
-
-" Folding
+" Folding{{{3
 " Common key bindings:
 " za - toggles folding
 " zc - closes a fold
@@ -78,8 +73,9 @@ set vb t_vb=                 " I don't want beeps
 " zM - closes all folds
 set foldmethod=syntax        " Fold based on syntax files
 set foldnestmax=10           " Deepest nesting is 10 levels
-set nofoldenable             " Don't automatically fold
-set foldlevel=1
+"set nofoldenable             " Don't automatically fold
+"set foldlevel=1
+"}}}3
 
 
 " Vim recognizes shell alias commands
@@ -93,8 +89,8 @@ set copyindent               " Copy indent of last line
 set preserveindent           " Keep indent at same level
 
 set backspace=2  " Fix backspace behavior in vim
-
-
+"}}}2
+"" GUI Check{{{2
 if has("gui_running")
     "echo "Yes, we have a GUI"
     set mouse=a
@@ -102,35 +98,26 @@ else
     "echo "Just a boring console"
     set mouse=
 endif
-
-
-" Set up command expansion for LaTeX
-augroup LaTeXexp "{{{2
+"}}}2
+"" Set up command expansion for LaTeX{{{2
+augroup LaTeXexp
     autocmd!
     autocmd FileType * :exec("setlocal dictionary+=".$HOME."/.vim/dictionaries/".expand('<amatch>'))
 augroup END
-"}}}2
 set completeopt=menuone,longest,preview
 set complete+=k
-
-
-" Make comments more readable
+"}}}2
+"" Highlights{{{2
 hi Comment ctermfg=Cyan
 hi Search cterm=NONE ctermfg=black ctermbg=blue
 hi Visual cterm=NONE ctermfg=black ctermbg=lightgray
 hi Folded cterm=NONE ctermfg=black ctermbg=darkgray
-
-
-" Don't always create newline comments
-augroup change_fo
+"}}}2
+augroup fixcomments
     autocmd!
     au Filetype * set fo-=c fo-=r fo-=o
 augroup END
-
-
-" Tab behavior
-
-" Grab current file name and see if it is a makefile
+"" Makefile tab handling{{{2
 let _curfile = expand("%:t")
 if _curfile =~ "Makefile" || _curfile =~ "makefile" || _curfile =~ ".*\.mk"
     set noexpandtab              " We want proper tabs in makefiles!
@@ -138,38 +125,33 @@ else                             " but if it isn't a makefile...
     set expandtab                " turn tabs into spaces
     set tabstop=4 shiftwidth=4   " tab length is 4
 endif
-
+"}}}2
 
 "}}}1
-"rmp""""""""""""""""s2
-""""""""""""""""""""""
-"-----REMAPPINGS-----"
-"""""""""""""""""""{{{1
+"REMAPPINGS{{{1
 
-
-" Retab automatically reconfigures tabs to spaces
+" Retab automatically reconfigures tabs to spaces{{{2
 noremap <silent> <F2> :retab <CR>
-
-
-" Remap command starter to save button presses
+"}}}2
+" Remap command starter to save button presses{{{2
 """""" THIS IS MY SECOND FAVORITE MAPPING IN THE UNIVERSE
 nore ; :
-
-" Set search mapping so that next found in search centers on line
+"}}}2
+" Set search mapping so that next found in search centers on line{{{2
 noremap N Nzz
 noremap n nzz
-
-" Open tag definition in a new tab with ctrl+\
+"}}}2
+" Open tag definition in a new tab with ctrl+\{{{2
 noremap <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
-
-" Insert a single character
+"}}}2
+" Insert a single character{{{2
 nnoremap <Space> i_<C-C>r
-
-" Insert a single character into a block selection
+"}}}2
+" Insert a single character into a block selection{{{2
 " OR: Replace an entire selection with a single selection
 vnoremap <Space> I_<ESC>gvr
-
-" Escape with jk
+"}}}2
+" Escape with jk{{{2
 """""" THIS IS MY FAVORITE MAPPING IN THE UNIVERSE
 inoremap jk <ESC>
 inoremap JK <ESC>
@@ -180,16 +162,16 @@ inoremap Jk <ESC>
 "inoremap Kj <ESC>
 "inoremap kJ <ESC>
 "inoremap KJ <ESC>
-
-" Fix <M-]> behavior
+"}}}2
+" Fix <M-]> behavior{{{2
 set <M-]>=^[]
-
-" Open tag definition in vertical split with alt+]
+"}}}2
+" Open tag definition in vertical split with alt+]{{{2
 noremap <M-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
-
-
+"}}}2
+" Arrow Key Mapping{{{2
 """"" A TOOL FOR LEARNING 'THE VIM WAY'
-""""" USE MAPPING TO DISABLE ARROW KEYS!
+""""" USE MAPPING TO DISABLE ARROW KEYS!{{{3
 "noremap <up> <nop>
 "noremap <down> <nop>
 "noremap <left> <nop>
@@ -199,10 +181,8 @@ noremap <M-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 "inoremap <down> <nop>
 "inoremap <left> <nop>
 "inoremap <right> <nop>
-
-
-
-""""" USE THIS AFTER TRAINING YOURSELF OUT OF ARROW KEYS
+"}}}3
+""""" USE THIS AFTER TRAINING YOURSELF OUT OF ARROW KEYS{{{3
 " Left and right arrow keys are for moving tabs...
 nnoremap <silent> <left> :tabp<CR>
 nnoremap <silent> <right> :tabn<CR>
@@ -227,123 +207,94 @@ nnoremap <silent> <leader><left>  <C-W>h
 nnoremap <silent> <leader><right> <C-W>l
 nnoremap <silent> <leader><up>    <C-W>j
 nnoremap <silent> <leader><down>  <C-W>k
-
-
-
-""""""" THIS MAPPING DISABLES ESC IN INSERT MODE
+"}}}3
+"}}}2
+""""""" THIS MAPPING DISABLES ESC IN INSERT MODE{{{2
 " 'If Escape is your friend, why is it so far away from you?'
 inoremap <ESC> <nop>
-
-
-
-" _s_ource my _v_imrc file
+"}}}2
+" vimrc commands{{{2
+" _s_ource my _v_imrc file{{{3
 nnoremap <silent> <leader>sv :call functions#RefreshVim()<CR>
+"}}}3
 
-" _e_dit my _v_imrc file in a new window split
+" _e_dit my _v_imrc file in a new window split{{{3
 nnoremap <silent> <leader>ev :vsp $MYVIMRC <CR>
-
-
-" Surround a word in quotes in normal mode
+"}}}3
+"}}}2
+" Surround a word in quotes in normal mode{{{2
 nnoremap <silent> <leader>" viW<ESC>a"<ESC>hbi"<ESC>lel
-
-" Surround a word in quotes in visual mode
+"}}}2
+" Surround a word in quotes in visual mode{{{2
 "vnoremap <leader>" i`<
-
-
-" Toggle spellcheck on/off
+"}}}2
+" Toggle spellcheck on/off{{{2
 nnoremap <silent> <leader>ss :set spell!<CR>
-
-
-" Save current session
+"}}}2
+" Save current session{{{2
 nnoremap <silent> <leader>ses :mkses!<CR>
-
-
-" Make
+"}}}2
+" Make{{{2
 nnoremap <silent> <leader>m :make<CR>
-
-
-" Switch windows quickly, no control required
+"}}}2
+" Switch windows quickly, no control required{{{2
 nnoremap <silent> <leader>w <C-W>
-
-
-" Suggestions pop up
+"}}}2
+" Suggestions pop up{{{2
 inoremap <silent> <leader><leader> <C-P>
-
-
-" Center cursor automagically
+"}}}2
+" Center cursor automagically{{{2
 nnoremap <silent> <leader>cc  :call functions#CenterToggle()<CR>
-
-
-" ffffuuuuuu
+"}}}2
+" ffffuuuuuu{{{2
 nnoremap <leader>fuuuuu qqqqqifuu<Esc>h@qq@q
-
-
-" Insta-open explorer to show adjacent files
+"}}}2
+" Insta-open explorer to show adjacent files{{{2
 " This provides seamless browsing of complex directory structures,
 " as the same button moves up one directory!
 nnoremap - :Explore<CR>
-
-
-" Remove highlight after search
+"}}}2
+" Remove highlight after search{{{2
 nnoremap <silent> <leader>h :noh<CR>
-
-
-" Operator for 'inside next parantheses'
+"}}}2
+" Operator for 'inside next parantheses'{{{2
 onoremap in( :<C-U>normal! f(vi(<CR>
-
-
-" Operator for 'inside last parentheses'
+"}}}2
+" Operator for 'inside last parentheses'{{{2
 onoremap il( :<C-U>normal! F)vi(<CR>
-
-
-" Operator for 'around next parentheses'
+"}}}2
+" Operator for 'around next parentheses'{{{2
 " onoremap an( :<C-U>normal! f(vib<CR>
-
-" Operator for 'around last parentheses'
+"}}}2
+" Operator for 'around last parentheses'{{{2
 " onoremap al( :<C-U>normal! F)viW<CR>
-
-
-
+"}}}2
 
 "}}}1
-"abbr""""""""""""""s3
-"""""""""""""""""""""
-"---ABBREVIATIONS---"
-""""""""""""""""""{{{1
+"ABBREVIATIONS{{{1
 
-
-" Email abbrevation
+" Email abbrevation{{{2
 iabbrev @@     bam9523@rit.edu
-
-" Name abbreviation
+"}}}2
+" Name abbreviation{{{2
 iabbrev mname  Brian Alexander Mejorado
-
-
+"}}}2
 
 "}}}1
-"plgn"""""""""""""s4
-""""""""""""""""""""
-"-----PLUGINS------"
-"""""""""""""""""{{{1
+"PLUGINS{{{1
 
-
-" LatexBox
-
+" LatexBox{{{2
 " TODO This is computer-dependent; make this portable!
 let g:LatexBox_latexmk_options = "-pvc -pdf -output-directory=build"
 let g:LatexBox_viewer = "C:\Program Files (x86)\Adobe\Reader 11.0\Reader\AcroRd32.exe"
 let g:LatexBox_Folding = 1  " LatexBox has folding, use it.
-
-
-
-
+"}}}2
+" Tagbar{{{2
 " Quickstart Tagbar
 nnoremap <silent> <F8> :TagbarToggle<CR>
 
-
 " Quickstart Tagbar in autoclose mode
 nnoremap <silent> <leader>tt :TagbarOpenAutoClose<CR>
-
 
 " Prepare Tagbar for TeX.
 " Idea borrowed from https://stackoverflow.com/q/26145505.
@@ -359,9 +310,8 @@ let g:tagbar_type_tex = {
     \ ],
     \ 'sort'    : 0,
 \ }
-
-
-" For eclim installations
+"}}}2
+" Eclim{{{2
 let g:EclimCompletionMethod = 'omnifunc'
 let g:EclimTodoSearchPattern = '\(\<fixme\>\|\<todo\>\|\<xxx\>\)\c'
 let g:EclimProjectTreeAutoOpen = 1
@@ -369,14 +319,13 @@ let g:eclimProjectTreeExpandPathOnOpen = 1
 
 
 " Define some mappings
-augroup enter_eclim "{{{2
+augroup enter_eclim "{{{3
     autocmd!
     au VimEnter * try | call functions#EnterEclim() | catch /.*/ | echom "No Eclim installation." | endtry
 augroup END
+"}}}3
 "}}}2
-
-
-" Supertab customization
+" Supertab{{{2
 if has("autocmd") && exists("+omnifunc") " prepare omnifunc
 autocmd Filetype *
         \   if &omnifunc == "" |
@@ -389,24 +338,19 @@ set completeopt-=preview
 
 " Use context for completion
 let g:SuperTabDefaultCompletionType = "context"
-
 let g:SuperTabCompletionContexts = ['s:ContextText']
 let g:SuperTabContextTextOmniPrecedence = ['&omnifunc', '&completefunc']
-
-
-" MBE Bindings
+"}}}2
+" MBE{{{2
 augroup mbe
     au VimEnter * MBEOpen
 augroup END
 
 nnoremap <leader>mt :MBEToggle<CR>
-
+"}}}2
 
 "}}}1
-"ext""""""""""""""s5
-""""""""""""""""""""
-"-----EXTERNAL-----"
-"""""""""""""""""{{{1
+"EXTERNAL{{{1
 
 "runtime MoshTab.vim          " Adds smart tab autocomplete
 runtime CPrototypes.vim      " Prototype generation for C headers
