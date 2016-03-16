@@ -16,3 +16,6 @@
 [submodule "bundle/vim-merginal"]
 	path = bundle/vim-merginal
 	url = git://github.com/idanarye/vim-merginal
+[submodule "bundle/vim-bufkill"]
+	path = bundle/vim-bufkill
+	url = git://github.com/qpkorr/vim-bufkill
