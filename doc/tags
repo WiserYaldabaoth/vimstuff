@@ -8,12 +8,22 @@
 :LatexmkStatus	latex-box.txt	/*:LatexmkStatus*
 :LatexmkStatusDetailed	latex-box.txt	/*:LatexmkStatusDetailed*
 :LatexmkStop	latex-box.txt	/*:LatexmkStop*
+:XtermColorTable	xterm-color-table.txt	/*:XtermColorTable*
 <Plug>LatexBox_BackJumpToMatch	latex-box.txt	/*<Plug>LatexBox_BackJumpToMatch*
 <Plug>LatexBox_JumpToMatch	latex-box.txt	/*<Plug>LatexBox_JumpToMatch*
 <Plug>LatexChangeEnv	latex-box.txt	/*<Plug>LatexChangeEnv*
 <Plug>LatexCloseCurEnv	latex-box.txt	/*<Plug>LatexCloseCurEnv*
 <Plug>LatexEnvWrapSelection	latex-box.txt	/*<Plug>LatexEnvWrapSelection*
 <Plug>LatexWrapSelection	latex-box.txt	/*<Plug>LatexWrapSelection*
+EXtermColorTable	xterm-color-table.txt	/*EXtermColorTable*
+OXtermColorTable	xterm-color-table.txt	/*OXtermColorTable*
+SXtermColorTable	xterm-color-table.txt	/*SXtermColorTable*
+TXtermColorTable	xterm-color-table.txt	/*TXtermColorTable*
+VXtermColorTable	xterm-color-table.txt	/*VXtermColorTable*
+XtermColorTable-#	xterm-color-table.txt	/*XtermColorTable-#*
+XtermColorTable-f	xterm-color-table.txt	/*XtermColorTable-f*
+XtermColorTable-mappings	xterm-color-table.txt	/*XtermColorTable-mappings*
+XtermColorTable-t	xterm-color-table.txt	/*XtermColorTable-t*
 b:main_tex_file	latex-box.txt	/*b:main_tex_file*
 g:LatexBox_autojump	latex-box.txt	/*g:LatexBox_autojump*
 g:LatexBox_bibtex_wild_spaces	latex-box.txt	/*g:LatexBox_bibtex_wild_spaces*
@@ -28,6 +38,7 @@ g:LatexBox_ref_pattern	latex-box.txt	/*g:LatexBox_ref_pattern*
 g:LatexBox_split_width	latex-box.txt	/*g:LatexBox_split_width*
 g:LatexBox_templates	latex-box.txt	/*g:LatexBox_templates*
 g:LatexBox_viewer	latex-box.txt	/*g:LatexBox_viewer*
+g:XtermColorTableDefaultOpen	xterm-color-table.txt	/*g:XtermColorTableDefaultOpen*
 g:vim_program	latex-box.txt	/*g:vim_program*
 grokvi.txt	grokvi.txt	/*grokvi.txt*
 latex-box	latex-box.txt	/*latex-box*
@@ -53,3 +64,4 @@ latex-box-settings-completion	latex-box.txt	/*latex-box-settings-completion*
 latex-box-settings-windows	latex-box.txt	/*latex-box-settings-windows*
 latex-box-todo	latex-box.txt	/*latex-box-todo*
 latex-box.txt	latex-box.txt	/*latex-box.txt*
+xterm-color-table.txt	xterm-color-table.txt	/*xterm-color-table.txt*

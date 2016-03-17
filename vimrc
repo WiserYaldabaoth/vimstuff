@@ -112,12 +112,18 @@ set complete+=k
 " Highlights{{{2
 hi Comment ctermfg=Cyan
 hi Search cterm=NONE ctermfg=black ctermbg=blue
-hi Visual cterm=NONE ctermfg=black ctermbg=lightgray
-hi Folded cterm=NONE ctermfg=black ctermbg=darkgray
+hi Visual cterm=NONE ctermfg=black ctermbg=130
+hi Folded cterm=NONE ctermfg=93 ctermbg=black
+
+augroup cursorlinehi
+    autocmd!
+    au InsertEnter * hi CursorLine ctermbg=17
+    au InsertLeave * hi CursorLine ctermbg=black
+augroup END
 "}}}2
 augroup fixcomments
     autocmd!
-    au Filetype * set fo-=c fo-=r fo-=o
+    au Filetype <buffer> set fo-=c fo-=r fo-=o
 augroup END
 " Makefile tab handling{{{2
 let _curfile = expand("%:t")
@@ -355,6 +361,7 @@ let g:SuperTabContextTextOmniPrecedence = ['&omnifunc', '&completefunc']
 
 runtime CPrototypes.vim      " Prototype generation for C headers
 runtime BuildStatusline.vim  " Load up custom statusline
+runtime ModeAwareCursor.vim
 
 " TODO Create a function for C-style languages :NewFunct
 " usage will be :NewFunct [name] [returntype] [param1] [param2] ...
