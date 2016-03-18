@@ -8,6 +8,7 @@ let g:pathogen_disabled = []
 
 "call add(g:pathogen_disabled, 'LatexBox')
 "call add(g:pathogen_disabled, 'vim-airline')
+"call add(g:pathogen_disabled, 'vim-bufferline')
 "call add(g:pathogen_disabled, 'vim-fugitive')
 "call add(g:pathogen_disabled, 'vim-merginal')
 "call add(g:pathogen_disabled, 'tagbar')
@@ -326,7 +327,7 @@ let g:tagbar_type_tex = {
 " Eclim{{{2
 let g:EclimCompletionMethod = 'omnifunc'
 let g:EclimTodoSearchPattern = '\(\<fixme\>\|\<todo\>\|\<xxx\>\)\c'
-let g:EclimProjectTreeAutoOpen = 1
+"let g:EclimProjectTreeAutoOpen = 1
 let g:eclimProjectTreeExpandPathOnOpen = 1
 
 " Define some mappings

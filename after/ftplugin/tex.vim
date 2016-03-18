@@ -7,11 +7,15 @@ nnore <buffer> <localleader>nc mq^x`q
 "}}}2
 
 " Automatically compile the file while in trial with guile!{{{2
-nnore <buffer> <localleader>b :%!pdflatex --quiet --output-directory=build<CR>
+nnore <buffer> <localleader>b :%!pdflatex --output-directory=build<CR>
 "}}}2
 
 " Foldmethod{{{2
-setlocal foldmethod=syntax
+setlocal foldmethod=expr
+"}}}2
+
+" Check spelling when using LaTeX{{{2
+setlocal spell
 "}}}2
 
 "}}}1
