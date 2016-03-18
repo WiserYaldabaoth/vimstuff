@@ -17,4 +17,8 @@ if exists('+colorcolumn') "{{{2
 endif
 "}}}2
 
+" Foldmethod{{{2
+setlocal foldmethod=syntax
+"}}}2
+
 "}}}1

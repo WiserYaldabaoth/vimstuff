@@ -1,4 +1,4 @@
-"vim:fen:fdm=marker
+"vim:setlocal fen fdm=marker
 
 "SETTINGS{{{1
 
@@ -67,7 +67,7 @@ set vb t_vb=
 " zo - opens a fold
 " zR - opens all folds
 " zM - closes all folds
-set foldmethod=syntax        " Fold based on syntax files
+"set foldmethod=syntax        " Fold based on syntax files
 set foldnestmax=10           " Deepest nesting is 10 levels
 "set nofoldenable             " Don't automatically fold
 "set foldlevel=1
@@ -102,10 +102,11 @@ else
 endif
 "}}}2
 " Set up command expansion for LaTeX{{{2
-augroup LaTeXexp
+augroup LaTeXexp "{{{3
     autocmd!
     autocmd FileType * :exec("setlocal dictionary+=".$HOME."/.vim/dictionaries/".expand('<amatch>'))
 augroup END
+"}}}3
 set completeopt=menuone,longest,preview
 set complete+=k
 "}}}2
@@ -115,16 +116,18 @@ hi Search cterm=NONE ctermfg=black ctermbg=blue
 hi Visual cterm=NONE ctermfg=black ctermbg=130
 hi Folded cterm=NONE ctermfg=93 ctermbg=black
 
-augroup cursorlinehi
+augroup cursorlinehi"{{{3
     autocmd!
     au InsertEnter * hi CursorLine ctermbg=17
     au InsertLeave * hi CursorLine ctermbg=black
 augroup END
+"}}}3
 "}}}2
-augroup fixcomments
+augroup fixcomments "{{{2
     autocmd!
     au Filetype <buffer> set fo-=c fo-=r fo-=o
 augroup END
+"}}}2
 " Makefile tab handling{{{2
 let _curfile = expand("%:t")
 if _curfile =~ "Makefile" || _curfile =~ "makefile" || _curfile =~ ".*\.mk"
@@ -217,6 +220,9 @@ inoremap Jk <ESC>
 "inoremap Kj <ESC>
 "inoremap kJ <ESC>
 "inoremap KJ <ESC>
+"}}}2
+" N:gb        Quickly navigate through buffers{{{2
+nnoremap gb :ls<cr>:b<space>
 "}}}2
 " N:<M-]>     Open tag definition in vertical split with alt+]{{{2
 " Fix <M-[> behavior first
