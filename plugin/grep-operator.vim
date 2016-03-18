@@ -2,8 +2,8 @@
 " Description: A plugin for providing a grep operator in vim. 
 " With two keystrokes, you can search from a motion!
 
-nnoremap <leader>g :set operatorfunc=<SID>GrepOperator<cr>g@
-vnoremap <leader>g :<c-u>call <SID>GrepOperator(visualmode())<cr>
+nnoremap gz :set operatorfunc=<SID>GrepOperator<cr>g@
+vnoremap gz :<c-u>call <SID>GrepOperator(visualmode())<cr>
 
 " GrepOperator
 "

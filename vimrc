@@ -246,8 +246,8 @@ nnoremap <silent> <leader>ss :set spell!<CR>
 " N:<leader>ses  Save current session{{{2
 nnoremap <silent> <leader>ses :mkses!<CR>
 "}}}2
-" N:<leader>m    Make{{{2
-nnoremap <silent> <leader>m :make<CR>
+" N:<localleader>m    Make{{{2
+nnoremap <silent> <localleader>m :make<CR>
 "}}}2
 " N:<leader>w    Switch windows quickly{{{2
 nnoremap <silent> <leader>w <C-W>
@@ -301,12 +301,63 @@ let g:LatexBox_latexmk_options = "-pvc -pdf -output-directory=build"
 let g:LatexBox_viewer = "C:\Program Files (x86)\Adobe\Reader 11.0\Reader\AcroRd32.exe"
 let g:LatexBox_Folding = 1  " LatexBox has folding, use it.
 "}}}2
-" Tagbar{{{2
-" N:<F8>      Quickstart Tagbar{{{3
-nnoremap <silent> <F8> :TagbarToggle<CR>
+" Fugitive{{{2
+" Fugitive Mappings{{{3
+if(exists('g:loaded_fugitive') && g:loaded_tagbar ==# 1)
+    " N:<leader>gs    git status{{{4
+    nnoremap <silent> <leader>gs :Gstatus<CR>
+    "}}}4
+    " N:<leader>gd    git diff{{{4
+    nnoremap <silent> <leader>gd :Gdiff<CR>
+    "}}}4
+    " N:<leader>gc    git commit{{{4
+    nnoremap <silent> <leader>gc :Gcommit<CR>
+    "}}}4
+    " N:<leader>gb    git blame{{{4
+    nnoremap <silent> <leader>gb :Gblame<CR>
+    "}}}4
+    " N:<leader>gl    git log{{{4
+    nnoremap <silent> <leader>gl :Glog<CR>
+    "}}}4
+    " N:<leader>gp    git push{{{4
+    nnoremap <silent> <leader>gp :Git push<CR>
+    "}}}4
+    " N:<leader>gr    git read{{{4
+    nnoremap <silent> <leader>gr :Gread<CR>
+    "}}}4
+    " N:<leader>gw    git write{{{4
+    nnoremap <silent> <leader>gw :Gwrite<CR>
+    "}}}4
+    " N:<leader>ge    git edit{{{4
+    nnoremap <silent> <leader>ge :Gedit<CR>
+    "}}}4
+    " N:<leader>ga    git add %:p{{{4
+    nnoremap <silent> <leader>ga :Git add %:p<CR>
+    "}}}4
+    " N:<leader>gfl   git fl{{{4
+    nnoremap <silent> <leader>gfl :Git fl<CR>
+    "}}}4
+endif
 "}}}3
-" N:<leader>tt    Quickstart Tagbar in autoclose mode{{{3
-nnoremap <silent> <leader>tt :TagbarOpenAutoClose<CR>
+"}}}2
+" Merginal{{{2
+" Merginal Mappings{{{3
+" TODO Fork merginal to allow for g:loaded_merginal check
+" N:<leader>me    Open merginal{{{4
+nnoremap <silent> <leader>me :Merginal
+"}}}4
+"}}}3
+"}}}2
+" Tagbar{{{2
+" Tagbar Mappings{{{3
+if(exists('g:loaded_tagbar') && g:loaded_tagbar ==# 1)
+    " N:<F8>          Quickstart Tagbar{{{4
+    nnoremap <silent> <F8> :TagbarToggle<CR>
+    "}}}4
+    " N:<leader>tt    Quickstart Tagbar in autoclose mode{{{4
+    nnoremap <silent> <leader>tt :TagbarOpenAutoClose<CR>
+    "}}}4
+endif
 "}}}3
 " Prepare Tagbar for TeX.{{{3
 " Idea borrowed from https://stackoverflow.com/q/26145505.
