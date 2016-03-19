@@ -2,10 +2,19 @@
 
 "SETTINGS{{{1
 
+" Source local vimrc before ANYTHING{{{2
+let s:host_vimrc = $HOME . '/.' . hostname() . '.vimrc'
+if filereadable(s:host_vimrc)
+    execute 'source ' . s:host_vimrc
+endif
+"}}}2
 """" Pathogen{{{2
 " Pathogen disabling{{{3
-let g:pathogen_disabled = []
+if( !exists('g:pathogen_disabled') )
+    let g:pathogen_disabled = []
+endif
 
+" Disable globally
 "call add(g:pathogen_disabled, 'LatexBox')
 "call add(g:pathogen_disabled, 'vim-airline')
 "call add(g:pathogen_disabled, 'vim-bufferline')
@@ -298,12 +307,12 @@ iabbrev mname  Brian Alexander Mejorado
 " LatexBox{{{2
 " TODO This is computer-dependent; make this portable!
 let g:LatexBox_latexmk_options = "-pvc -pdf -output-directory=build"
-let g:LatexBox_viewer = "C:\Program Files (x86)\Adobe\Reader 11.0\Reader\AcroRd32.exe"
 let g:LatexBox_Folding = 1  " LatexBox has folding, use it.
+let g:LatexBox_latexmk_async = 1
 "}}}2
 " Fugitive{{{2
 " Fugitive Mappings{{{3
-if(exists('g:loaded_fugitive') && g:loaded_tagbar ==# 1)
+" if(exists('g:loaded_fugitive') && g:loaded_fugitive ==# 1)
     " N:<leader>gs    git status{{{4
     nnoremap <silent> <leader>gs :Gstatus<CR>
     "}}}4
@@ -337,7 +346,7 @@ if(exists('g:loaded_fugitive') && g:loaded_tagbar ==# 1)
     " N:<leader>gfl   git fl{{{4
     nnoremap <silent> <leader>gfl :Git fl<CR>
     "}}}4
-endif
+" endif
 "}}}3
 "}}}2
 " Merginal{{{2
