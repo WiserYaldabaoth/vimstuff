@@ -1,11 +1,6 @@
 " File: ~/.vim/after/ftplugin/java.vim
 "{{{1
 
-" Mappings to comment and uncomment{{{2
-nnore <buffer> <localleader>c mqI//<ESC>`q
-nnore <buffer> <localleader>nc mq^xx`q
-"}}}2
-
 " Mappings for documentation comments{{{2
 nnore <buffer> <localleader>dc o/**<CR><BS>*<ESC>jkka<SPACE>
 "}}}2

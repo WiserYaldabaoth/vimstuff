@@ -1,15 +1,17 @@
 " File: ~/.vim/after/ftplugin/promela.vim
 "{{{1
 
-" Mappings to comment and uncomment
-nnore <buffer> <localleader>c mqI/* <ESC>$a */<ESC>`q
-nnore <buffer> <localleader>nc mq^xx$XX^`q
+" Set commentstring{{{2
+setlocal cms="/*%s*/"
+"}}}2
 
-" Mapping for a documentation comment
+" Mapping for a documentation comment{{{2
 nnore <buffer> <localleader>dc o/**<CR><BS>*<ESC>jkka<SPACE>
+"}}}2
 
-" Add a semicolon to the end of the line
+" Add a semicolon to the end of the line{{{2
 nnore <buffer> <localleader>sc mqA;<esc>`q
+"}}}2
 
 " Create 80-character line like in most IDEs
 if exists('+colorcolumn') "{{{2
