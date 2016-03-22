@@ -121,16 +121,18 @@ set completeopt=menuone,longest,preview
 set complete+=k
 "}}}2
 " Highlights{{{2
-hi Comment ctermfg=Cyan
-hi Search cterm=NONE ctermfg=black ctermbg=blue
-hi Visual cterm=NONE ctermfg=black ctermbg=130
-hi Folded cterm=NONE ctermfg=93 ctermbg=black
+if(!exists('g:colors_name'))
+    hi Comment ctermfg=Cyan
+    hi Search cterm=NONE ctermfg=black ctermbg=blue
+    hi Visual cterm=NONE ctermfg=black ctermbg=130
+    hi Folded cterm=NONE ctermfg=93 ctermbg=black
 
-augroup cursorlinehi"{{{3
-    autocmd!
-    au InsertEnter * hi CursorLine ctermbg=17
-    au InsertLeave * hi CursorLine ctermbg=black
-augroup END
+    augroup cursorlinehi"{{{3
+        autocmd!
+        au InsertEnter * hi CursorLine ctermbg=17
+        au InsertLeave * hi CursorLine ctermbg=black
+    augroup END
+endif
 "}}}3
 "}}}2
 augroup fixcomments "{{{2
