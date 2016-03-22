@@ -12,8 +12,7 @@ endif
 
 call plug#begin('~/.vim/plugged') "{{{3
 
-" TODO Replace with vim-tex
-Plug 'LaTeX-Box-Team/LaTeX-Box'
+Plug 'lervag/vimtex'
 
 Plug 'morhetz/gruvbox'
 " Plug 'fholgado/minibufexpl'
@@ -305,11 +304,9 @@ iabbrev mname  Brian Alexander Mejorado
 "}}}1
 "PLUGINS{{{1
 
-" LatexBox{{{2
-" TODO This is computer-dependent; make this portable!
+" Vimtex{{{2
 let g:LatexBox_latexmk_options = "-pvc -pdf -output-directory=build"
-let g:LatexBox_Folding = 1  " LatexBox has folding, use it.
-let g:LatexBox_latexmk_async = 1
+let g:vimtex_fold_enabled = 1
 "}}}2
 " Fugitive{{{2
 " Fugitive Mappings{{{3
