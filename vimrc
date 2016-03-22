@@ -8,32 +8,31 @@ if filereadable(s:host_vimrc)
     execute 'source ' . s:host_vimrc
 endif
 "}}}2
-"""" Pathogen{{{2
-" Pathogen disabling{{{3
-if( !exists('g:pathogen_disabled') )
-    let g:pathogen_disabled = []
-endif
+"""" Vim-Plug{{{2
 
-" Disable globally
-"call add(g:pathogen_disabled, 'LatexBox')
-"call add(g:pathogen_disabled, 'vim-airline')
-"call add(g:pathogen_disabled, 'vim-bufferline')
-"call add(g:pathogen_disabled, 'vim-fugitive')
-"call add(g:pathogen_disabled, 'vim-merginal')
-"call add(g:pathogen_disabled, 'tagbar')
-"call add(g:pathogen_disabled, 'supertab')
-"call add(g:pathogen_disabled, 'vim-bufkill')
-call add(g:pathogen_disabled, 'minibufexpl')
-"}}}3
-" Check if pathogen exists before running it{{{3
-if filereadable(expand("~/.vim/autoload/pathogen.vim"))
-    runtime! autoload/pathogen.vim
-    if exists("g:loaded_pathogen")
-       call pathogen#infect()
-       call pathogen#helptags()
-    endif
-endif
-"}}}3
+call plug#begin('~/.vim/plugged') "{{{3
+
+" TODO Replace with vim-tex
+Plug 'LaTeX-Box-Team/LaTeX-Box'
+
+Plug 'morhetz/gruvbox'
+" Plug 'fholgado/minibufexpl'
+Plug 'ervandew/supertab'
+Plug 'majutsushi/tagbar'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'bling/vim-bufferline'
+Plug 'qpkorr/vim-bufkill'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-fugitive'
+Plug 'plasticboy/vim-markdown'
+Plug 'idanarye/vim-merginal'
+
+" Eclim
+Plug '~/.vim/bundle/eclim'
+
+call plug#end() "}}}3
+
 "}}}2
 """" Options{{{2
 " For my sanity when loading modified vimrc in Sessions{{{3
