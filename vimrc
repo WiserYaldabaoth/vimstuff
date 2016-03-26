@@ -125,11 +125,11 @@ if(!exists('g:colors_name'))
     hi Visual cterm=NONE ctermfg=black ctermbg=130
     hi Folded cterm=NONE ctermfg=93 ctermbg=black
 
-    augroup cursorlinehi"{{{3
-        autocmd!
-        au InsertEnter * hi CursorLine ctermbg=17
-        au InsertLeave * hi CursorLine ctermbg=black
-    augroup END
+    " augroup cursorlinehi"{{{3
+    "     autocmd!
+    "     au ColorScheme default,inkpot au InsertEnter * hi CursorLine ctermbg=17
+    "     au ColorScheme default,inkpot au InsertLeave * hi CursorLine ctermbg=black
+    " augroup END
 endif
 "}}}3
 "}}}2
@@ -349,22 +349,21 @@ let g:vimtex_fold_enabled = 1
 "}}}2
 " Merginal{{{2
 " Merginal Mappings{{{3
-" TODO Fork merginal to allow for g:loaded_merginal check
 " N:<leader>me    Open merginal{{{4
-nnoremap <silent> <leader>me :Merginal
+nnoremap <silent> <leader>me :Merginal<CR>
 "}}}4
 "}}}3
 "}}}2
 " Tagbar{{{2
 " Tagbar Mappings{{{3
-if(exists('g:loaded_tagbar') && g:loaded_tagbar ==# 1)
+" if(exists('g:loaded_tagbar') && g:loaded_tagbar ==# 1)
     " N:<F8>          Quickstart Tagbar{{{4
     nnoremap <silent> <F8> :TagbarToggle<CR>
     "}}}4
     " N:<leader>tt    Quickstart Tagbar in autoclose mode{{{4
     nnoremap <silent> <leader>tt :TagbarOpenAutoClose<CR>
     "}}}4
-endif
+" endif
 "}}}3
 " Prepare Tagbar for TeX.{{{3
 " Idea borrowed from https://stackoverflow.com/q/26145505.
@@ -427,6 +426,9 @@ let g:SuperTabContextTextOmniPrecedence = ['&omnifunc', '&completefunc']
 runtime CPrototypes.vim      " Prototype generation for C headers
 runtime BuildStatusline.vim  " Load up custom statusline
 runtime ModeAwareCursor.vim
+" runtime LoadColorScheme.vim
+colorscheme gruvbox
+set bg=dark
 
 " TODO Create a function for C-style languages :NewFunct
 " usage will be :NewFunct [name] [returntype] [param1] [param2] ...
