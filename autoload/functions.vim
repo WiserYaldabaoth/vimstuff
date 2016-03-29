@@ -61,6 +61,20 @@ fun! functions#EnterEclim() "{{{2
     nnoremap <silent> <leader>jaf :%JavaFormat<CR>
     nnoremap <silent> <leader>jai :JavaImportOrganize<CR>
     nnoremap <silent> <leader>jan :JavaRename<CR>
+
+    " Eclim Java Debug
+    " leader = <leader>jd
+    nnoremap <silent> <leader>jdd :JavaDebug<CR>
+    nnoremap <silent> <leader>jdx :JavaDebugStop<CR>
+    nnoremap <silent> <leader>jdi :JavaDebugStatus<CR>
+    nnoremap <silent> <leader>jdb :JavaDebugBreakpointToggle<CR>
+    nnoremap <silent> <leader>jdl :JavaDebugBreakpointList<CR>
+    nnoremap <silent> <leader>jdso :JavaDebugStep over<CR>
+    nnoremap <silent> <leader>jdsi :JavaDebugStep into<CR>
+    nnoremap <silent> <leader>jdsr :JavaDebugStep return<CR>
+    nnoremap <silent> <leader>jdts :JavaDebugThreadSuspendAll<CR>
+    nnoremap <silent> <leader>jdtr :JavaDebugThreadResume<CR>
+    nnoremap <silent> <leader>jdta :JavaDebugThreadResumeAll<CR>
 endfun
 "}}}2
 

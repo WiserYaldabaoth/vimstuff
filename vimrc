@@ -205,6 +205,9 @@ noremap <silent> <F2> :retab <CR>
 """""" THIS IS MY SECOND FAVORITE MAPPING IN THE UNIVERSE
 nore ; :
 "}}}2
+" N::         Remap semicolon for repeat f,F,t,T{{{2
+nore : ;
+"}}}2
 " N:N   n     Next found in search centers on line{{{2
 noremap N Nzz
 noremap n nzz
