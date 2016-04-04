@@ -118,21 +118,6 @@ augroup END
 set completeopt=menuone,longest,preview
 set complete+=k
 "}}}2
-" Highlights{{{2
-if(!exists('g:colors_name'))
-    hi Comment ctermfg=Cyan
-    hi Search cterm=NONE ctermfg=black ctermbg=blue
-    hi Visual cterm=NONE ctermfg=black ctermbg=130
-    hi Folded cterm=NONE ctermfg=93 ctermbg=black
-
-    " augroup cursorlinehi"{{{3
-    "     autocmd!
-    "     au ColorScheme default,inkpot au InsertEnter * hi CursorLine ctermbg=17
-    "     au ColorScheme default,inkpot au InsertLeave * hi CursorLine ctermbg=black
-    " augroup END
-endif
-"}}}3
-"}}}2
 augroup fixcomments "{{{2
     autocmd!
     au Filetype <buffer> set fo-=c fo-=r fo-=o
@@ -430,11 +415,40 @@ runtime CPrototypes.vim      " Prototype generation for C headers
 runtime BuildStatusline.vim  " Load up custom statusline
 runtime ModeAwareCursor.vim
 " runtime LoadColorScheme.vim
+
+"}}}1
+" AFTER{{{1
+
+" Set colorscheme{{{2
 colorscheme gruvbox
 set bg=dark
+"}}}2
 
+" Highlights{{{2
+if(!exists('g:colors_name'))
+    hi Comment ctermfg=Cyan
+    hi Search cterm=NONE ctermfg=black ctermbg=blue
+    hi Visual cterm=NONE ctermfg=black ctermbg=130
+    hi Folded cterm=NONE ctermfg=93 ctermbg=black
+
+     augroup cursorlinehi"{{{3
+         autocmd!
+         au ColorScheme default au InsertEnter * hi CursorLine ctermbg=17
+         au ColorScheme default au InsertLeave * hi CursorLine ctermbg=black
+     augroup END
+    "}}}3
+elseif(g:colors_name ==# 'gruvbox' && &bg ==# 'dark')
+    augroup cursorlinehigruv
+        autocmd!
+        au InsertEnter * hi CursorLine ctermbg=109
+        au InsertLeave * hi CursorLine ctermbg=237
+    augroup END
+endif
+"}}}2
+"
+"}}}1
+" NOTES {{{1
 " TODO Create a function for C-style languages :NewFunct
 " usage will be :NewFunct [name] [returntype] [param1] [param2] ...
 " In Java, will be :NewFunct [name] [returntype] [visibility] [params] ...
 " Automatically produces docs and prototype
-"}}}1
