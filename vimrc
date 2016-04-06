@@ -440,7 +440,7 @@ if(!exists('g:colors_name'))
 elseif(g:colors_name ==# 'gruvbox' && &bg ==# 'dark')
     augroup cursorlinehigruv
         autocmd!
-        au InsertEnter * hi CursorLine ctermbg=109
+        au InsertEnter * hi CursorLine ctermbg=17
         au InsertLeave * hi CursorLine ctermbg=237
     augroup END
 endif
