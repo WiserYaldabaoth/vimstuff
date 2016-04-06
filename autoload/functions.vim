@@ -49,21 +49,21 @@ endif
 " Checks if mappings should be made.
 fun! functions#EnterEclim() "{{{2
     PingEclim
-    " Eclim General
-    " leader = <leader>ec
+    " Eclim General      <leader>ec{{{3
     nnoremap <silent> <leader>ecp :Projects<CR>
     nnoremap <silent> <leader>ecd :ProjectProblems<CR>
+    nnoremap <silent> <leader>ecc :ProjectLCD<CR>
     nnoremap <silent> <leader>ecb :Buffers<CR>
     nnoremap <silent> <leader>ecl :LocateFile<CR>
+    "}}}3
 
-    " Eclim Java
-    " leader = <leader>ja
+    " Eclim Java         <leader>ja{{{3
     nnoremap <silent> <leader>jaf :%JavaFormat<CR>
     nnoremap <silent> <leader>jai :JavaImportOrganize<CR>
     nnoremap <silent> <leader>jan :JavaRename<CR>
+    "}}}3
 
-    " Eclim Java Debug
-    " leader = <leader>jd
+    " Eclim Java Debug   <leader>jd{{{3
     nnoremap <silent> <leader>jdd :JavaDebug<CR>
     nnoremap <silent> <leader>jdx :JavaDebugStop<CR>
     nnoremap <silent> <leader>jdi :JavaDebugStatus<CR>
@@ -75,6 +75,7 @@ fun! functions#EnterEclim() "{{{2
     nnoremap <silent> <leader>jdts :JavaDebugThreadSuspendAll<CR>
     nnoremap <silent> <leader>jdtr :JavaDebugThreadResume<CR>
     nnoremap <silent> <leader>jdta :JavaDebugThreadResumeAll<CR>
+    "}}}3
 endfun
 "}}}2
 
