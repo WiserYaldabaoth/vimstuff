@@ -1,5 +1,8 @@
+" File: ~/.vim/after/BuildStatusline.vim
+"{{{1
+
 " Create default statusline
-fun! DefaultStatusline() "{{{1
+fun! DefaultStatusline() "{{{2
     set statusline=%t       "tail of the filename
     set statusline+=[%{strlen(&fenc)?&fenc:'none'}, "file encoding
     set statusline+=%{&ff}] "file format
@@ -19,13 +22,13 @@ fun! DefaultStatusline() "{{{1
     set statusline+=%l/%L   "cursor line/total lines
     set statusline+=\ %P    "percent through file
 endfun
-"}}}1
+"}}}2
 
 
 " Create custom statusline for airline settings.
 " Contents partially inspired by the following website:
 " http://www.blaenkdenum.com/posts/a-simpler-vim-statusline/.
-fun! CustomAirline() "{{{1
+fun! CustomAirline() "{{{2
     " Ensure we can do stuff first
     if(!exists('g:airline_symbols'))
         let g:airline_symbols = {}
@@ -33,7 +36,7 @@ fun! CustomAirline() "{{{1
 
     let g:airline_powerline_fonts = 0
 
-    " Unicode separators so terminal can understand
+    " Unicode separators so terminal can understand{{{3
     let g:airline_left_sep = '»'
     let g:airline_right_sep = '«'
     let g:airline_symbols.linenr = '¶'
@@ -41,12 +44,14 @@ fun! CustomAirline() "{{{1
     let g:airline_symbols.branch = ''
     let g:airline_symbols.whitespace = 'Ξ'
     let g:airline_symbols.readonly = '!!'
+    "}}}3
 
-    fun! Modified() "{{{2
+    fun! Modified() "{{{3
         return &modified ? " +" : ''
     endfun
-    "}}}2
+    "}}}3
 
+    " Define sections{{{3
     call airline#parts#define_raw('filename', '%<%f')
     call airline#parts#define_function('modified', 'Modified')
 
@@ -62,8 +67,9 @@ fun! CustomAirline() "{{{1
       \ 'x': 60,
       \ 'y': 60
       \ }
+    "}}}3
 
-    " Change the mode display to a single letter.
+    " Change the mode display to a single letter.{{{3
     let g:airline_mode_map = {
       \ '__' : '-',
       \ 'n'  : 'N',
@@ -77,12 +83,18 @@ fun! CustomAirline() "{{{1
       \ 'S'  : 'S-L',
       \ '' : 'S-B',
       \ }
+    "}}}3
+
+    let g:airline#extensions#tabline#enabled = 1
+    let g:airline#extensions#tabline#left_sep = ' '
+    let g:airline#extensions#tabline#left_alt_sep = '|'
+    let g:airline#extensions#eclim#enabled = 1
 endfun
-"}}}1
+"}}}2
 
 
 " Create the statusline based on whether airline exists
-fun! BuildStatusline() "{{{1
+fun! BuildStatusline() "{{{2
     if( exists('g:loaded_airline') && g:loaded_airline ==# 1 )
         call CustomAirline()
     else
@@ -90,12 +102,13 @@ fun! BuildStatusline() "{{{1
     endif
     set laststatus=2  " no matter what, show statusline always
 endfun
-"}}}1
+"}}}2
 
 
 " Automatically load statusline based on params
-augroup statusline "{{{1
+augroup statusline "{{{2
     autocmd!
     au VimEnter * :call BuildStatusline()
 augroup END
+"}}}2
 "}}}1

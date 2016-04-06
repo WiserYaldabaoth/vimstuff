@@ -24,6 +24,7 @@ Plug 'bling/vim-bufferline'
 Plug 'qpkorr/vim-bufkill'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-unimpaired'
 Plug 'plasticboy/vim-markdown'
 Plug 'idanarye/vim-merginal'
 Plug 'dsummersl/vimunit'
@@ -312,8 +313,11 @@ let g:vimtex_fold_enabled = 1
     " N:<leader>gb    git blame{{{4
     nnoremap <silent> <leader>gb :Gblame<CR>
     "}}}4
-    " N:<leader>gl    git log{{{4
-    nnoremap <silent> <leader>gl :Glog<CR>
+    " N:<leader>glo   git log{{{4
+    nnoremap <silent> <leader>glo :Glog<CR>
+    "}}}4
+    " N:<leader>glc   git lcd{{{4
+    nnoremap <silent> <leader>glc :Glcd<CR>
     "}}}4
     " N:<leader>gp    git push{{{4
     nnoremap <silent> <leader>gp :Git push<CR>
