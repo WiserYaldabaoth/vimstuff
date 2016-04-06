@@ -26,6 +26,7 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'plasticboy/vim-markdown'
 Plug 'idanarye/vim-merginal'
+Plug 'dsummersl/vimunit'
 
 " Eclim
 Plug '~/.vim/bundle/eclim'
