@@ -295,8 +295,9 @@ iabbrev mname  Brian Alexander Mejorado
 "PLUGINS{{{1
 
 " Vimtex{{{2
-let g:LatexBox_latexmk_options = "-pvc -pdf -output-directory=build"
+let g:vimtex_latexmk_options = "-pvc -pdf -output-directory=build"
 let g:vimtex_fold_enabled = 1
+let g:vimtex_fold_comments = 1
 "}}}2
 " Fugitive{{{2
 " Fugitive Mappings{{{3
