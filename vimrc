@@ -160,13 +160,13 @@ inoremap <silent> <ESC>[C <C-C>:tabn<CR>
 vnoremap <silent> <left> :tabp<CR>
 vnoremap <silent> <right> :tabn<CR>
 "}}}4
-" A:<[direction]>      Up and down arrow keys for moving buffers{{{4
-nnoremap <silent> <up> :bp<CR>
-nnoremap <silent> <down> :bn<CR>
-inoremap <silent> <ESC>[A <C-C>:bp<CR>
-inoremap <silent> <ESC>[B <C-C>:bn<CR>
-vnoremap <silent> <left> :bp<CR>
-vnoremap <silent> <right> :bn<CR>
+" A:<[direction]>      Up and down arrow keys for moving buffers [DISABLED]{{{4
+" nnoremap <silent> <up> :bp<CR>
+" nnoremap <silent> <down> :bn<CR>
+" inoremap <silent> <ESC>[A <C-C>:bp<CR>
+" inoremap <silent> <ESC>[B <C-C>:bn<CR>
+" vnoremap <silent> <left> :bp<CR>
+" vnoremap <silent> <right> :bn<CR>
 "}}}4
 " N:<leader><[direction]>  Use arrow keys to move windows{{{4
 " It's really up to you how you use them!
