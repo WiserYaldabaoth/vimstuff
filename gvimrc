@@ -26,9 +26,14 @@ set ghr=0
 "}}}1
 "PLUGINS{{{1
 
-" NOTHING HERE
+" Vimtex{{{2
+let g:vimtex_latexmk_callback=1
+let g:vimtex_view_general_viewer = 'okular'
+let g:vimtex_view_general_options = '--unique @pdf'
+let g:vimtex_view_general_options_latexmk = '--unique'
+"}}}2
 
-" }}}2
+"}}}1
 "AFTER{{{1
 
 " NOTHING HERE
