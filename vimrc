@@ -134,6 +134,9 @@ else                             " but if it isn't a makefile...
     set tabstop=4 shiftwidth=4   " tab length is 4
 endif
 "}}}2
+" Make vim behave with tmux!{{{2
+set t_ut=
+"}}}2
 
 "}}}1
 "REMAPPINGS{{{1
@@ -295,7 +298,7 @@ iabbrev mname  Brian Alexander Mejorado
 "PLUGINS{{{1
 
 " Vimtex{{{2
-let g:vimtex_latexmk_options = "-pvc -pdf -output-directory=build"
+let g:vimtex_latexmk_options = "-pvc -pdf -output-directory=build -interaction=nonstopmode"
 let g:vimtex_fold_enabled = 1
 let g:vimtex_fold_comments = 1
 "}}}2
