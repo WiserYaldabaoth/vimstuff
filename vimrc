@@ -28,6 +28,8 @@ Plug 'tpope/vim-unimpaired'
 Plug 'plasticboy/vim-markdown'
 Plug 'idanarye/vim-merginal'
 Plug 'dsummersl/vimunit'
+Plug 'keith/tmux.vim'
+Plug 'othree/xml.vim'
 
 " Eclim
 Plug '~/.vim/bundle/eclim'
@@ -137,6 +139,31 @@ endif
 " Make vim behave with tmux!{{{2
 set t_ut=
 "}}}2
+" Disable modifying read-only files{{{2
+function! UpdateModifiable()
+  if !exists("b:setmodifiable")
+    let b:setmodifiable = 0
+  endif
+  if &readonly
+    if &modifiable
+      setlocal nomodifiable
+      let b:setmodifiable = 1
+    endif
+  else
+    if b:setmodifiable
+      setlocal modifiable
+    endif
+  endif
+endfunction
+
+augroup update_modifiable
+    autocmd!
+    autocmd BufReadPost * call UpdateModifiable()
+augroup END
+"}}}2
+" Make XML editing easier{{{2
+let g:xml_syntax_folding=1
+"}}}2
 
 "}}}1
 "REMAPPINGS{{{1
@@ -201,6 +228,9 @@ nore : ;
 " N:N   n     Next found in search centers on line{{{2
 noremap N Nzz
 noremap n nzz
+"}}}2
+" N:Y         Copy until end of line; aligns with C, A, and D{{{2
+nore Y y$
 "}}}2
 " N:<C-\>     Open tag definition in a new tab with ctrl+\{{{2
 noremap <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
