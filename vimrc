@@ -304,8 +304,20 @@ nnoremap <silent> <leader>h :noh<CR>
 " O:in(       'Inside next parantheses'{{{2
 onoremap in( :<C-U>normal! f(vi(<CR>
 "}}}2
+" O:in"       'Inside next quote'{{{2
+onoremap in" :<C-U>normal! f"vi"<CR>
+"}}}2
+" O:in<             'Inside next anglebracket'{{{2
+onoremap in< :<C-U>normal! f<vi><CR>
+"}}}2
 " O:il(       'Inside last parentheses'{{{2
 onoremap il( :<C-U>normal! F)vi(<CR>
+"}}}2
+" O:il"       'Inside last quote'{{{2
+onoremap il" :<C-U>normal! F"vi"<CR>
+"}}}2
+" O:il<       'Inside last anglebracket'{{{2
+onoremap il< :<C-U>normal! F>vi<<CR>
 "}}}2
 " O:an(       'Around next parentheses'{{{2
 " onoremap an( :<C-U>normal! f(vib<CR>
@@ -458,33 +470,71 @@ runtime ModeAwareCursor.vim
 "}}}1
 " AFTER{{{1
 
+" Highlights{{{2
+" Set highlighting for default colorscheme{{{3
+if( (!exists('g:colors_name') || g:colors_name ==# 'default') && (exists('&bg') && &bg ==# 'light' ))
+    hi Comment ctermfg=Cyan
+    hi Search cterm=NONE ctermfg=black ctermbg=blue
+    hi Visual cterm=NONE ctermfg=black ctermbg=130
+    hi Folded cterm=NONE ctermfg=93 ctermbg=black
+endif
+"}}}3
+
+fun! InsertEnter() "{{{3
+    if( exists('&bg') && &bg ==# 'dark' && ( !exists('g:colors_name') || g:colors_name ==# 'gruvbox' || g:colors_name ==# 'default' ) )
+        hi CursorLine ctermbg=17
+    elseif( &bg ==# 'light' )
+        hi CursorLine ctermbg=21
+    else
+        hi CursorLine ctermbg=NONE
+    endif
+endfun
+"}}}3
+
+fun! InsertLeave() "{{{3
+    if( exists('g:colors_name') && exists('&bg') && &bg ==# 'dark' && g:colors_name ==# 'gruvbox')
+        hi CursorLine ctermbg=237
+    elseif( exists('g:colors_name') && &bg ==# 'light' && g:colors_name ==# 'gruvbox' )
+        hi CursorLine ctermbg=223
+    elseif( !exists('g:colors_name') || g:colors_name ==# 'default' || g:colors_name ==# 'inkpot' )
+        hi CursorLine ctermbg=black
+    else
+        hi CursorLine ctermbg=NONE
+    endif
+endfun
+"}}}3
+
+" augroup highlights{{{3
+augroup highlights
+    autocmd!
+    au ColorScheme default hi Comment ctermfg=Cyan
+    au ColorScheme default hi Search cterm=NONE ctermfg=black ctermbg=blue
+    au ColorScheme default hi Visual cterm=NONE ctermfg=black ctermbg=130
+    au ColorScheme default hi Folded cterm=NONE ctermfg=93 ctermbg=black
+    au ColorScheme * au InsertEnter * call InsertEnter()
+    au ColorScheme * au InsertLeave * call InsertLeave()
+augroup END
+
+"}}}3
+"}}}2
+
+" Tmux-like splitscreen{{{2
+" Set split separator to Unicode box drawing character
+set encoding=utf8
+set fillchars=vert:│
+
+" Override color scheme to make split the same color as tmux's default
+augroup vertspl
+    autocmd!
+    au ColorScheme * highlight VertSplit cterm=NONE ctermbg=NONE
+augroup END
+"}}}2
+
 " Set colorscheme{{{2
 colorscheme gruvbox
 set bg=dark
 "}}}2
 
-" Highlights{{{2
-if(!exists('g:colors_name'))
-    hi Comment ctermfg=Cyan
-    hi Search cterm=NONE ctermfg=black ctermbg=blue
-    hi Visual cterm=NONE ctermfg=black ctermbg=130
-    hi Folded cterm=NONE ctermfg=93 ctermbg=black
-
-     augroup cursorlinehi"{{{3
-         autocmd!
-         au ColorScheme default au InsertEnter * hi CursorLine ctermbg=17
-         au ColorScheme default au InsertLeave * hi CursorLine ctermbg=black
-     augroup END
-    "}}}3
-elseif(g:colors_name ==# 'gruvbox' && &bg ==# 'dark')
-    augroup cursorlinehigruv
-        autocmd!
-        au InsertEnter * hi CursorLine ctermbg=17
-        au InsertLeave * hi CursorLine ctermbg=237
-    augroup END
-endif
-"}}}2
-"
 "}}}1
 " NOTES {{{1
 " TODO Create a function for C-style languages :NewFunct
