@@ -37,8 +37,8 @@ fun! CustomAirline() "{{{2
     let g:airline_powerline_fonts = 0
 
     " Unicode separators so terminal can understand{{{3
-    let g:airline_left_sep = '»'
-    let g:airline_right_sep = '«'
+    let g:airline_left_sep = '' "'»'
+    let g:airline_right_sep = '' "'«'
     let g:airline_symbols.linenr = '¶'
     let g:airline_symbols.paste = 'ρ'
     let g:airline_symbols.branch = ''
@@ -108,7 +108,7 @@ endfun
 " Automatically load statusline based on params
 augroup statusline "{{{2
     autocmd!
-    au VimEnter * :call BuildStatusline()
+    au VimEnter,BufEnter * :call BuildStatusline()
 augroup END
 "}}}2
 "}}}1
