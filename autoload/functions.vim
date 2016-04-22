@@ -76,6 +76,12 @@ fun! functions#EnterEclim() "{{{2
     nnoremap <silent> <leader>jdtr :JavaDebugThreadResume<CR>
     nnoremap <silent> <leader>jdta :JavaDebugThreadResumeAll<CR>
     "}}}3
+
+    " Eclim Java JUnit   <leader>ju {{{3
+    nnoremap <silent> <leader>ju :JUnit<CR>
+    nnoremap <silent> <leader>juc :JUnit %<CR>
+    nnoremap <silent> <leader>juf :JUnit *<CR>
+    "}}}3
 endfun
 "}}}2
 
