@@ -31,6 +31,8 @@ Plug 'idanarye/vim-merginal'
 Plug 'dsummersl/vimunit'
 Plug 'keith/tmux.vim'
 Plug 'othree/xml.vim'
+Plug 'sirver/ultisnips'
+Plug 'honza/vim-snippets'
 
 " Eclim
 Plug '~/.vim/bundle/eclim'
