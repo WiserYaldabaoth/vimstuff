@@ -21,10 +21,10 @@ let colors_name = "eclipse"
 
 hi Normal       guifg=#121212 guibg=#ffffff                         ctermfg=233   ctermbg=231
 hi ErrorMsg     guifg=#ffffff guibg=#287eff gui=bold                ctermfg=115   ctermbg=236       cterm=bold
-hi Visual       guifg=#8080ff guibg=fg      gui=reverse             ctermfg=32    ctermbg=white        cterm=reverse
-hi VisualNOS    guifg=#8080ff guibg=fg      gui=reverse,underline   ctermfg=lightblue ctermbg=white    cterm=reverse,underline
+hi Visual       guifg=#8080ff guibg=fg      gui=reverse             ctermfg=32    ctermbg=15        cterm=reverse
+hi VisualNOS    guifg=#8080ff guibg=fg      gui=reverse,underline   ctermfg=lightblue ctermbg=15    cterm=reverse,underline
 hi Todo         guifg=#ffffff guibg=#005FAF                         ctermfg=15    ctermbg=25        cterm=bold
-hi Search       guifg=#90fff0 guibg=#2050d0                         ctermfg=white ctermbg=32  cterm=underline term=underline
+hi Search       guifg=#90fff0 guibg=#2050d0                         ctermfg=15 ctermbg=blue  cterm=underline term=underline
 hi IncSearch                                                        ctermfg=238   ctermbg=226
 
 hi SpecialKey   guifg=#005FAF                                       ctermfg=25
@@ -38,7 +38,7 @@ hi Question     guifg=green gui=none ctermfg=green cterm=none
 hi NonText      guifg=#0030ff       ctermfg=darkblue
 
 hi StatusLine   guifg=blue guibg=darkgray gui=none      ctermfg=blue ctermbg=gray  term=none term=none
-hi StatusLineNC guifg=black guibg=darkgray gui=none     ctermfg=black ctermbg=gray term=none cterm=none
+hi StatusLineNC guifg=black guibg=darkgray gui=none     ctermfg=lightgray ctermbg=darkgray term=none cterm=none
 hi VertSplit    guifg=black guibg=darkgray gui=none     ctermfg=black ctermbg=gray term=none cterm=none
 
 hi Folded       guifg=#808080 guibg=#000040         ctermfg=blue ctermbg=white cterm=bold term=bold
@@ -66,18 +66,18 @@ hi Ignore       guifg=bg ctermfg=bg
 
 " Java: {{{2
 
-" hi! link javaAnnotation gray
-" hi! link javaDocTags GruvboxAqua
-" hi! link javaCommentTitle vimCommentTitle
-" hi! link javaParen GruvboxFg3
-" hi! link javaParen1 GruvboxFg3
-" hi! link javaParen2 GruvboxFg3
-" hi! link javaParen3 GruvboxFg3
-" hi! link javaParen4 GruvboxFg3
-" hi! link javaParen5 GruvboxFg3
-" hi! link javaOperator GruvboxOrange
+" hi! javaAnnotation ctermfg=darkgray ctermbg=white
+" hi! javaDocTags ctermfg=darkgray ctermbg=white
+" hi! javaCommentTitle
+" hi! javaParen
+" hi! javaParen1
+" hi! javaParen2
+" hi! javaParen3
+" hi! javaParen4
+" hi! javaParen5
+" hi! javaOperator
 
-" hi! link javaVarArg GruvboxGreen
+hi! link javaVarArg GruvboxGreen
 " }}}2
 
 "}}}1
