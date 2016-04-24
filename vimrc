@@ -260,6 +260,18 @@ inoremap Jk <ESC>
 " N:gb        Quickly navigate through buffers{{{2
 nnoremap gb :ls<cr>:b<space>
 "}}}2
+" N:gl        'Go long' to tag under cursor{{{2
+nnoremap gl <c-]>
+"}}}2
+" N:gy         Go back in jumplist{{{2
+nnoremap gy <c-o>
+"}}}2
+" N:zp         Fix the next misspelled word and return{{{2
+nnoremap <silent> zp ]s1z=
+"}}}2
+" N:zq         Fix the previous misspelled word and return{{{2
+nnoremap <silent> zq [s1z=
+"}}}2
 " N:<M-]>     Open tag definition in vertical split with alt+]{{{2
 " Fix <M-[> behavior first
 set <M-]>=^[]
@@ -544,3 +556,4 @@ set bg=dark
 " usage will be :NewFunct [name] [returntype] [param1] [param2] ...
 " In Java, will be :NewFunct [name] [returntype] [visibility] [params] ...
 " Automatically produces docs and prototype
+"}}}1
