@@ -12,41 +12,60 @@ endif
 
 call plug#begin('~/.vim/plugged') "{{{3
 
+" Useful commands and mappings {{{4
+Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-vinegar'
+Plug 'qpkorr/vim-bufkill'
+" Plug 'mbbill/undotree'
+"}}}4
+" Writing {{{4
 Plug 'lervag/vimtex'
-
+Plug 'reedes/vim-wordy'
+" Plug 'reedes/vim-lexical'
+" Plug 'reedes/pencil'
+" Plug 'junegunn/goyo.vim'
+" Plug 'amix/vim-zenroom2'
+"}}}4
+" Visual effects/colorscheme {{{4
 Plug 'morhetz/gruvbox'
-" Plug 'fholgado/minibufexpl'
-Plug 'ervandew/supertab'
-Plug 'majutsushi/tagbar'
+Plug 'reedes/vim-colors-pencil'
+" Plug 'reedes/vim-thematic'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'bling/vim-bufferline'
-Plug 'qpkorr/vim-bufkill'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-unimpaired'
-Plug 'tpope/vim-vinegar'
-Plug 'plasticboy/vim-markdown'
-Plug 'idanarye/vim-merginal'
-Plug 'dsummersl/vimunit'
-Plug 'keith/tmux.vim'
-Plug 'othree/xml.vim'
+"}}}4
+" Autocomplete and snippets {{{4
+Plug 'ervandew/supertab'
 Plug 'sirver/ultisnips'
 Plug 'honza/vim-snippets'
-
-" Eclim
+"}}}4
+" Syntax {{{4
+Plug 'othree/xml.vim'
+Plug 'sheerun/vim-polyglot'
+"}}}4
+" Git {{{4
+Plug 'tpope/vim-fugitive'
+Plug 'idanarye/vim-merginal'
+"}}}4
+" Vimscript development {{{4
+Plug 'dsummersl/vimunit'
+"}}}4
+" Tags {{{4
+Plug 'majutsushi/tagbar'
+"}}}4
+" Eclim {{{4
 Plug '~/.vim/bundle/eclim'
+"}}}4
 
-call plug#end() "}}}3
+call plug#end()
+"}}}3
 
 "}}}2
 """" Options{{{2
 " For my sanity when loading modified vimrc in Sessions{{{3
 set ssop-=options            " DO NOT STORE GLOBAL/LOCAL VARIABLES IN SESSION
 set ssop-=folds              " DO NOT STORE FOLDS IN SESSION
-"}}}3
-" Background display{{{3
-set background=light         " Modify syntax highlighting color schemes
 "}}}3
 " Modify commandline{{{3
 set showcmd                  " Show typed commands
@@ -95,6 +114,12 @@ set tags=./tags,tags;
 "}}}3
 " Fix backspace behavior{{{3
 set backspace=2  " Fix backspace behavior in vim
+"}}}3
+" List EOL chars as an unsightly X {{{3
+set listchars+=trail:X
+"}}}3
+" Display tab choices {{{3
+set wildmenu " you make my heart a venue????
 "}}}3
 "}}}2
 " Preparations{{{2
@@ -354,6 +379,9 @@ iabbrev mname  Brian Alexander Mejorado
 "}}}1
 "PLUGINS{{{1
 
+" Polyglot {{{2
+let g:polyglot_disabled = ['latex']
+"}}}2
 " Vimtex{{{2
 let g:vimtex_latexmk_options = "-pvc -pdf -output-directory=build -interaction=nonstopmode"
 let g:vimtex_fold_enabled = 1
@@ -465,14 +493,6 @@ let g:SuperTabCompletionContexts = ['s:ContextText']
 let g:SuperTabContextTextOmniPrecedence = ['&omnifunc', '&completefunc']
 "}}}3
 "}}}2
-" MBE{{{2
-"augroup open_mbe
-    "au VimEnter * MBEOpen
-"augroup END
-" N:<leader>mt    Toggle MBE{{{3
-"nnoremap <leader>mt :MBEToggle<CR>
-"}}}3
-"}}}2
 
 "}}}1
 "EXTERNAL{{{1
@@ -546,7 +566,8 @@ augroup END
 "}}}2
 
 " Set colorscheme{{{2
-colorscheme gruvbox
+" If it isn't installed, don't whine about it
+silent! colorscheme gruvbox
 set bg=dark
 "}}}2
 
