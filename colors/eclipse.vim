@@ -22,10 +22,10 @@ let colors_name = "eclipse"
 hi Normal       guifg=#121212 guibg=#ffffff                         ctermfg=233   ctermbg=231
 hi ErrorMsg     guifg=#ffffff guibg=#287eff gui=bold                ctermfg=115   ctermbg=236       cterm=bold
 hi Visual       guifg=#8080ff guibg=fg      gui=reverse             ctermfg=32    ctermbg=15        cterm=reverse
-hi VisualNOS    guifg=#8080ff guibg=fg      gui=reverse,underline   ctermfg=lightblue ctermbg=15    cterm=reverse,underline
-hi Todo         guifg=#ffffff guibg=#005FAF                         ctermfg=15    ctermbg=25        cterm=bold
-hi Search       guifg=#90fff0 guibg=#2050d0                         ctermfg=15 ctermbg=blue  cterm=underline term=underline
-hi IncSearch                                                        ctermfg=238   ctermbg=226
+hi VisualNOS    guifg=#8080ff guibg=fg      gui=reverse,underline   ctermfg=47 ctermbg=15    cterm=reverse,underline
+hi Todo         guifg=#ffffff guibg=#005FAF                         ctermfg=25    ctermbg=15        cterm=bold
+hi Search       guifg=#90fff0 guibg=#2050d0                         ctermfg=15 ctermbg=32  cterm=underline term=underline
+hi IncSearch    guifg=#ffffff   guibg=#ceccf7                       ctermfg=32 ctermbg=15
 
 hi SpecialKey   guifg=#005FAF                                       ctermfg=25
 hi Directory    guifg=#005FAF                                       ctermfg=25
@@ -37,21 +37,24 @@ hi MoreMsg                                                           ctermfg=dar
 hi Question     guifg=green gui=none ctermfg=green cterm=none
 hi NonText      guifg=#0030ff       ctermfg=darkblue
 
-hi StatusLine   guifg=blue guibg=darkgray gui=none      ctermfg=blue ctermbg=gray  term=none term=none
+hi StatusLine   guifg=blue guibg=darkgray gui=none      cterm=NONE ctermfg=blue ctermbg=gray  term=none term=none
 hi StatusLineNC guifg=black guibg=darkgray gui=none     ctermfg=lightgray ctermbg=darkgray term=none cterm=none
 hi VertSplit    guifg=black guibg=darkgray gui=none     ctermfg=black ctermbg=gray term=none cterm=none
 
-hi Folded       guifg=#808080 guibg=#000040         ctermfg=blue ctermbg=white cterm=bold term=bold
+hi Folded       guifg=#808080 guibg=#000040         ctermfg=NONE ctermbg=NONE cterm=bold term=bold
 hi FoldColumn   guifg=#808080 guibg=#000040         ctermfg=darkgrey ctermbg=black cterm=bold term=bold
 hi LineNr       guifg=#a8a8a8 guibg=#121212         ctermfg=246      ctermbg=white
 
-hi DiffAdd      guibg=gray                           ctermbg=gray  cterm=none  term=none
+hi DiffAdd      guibg=green                           ctermbg=green  cterm=none  term=none
 hi DiffChange   guibg=darkmagenta ctermbg=magenta cterm=none
-hi DiffDelete   ctermfg=blue ctermbg=cyan gui=bold guifg=Blue guibg=DarkCyan
-hi DiffText cterm=bold ctermbg=red gui=bold guibg=Red
+hi DiffDelete   ctermfg=red ctermbg=lightred gui=bold guifg=Blue guibg=DarkCyan
+hi DiffText cterm=bold ctermbg=yellow gui=bold guibg=Yellow
 
 hi Cursor       guifg=black guibg=yellow ctermfg=black ctermbg=yellow
 hi lCursor      guifg=black guibg=white ctermfg=black ctermbg=white
+
+hi CursorLine  cterm=NONE ctermfg=NONE ctermbg=153
+hi CursorColumn ctermfg=NONE ctermbg=159
 
 
 hi Comment      guifg=#3F7F5F                                   ctermfg=28
@@ -64,20 +67,18 @@ hi Type         guifg=#7F0055                           gui=bold                
 hi Underlined   cterm=underline term=underline
 hi Ignore       guifg=bg ctermfg=bg
 
+hi TabLine      cterm=NONE ctermfg=black ctermbg=75
+hi TabLineFill  cterm=NONE ctermfg=75 ctermbg=75
+hi TabLineSel   cterm=NONE ctermfg=black  ctermbg=white
+
 " Java: {{{2
 
-" hi! javaAnnotation ctermfg=darkgray ctermbg=white
-" hi! javaDocTags ctermfg=darkgray ctermbg=white
-" hi! javaCommentTitle
-" hi! javaParen
-" hi! javaParen1
-" hi! javaParen2
-" hi! javaParen3
-" hi! javaParen4
-" hi! javaParen5
-" hi! javaOperator
+hi javaAnnotation ctermfg=darkgray ctermbg=white
+hi link javaDocTags Identifier
+hi javaDocComment ctermfg=blue ctermbg=white
+hi link javaDocParam javaDocComment
+hi javaVarArg ctermfg=brown ctermbg=white
 
-hi! link javaVarArg GruvboxGreen
 " }}}2
 
 "}}}1
