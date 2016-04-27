@@ -17,6 +17,7 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-vinegar'
 Plug 'qpkorr/vim-bufkill'
+Plug 'wellle/targets.vim'
 " Plug 'mbbill/undotree'
 "}}}4
 " Writing {{{4
@@ -30,7 +31,7 @@ Plug 'reedes/vim-wordy'
 " Visual effects/colorscheme {{{4
 Plug 'morhetz/gruvbox'
 Plug 'reedes/vim-colors-pencil'
-" Plug 'reedes/vim-thematic'
+Plug 'reedes/vim-thematic'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'bling/vim-bufferline'
@@ -54,7 +55,8 @@ Plug 'dsummersl/vimunit'
 " Tags {{{4
 Plug 'majutsushi/tagbar'
 "}}}4
-" Eclim {{{4
+" External program interaction {{{4
+" Plug 'vim-scripts/OutlookVim'
 Plug '~/.vim/bundle/eclim'
 "}}}4
 
@@ -239,8 +241,8 @@ nnoremap <silent> <leader><down>  <C-W>k
 " N:<leader>sv  _s_ource my _v_imrc file{{{3
 nnoremap <silent> <leader>sv :call functions#RefreshVim()<CR>
 "}}}3
-" N:<leader>ev  _e_dit my _v_imrc file in a new window split{{{3
-nnoremap <silent> <leader>ev :vsp $MYVIMRC <CR>
+" N:<leader>ev  _e_dit my _v_imrc file in a new tab {{{3
+nnoremap <silent> <leader>ev :tabnew $MYVIMRC <CR>
 "}}}3
 "}}}2
 " N:<F2>      Retab automatically reconfigures tabs to spaces{{{2
@@ -379,6 +381,10 @@ iabbrev mname  Brian Alexander Mejorado
 "}}}1
 "PLUGINS{{{1
 
+" netrw {{{2
+" Assuming it still counts as a plugin, anyways...
+let g:netrw_browser_viewer = 'lynx'
+" }}}2
 " Polyglot {{{2
 let g:polyglot_disabled = ['latex']
 "}}}2
@@ -493,6 +499,43 @@ let g:SuperTabCompletionContexts = ['s:ContextText']
 let g:SuperTabContextTextOmniPrecedence = ['&omnifunc', '&completefunc']
 "}}}3
 "}}}2
+" Themes {{{2
+
+let g:thematic#defaults = {
+\ 'typeface': 'Inconsolata',
+\ 'font-size': 11,
+\ 'background': 'dark',
+\ 'laststatus': 2,
+\ }
+
+let g:thematic#themes = {
+\ 'gruvbox' : { 'colorscheme': 'gruvbox',
+\               'background': 'dark',
+\               'airline-theme': 'gruvbox',
+\             },
+\ 'inkpot' : { 'colorscheme': 'inkpot',
+\              'airline-theme': 'jellybeans',
+\              'fold-column-color-mute': 1,
+\            },
+\ 'solarized' : { 'colorscheme': 'solarized',
+\                 'background': 'dark',
+\                 'airline-theme': 'solarized',
+\               },
+\ 'eclipse' : { 'colorscheme': 'eclipse',
+\               'background': 'light',
+\               'airline-theme': 'light',
+\               'sign-color-column-fix': 1,
+\               'diff-color-fix': 0,
+\             },
+\ 'github' : { 'colorscheme': 'github',
+\              'background': 'light',
+\              'airline-theme': 'zenburn',
+\            },
+\ }
+
+let g:thematic#theme_name = 'gruvbox'
+
+" }}}2
 
 "}}}1
 "EXTERNAL{{{1
@@ -515,30 +558,6 @@ if( (!exists('g:colors_name') || g:colors_name ==# 'default') && (exists('&bg') 
 endif
 "}}}3
 
-fun! InsertEnter() "{{{3
-    if( exists('&bg') && &bg ==# 'dark' && ( !exists('g:colors_name') || g:colors_name ==# 'gruvbox' || g:colors_name ==# 'default' ) )
-        hi CursorLine ctermbg=17
-    elseif( &bg ==# 'light' )
-        hi CursorLine ctermbg=21
-    else
-        hi CursorLine ctermbg=NONE
-    endif
-endfun
-"}}}3
-
-fun! InsertLeave() "{{{3
-    if( exists('g:colors_name') && exists('&bg') && &bg ==# 'dark' && g:colors_name ==# 'gruvbox')
-        hi CursorLine ctermbg=237
-    elseif( exists('g:colors_name') && &bg ==# 'light' && g:colors_name ==# 'gruvbox' )
-        hi CursorLine ctermbg=223
-    elseif( !exists('g:colors_name') || g:colors_name ==# 'default' || g:colors_name ==# 'inkpot' )
-        hi CursorLine ctermbg=black
-    else
-        hi CursorLine ctermbg=NONE
-    endif
-endfun
-"}}}3
-
 " augroup highlights{{{3
 augroup highlights
     autocmd!
@@ -546,8 +565,6 @@ augroup highlights
     au ColorScheme default hi Search cterm=NONE ctermfg=black ctermbg=blue
     au ColorScheme default hi Visual cterm=NONE ctermfg=black ctermbg=130
     au ColorScheme default hi Folded cterm=NONE ctermfg=93 ctermbg=black
-    au ColorScheme * au InsertEnter * call InsertEnter()
-    au ColorScheme * au InsertLeave * call InsertLeave()
 augroup END
 
 "}}}3
@@ -563,12 +580,6 @@ augroup vertspl
     autocmd!
     au ColorScheme * highlight VertSplit cterm=NONE ctermbg=NONE
 augroup END
-"}}}2
-
-" Set colorscheme{{{2
-" If it isn't installed, don't whine about it
-silent! colorscheme gruvbox
-set bg=dark
 "}}}2
 
 "}}}1
