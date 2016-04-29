@@ -314,8 +314,8 @@ nnoremap <silent> <leader>" viW<ESC>a"<ESC>hbi"<ESC>lel
 " V:<leader>"    Surround a word in quotes in visual mode{{{2
 "vnoremap <leader>" i`<
 "}}}2
-" N:<leader>ss   Toggle spellcheck on/off{{{2
-nnoremap <silent> <leader>ss :set spell!<CR>
+" N:<leader>ss   Replace end-of-line whitespace {{{2
+nnoremap <silent> <leader>ss :%s/\s\+$<CR>
 "}}}2
 " N:<leader>ses  Save current session{{{2
 nnoremap <silent> <leader>ses :mkses!<CR>
