@@ -15,7 +15,7 @@ fun! DefaultStatusline() "{{{2
         set statusline+=%{fugitive#statusline()} " Add fugitive info
     endif
 
-    set statusline+=%{eclim#project#util#ProjectStatusLine()}]
+    " set statusline+=%{eclim#project#util#ProjectStatusLine()}]
 
     set statusline+=%=      "left/right separator
     set statusline+=%c,     "cursor column
@@ -88,7 +88,7 @@ fun! CustomAirline() "{{{2
     let g:airline#extensions#tabline#enabled = 1
     let g:airline#extensions#tabline#left_sep = ' '
     let g:airline#extensions#tabline#left_alt_sep = '|'
-    let g:airline#extensions#eclim#enabled = 1
+    " let g:airline#extensions#eclim#enabled = 1
 endfun
 "}}}2
 

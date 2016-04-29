@@ -13,51 +13,52 @@ endif
 call plug#begin('~/.vim/plugged') "{{{3
 
 " Useful commands and mappings {{{4
-Plug 'tpope/vim-unimpaired'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-vinegar'
-Plug 'qpkorr/vim-bufkill'
-Plug 'wellle/targets.vim'
+" Plug 'tpope/vim-unimpaired'
+" Plug 'tpope/vim-commentary'
+" Plug 'tpope/vim-vinegar'
+" Plug 'qpkorr/vim-bufkill'
+" Plug 'wellle/targets.vim'
 " Plug 'mbbill/undotree'
 "}}}4
 " Writing {{{4
-Plug 'lervag/vimtex'
-Plug 'reedes/vim-wordy'
+" Plug 'lervag/vimtex'
+" Plug 'reedes/vim-wordy'
 " Plug 'reedes/vim-lexical'
 " Plug 'reedes/pencil'
 " Plug 'junegunn/goyo.vim'
 " Plug 'amix/vim-zenroom2'
 "}}}4
 " Visual effects/colorscheme {{{4
-Plug 'morhetz/gruvbox'
-Plug 'reedes/vim-colors-pencil'
-Plug 'reedes/vim-thematic'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'bling/vim-bufferline'
+" Plug 'morhetz/gruvbox'
+" Plug 'reedes/vim-colors-pencil'
+" Plug 'reedes/vim-thematic'
+" Plug 'vim-airline/vim-airline'
+" Plug 'vim-airline/vim-airline-themes'
+" Plug 'bling/vim-bufferline'
 "}}}4
 " Autocomplete and snippets {{{4
-Plug 'ervandew/supertab'
-Plug 'sirver/ultisnips'
-Plug 'honza/vim-snippets'
+" Plug 'ervandew/supertab'
+" Plug 'sirver/ultisnips'
+" Plug 'honza/vim-snippets'
 "}}}4
 " Syntax {{{4
-Plug 'othree/xml.vim'
-Plug 'sheerun/vim-polyglot'
+" Plug 'othree/xml.vim'
+" Plug 'sheerun/vim-polyglot'
 "}}}4
 " Git {{{4
-Plug 'tpope/vim-fugitive'
-Plug 'idanarye/vim-merginal'
+" Plug 'tpope/vim-fugitive'
+" Plug 'idanarye/vim-merginal'
 "}}}4
 " Vimscript development {{{4
-Plug 'dsummersl/vimunit'
+" Plug 'dsummersl/vimunit'
+" Plug 'junegunn/vader.vim'
 "}}}4
 " Tags {{{4
-Plug 'majutsushi/tagbar'
+" Plug 'majutsushi/tagbar'
 "}}}4
 " External program interaction {{{4
 " Plug 'vim-scripts/OutlookVim'
-Plug '~/.vim/bundle/eclim'
+" Plug '~/.vim/bundle/eclim'
 "}}}4
 
 call plug#end()
@@ -474,12 +475,6 @@ let g:EclimCompletionMethod = 'omnifunc'
 let g:EclimTodoSearchPattern = '\(\<fixme\>\|\<todo\>\|\<xxx\>\)\c'
 "let g:EclimProjectTreeAutoOpen = 1
 let g:eclimProjectTreeExpandPathOnOpen = 1
-
-" Define some mappings
-augroup enter_eclim
-    autocmd!
-    au VimEnter * try | call functions#EnterEclim() | catch /.*/ | echom "No Eclim installation." | endtry
-augroup END
 "}}}2
 " Supertab{{{2
 " Set up omnifunc                                                         {{{3
