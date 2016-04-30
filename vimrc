@@ -16,9 +16,11 @@ call plug#begin('~/.vim/plugged') "{{{3
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-vinegar'
+Plug 'tpope/vim-surround'
 Plug 'qpkorr/vim-bufkill'
 Plug 'wellle/targets.vim'
-" Plug 'mbbill/undotree'
+Plug 'coderifous/textobj-word-column.vim'
+Plug 'mbbill/undotree'
 "}}}4
 " Writing {{{4
 Plug 'lervag/vimtex'
@@ -50,7 +52,8 @@ Plug 'tpope/vim-fugitive'
 Plug 'idanarye/vim-merginal'
 "}}}4
 " Vimscript development {{{4
-Plug 'dsummersl/vimunit'
+Plug 'junegunn/vader.vim'
+" Plug 'dsummersl/vimunit'
 "}}}4
 " Tags {{{4
 Plug 'majutsushi/tagbar'
@@ -536,6 +539,10 @@ let g:thematic#themes = {
 let g:thematic#theme_name = 'gruvbox'
 
 " }}}2
+" UndoTree {{{2
+nnoremap <silent> <leader>uu :UndotreeToggle<CR>
+" }}}2
+
 
 "}}}1
 "EXTERNAL{{{1
