@@ -12,23 +12,34 @@ endif
 
 call plug#begin('~/.vim/plugged') "{{{3
 
-" Useful commands and mappings {{{4
+" Tpope {{{4
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-surround'
+" Plug 'tpope/vim-speeddating'
+Plug 'tpope/vim-abolish'
+Plug 'tpope/vim-repeat'
+"}}}4
+" Useful commands and mappings {{{4
 Plug 'qpkorr/vim-bufkill'
+Plug 'mbbill/undotree'
+Plug 'vasconcellos/vim-foldfocus'
+"}}}4
+" Text objects {{{4
 Plug 'wellle/targets.vim'
 Plug 'coderifous/textobj-word-column.vim'
-Plug 'mbbill/undotree'
+
+Plug 'kana/vim-textobj-user'
+    \ | Plug 'kana/vim-textobj-entire'
+    \ | Plug 'rbonvall/vim-textobj-latex'
 "}}}4
 " Writing {{{4
 Plug 'lervag/vimtex'
 Plug 'reedes/vim-wordy'
-" Plug 'reedes/vim-lexical'
-" Plug 'reedes/pencil'
-Plug 'junegunn/goyo.vim'
-Plug 'amix/vim-zenroom2'
+Plug 'reedes/vim-lexical'
+Plug 'reedes/vim-pencil'
+Plug 'junegunn/goyo.vim' | Plug 'amix/vim-zenroom2'
 "}}}4
 " Visual effects/colorscheme {{{4
 Plug 'morhetz/gruvbox'
@@ -39,29 +50,34 @@ Plug 'Lokaltog/vim-distinguished'
 Plug 'sjl/badwolf'
 Plug 'chriskempson/base16-vim'
 Plug 'reedes/vim-colors-pencil'
-Plug 'reedes/vim-thematic'
+Plug '~/.vim/plugged/vim-colors-eclipse'
+
 Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+        \ | Plug 'vim-airline/vim-airline-themes'
+        \ | Plug 'reedes/vim-thematic'
+        \ | Plug 'edkolev/promptline.vim'
+
 Plug 'bling/vim-bufferline'
 Plug 'ashisha/image.vim'
-Plug 'godlygeek/csapprox'
+" Plug 'godlygeek/csapprox'
 "}}}4
 " Autocomplete and snippets {{{4
 Plug 'ervandew/supertab'
-Plug 'sirver/ultisnips'
-Plug 'honza/vim-snippets'
+Plug 'sirver/ultisnips' | Plug 'honza/vim-snippets'
 "}}}4
 " Syntax {{{4
 Plug 'othree/xml.vim'
+Plug 'glts/vim-texlog'
 Plug 'sheerun/vim-polyglot'
 "}}}4
 " Git {{{4
-Plug 'tpope/vim-fugitive'
-Plug 'idanarye/vim-merginal'
+Plug 'tpope/vim-fugitive' | Plug 'idanarye/vim-merginal'
+Plug 'airblade/vim-gitgutter'
 "}}}4
 " Vimscript development {{{4
 " Plug 'junegunn/vader.vim'
 Plug '~/.vim/plugged/vader.vim'
+Plug 'tpope/vim-scriptease'
 " Plug 'dsummersl/vimunit'
 "}}}4
 " Tags {{{4
@@ -69,8 +85,8 @@ Plug 'majutsushi/tagbar'
 "}}}4
 " External program interaction {{{4
 " Plug 'vim-scripts/OutlookVim'
-Plug 'edkolev/promptline.vim'
 Plug '~/.vim/bundle/eclim'
+Plug 'rking/ag.vim' | Plug 'Chun-Yang/vim-action-ag'
 "}}}4
 
 call plug#end()
