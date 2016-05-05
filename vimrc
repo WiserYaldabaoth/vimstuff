@@ -17,7 +17,7 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-surround'
-" Plug 'tpope/vim-speeddating'
+Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-repeat'
 "}}}4
@@ -371,33 +371,6 @@ nnoremap <leader>fuuuuu qqqqqifuu<Esc>h@qq@q
 " as the same button moves up one directory!
 nnoremap - :Explore<CR>
 "}}}2
-" N:<leader>h     Remove highlight after search{{{2
-nnoremap <silent> <leader>h :noh<CR>
-"}}}2
-" O:in(       'Inside next parantheses'{{{2
-onoremap in( :<C-U>normal! f(vi(<CR>
-"}}}2
-" O:in"       'Inside next quote'{{{2
-onoremap in" :<C-U>normal! f"vi"<CR>
-"}}}2
-" O:in<             'Inside next anglebracket'{{{2
-onoremap in< :<C-U>normal! f<vi><CR>
-"}}}2
-" O:il(       'Inside last parentheses'{{{2
-onoremap il( :<C-U>normal! F)vi(<CR>
-"}}}2
-" O:il"       'Inside last quote'{{{2
-onoremap il" :<C-U>normal! F"vi"<CR>
-"}}}2
-" O:il<       'Inside last anglebracket'{{{2
-onoremap il< :<C-U>normal! F>vi<<CR>
-"}}}2
-" O:an(       'Around next parentheses'{{{2
-" onoremap an( :<C-U>normal! f(vib<CR>
-"}}}2
-" O:al(       'Around last parentheses'{{{2
-" onoremap al( :<C-U>normal! F)viW<CR>
-"}}}2
 
 "}}}1
 "ABBREVIATIONS{{{1
@@ -600,6 +573,20 @@ let g:promptline_preset = {
 "
 " to disable powerline symbols
 let g:promptline_powerline_symbols = 0
+"}}}2
+" Gitgutter {{{2
+" N:<leader>gg   Toggle GitGutter {{{3
+nnoremap <silent> <leader>gg :GitGutterToggle<CR>
+"}}}3
+" N:<leader>gu   Update GitGutter {{{3
+nnoremap <leader>gu :GitGutterAll<CR>
+"}}}3
+" Play with GitGutter's hunky text objects {{{3
+onoremap ih <Plug>GitGutterTextObjectInnerPending
+onoremap ah <Plug>GitGutterTextObjectOuterPending
+xnoremap ih <Plug>GitGutterTextObjectInnerVisual
+xnoremap ah <Plug>GitGutterTextObjectOuterVisual
+"}}}3
 "}}}2
 
 "}}}1
