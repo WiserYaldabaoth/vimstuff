@@ -27,16 +27,24 @@ Plug 'lervag/vimtex'
 Plug 'reedes/vim-wordy'
 " Plug 'reedes/vim-lexical'
 " Plug 'reedes/pencil'
-" Plug 'junegunn/goyo.vim'
-" Plug 'amix/vim-zenroom2'
+Plug 'junegunn/goyo.vim'
+Plug 'amix/vim-zenroom2'
 "}}}4
 " Visual effects/colorscheme {{{4
 Plug 'morhetz/gruvbox'
+Plug 'altercation/vim-colors-solarized'
+Plug 'ipsod/nes.vim'
+Plug 'freeo/vim-kalisi'
+Plug 'Lokaltog/vim-distinguished'
+Plug 'sjl/badwolf'
+Plug 'chriskempson/base16-vim'
 Plug 'reedes/vim-colors-pencil'
 Plug 'reedes/vim-thematic'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'bling/vim-bufferline'
+Plug 'ashisha/image.vim'
+Plug 'godlygeek/csapprox'
 "}}}4
 " Autocomplete and snippets {{{4
 Plug 'ervandew/supertab'
@@ -52,7 +60,8 @@ Plug 'tpope/vim-fugitive'
 Plug 'idanarye/vim-merginal'
 "}}}4
 " Vimscript development {{{4
-Plug 'junegunn/vader.vim'
+" Plug 'junegunn/vader.vim'
+Plug '~/.vim/plugged/vader.vim'
 " Plug 'dsummersl/vimunit'
 "}}}4
 " Tags {{{4
@@ -60,6 +69,7 @@ Plug 'majutsushi/tagbar'
 "}}}4
 " External program interaction {{{4
 " Plug 'vim-scripts/OutlookVim'
+Plug 'edkolev/promptline.vim'
 Plug '~/.vim/bundle/eclim'
 "}}}4
 
@@ -82,6 +92,8 @@ set showmatch                " Show matching pairs of brackets
 " Numbering{{{3
 set ruler                    " Show line number on the bar
 set number                   " Show lines on side of screen
+set relativenumber           " Numbers relative to cursorline
+" Note: relativenumber can result in a performance hit
 "}}}3
 " Indenting{{{3
 set ai                       " Autoindent
@@ -132,7 +144,7 @@ set nocompatible             " VIM ONLY, NO VI ALLOWED
 syntax on                    " Set syntax highlighting
 filetype plugin indent on
 let mapleader = ","          " Leader for mapping
-set shell=/bin/bash
+set shell=zsh
 "}}}2
 " Mktmpdir recreates dir{{{2
 command! Mktmpdir call mkdir(fnamemodify(tempname(),":p:h"),"",0700)
@@ -291,10 +303,10 @@ inoremap Jk <ESC>
 nnoremap gb :ls<cr>:b<space>
 "}}}2
 " N:gl        'Go long' to tag under cursor{{{2
-nnoremap gl <c-]>
+" nnoremap gl <c-]>
 "}}}2
-" N:gy         Go back in jumplist{{{2
-nnoremap gy <c-o>
+" N:gy         Return from tag{{{2
+" nnoremap gy <c-t>
 "}}}2
 " N:zp         Fix the next misspelled word and return{{{2
 nnoremap <silent> zp ]s1z=
@@ -542,7 +554,37 @@ let g:thematic#theme_name = 'gruvbox'
 " UndoTree {{{2
 nnoremap <silent> <leader>uu :UndotreeToggle<CR>
 " }}}2
+" Promptline {{{2
+" sections (a, b, c, x, y, z, warn) are optional
+let g:promptline_preset = {
+        \'a' : [ promptline#slices#host() ],
+        \'b' : [ promptline#slices#user() ],
+        \'c' : [ promptline#slices#cwd() ],
+        \'y' : [ promptline#slices#vcs_branch() ],
+        \'z' : [ promptline#slices#git_status() ],
+        \'warn' : [ promptline#slices#last_exit_code() ]}
 
+" available slices:
+"
+" promptline#slices#cwd() - current dir, truncated to 3 dirs. To configure: promptline#slices#cwd({ 'dir_limit': 4 })
+" promptline#slices#vcs_branch() - branch name only. By default, only git branch is enabled. Use promptline#slices#vcs_branch({ 'hg': 1, 'svn': 1, 'fossil': 1}) to enable check for svn, mercurial and fossil branches. Note that always checking if inside a branch slows down the prompt
+" promptline#slices#last_exit_code() - display exit code of last command if not zero
+" promptline#slices#jobs() - display number of shell jobs if more than zero
+" promptline#slices#battery() - display battery percentage (on OSX and linux) only if below 10%. Configure the threshold with promptline#slices#battery({ 'threshold': 25 })
+" promptline#slices#host() - current hostname.  To hide the hostname unless connected via SSH, use promptline#slices#host({ 'only_if_ssh': 1 })
+" promptline#slices#user()
+" promptline#slices#python_virtualenv() - display which virtual env is active (empty is none)
+" promptline#slices#git_status() - count of commits ahead/behind upstream, count of modified/added/unmerged files, symbol for clean branch and symbol for existing untraced files
+"
+" any command can be used in a slice, for example to print the output of whoami in section 'b':
+"       \'b' : [ '$(whoami)'],
+"
+" more than one slice can be placed in a section, e.g. print both host and user in section 'a':
+"       \'a': [ promptline#slices#host(), promptline#slices#user() ],
+"
+" to disable powerline symbols
+let g:promptline_powerline_symbols = 0
+"}}}2
 
 "}}}1
 "EXTERNAL{{{1

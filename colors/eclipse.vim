@@ -2,8 +2,8 @@
 " Description: Eclipse vim colorscheme with terminal support
 " Creator:     baronKarza <baronKarza at stackoverflow.com>
 " Maintainer:  Brian Mejorado <bam9523@rit.edu>
-" Last Change: 2016 Apr 22
-" Version:	   0.01
+" Last Change: 2016 May 04
+" Version:	   0.03
 " URL:	       http://stackoverflow.com/a/8307967
 " Original:    http://www.vim.org/scripts/script.php?script_id=1802
 "{{{1
@@ -21,11 +21,11 @@ let colors_name = "eclipse"
 
 hi Normal       guifg=#121212 guibg=#ffffff                         ctermfg=233   ctermbg=231
 hi ErrorMsg     guifg=#ffffff guibg=#287eff gui=bold                ctermfg=115   ctermbg=236       cterm=bold
-hi Visual       guifg=#8080ff guibg=fg      gui=reverse             ctermfg=32    ctermbg=15        cterm=reverse
-hi VisualNOS    guifg=#8080ff guibg=fg      gui=reverse,underline   ctermfg=47 ctermbg=15    cterm=reverse,underline
-hi Todo         guifg=#ffffff guibg=#005FAF                         ctermfg=25    ctermbg=15        cterm=bold
-hi Search       guifg=#90fff0 guibg=#2050d0                         ctermfg=15 ctermbg=32  cterm=underline term=underline
-hi IncSearch    guifg=#ffffff   guibg=#ceccf7                       ctermfg=32 ctermbg=15
+hi Visual       guifg=#8080ff guibg=fg      gui=reverse             ctermfg=32    ctermbg=NONE        cterm=reverse
+hi VisualNOS    guifg=#8080ff guibg=fg      gui=reverse,underline   ctermfg=47 ctermbg=NONE    cterm=reverse,underline
+hi Todo         guifg=#ffffff guibg=#005FAF                         ctermfg=25 ctermbg=NONE        cterm=bold
+hi Search       guifg=#90fff0 guibg=#2050d0 ctermfg=NONE ctermbg=32  cterm=underline term=underline
+hi IncSearch    guifg=#ffffff   guibg=#ceccf7                       ctermfg=32 ctermbg=NONE
 
 hi SpecialKey   guifg=#005FAF                                       ctermfg=25
 hi Directory    guifg=#005FAF                                       ctermfg=25
@@ -43,7 +43,7 @@ hi VertSplit    guifg=black guibg=darkgray gui=none     ctermfg=black ctermbg=gr
 
 hi Folded       guifg=#808080 guibg=#000040         ctermfg=NONE ctermbg=NONE cterm=bold term=bold
 hi FoldColumn   guifg=#808080 guibg=#000040         ctermfg=darkgrey ctermbg=black cterm=bold term=bold
-hi LineNr       guifg=#a8a8a8 guibg=#121212         ctermfg=246      ctermbg=white
+hi LineNr       guifg=#a8a8a8 guibg=#121212         ctermfg=246 ctermbg=NONE
 
 hi DiffAdd      guibg=green                           ctermbg=green  cterm=none  term=none
 hi DiffChange   guibg=darkmagenta ctermbg=magenta cterm=none
@@ -51,7 +51,7 @@ hi DiffDelete   ctermfg=red ctermbg=lightred gui=bold guifg=Blue guibg=DarkCyan
 hi DiffText cterm=bold ctermbg=yellow gui=bold guibg=Yellow
 
 hi Cursor       guifg=black guibg=yellow ctermfg=black ctermbg=yellow
-hi lCursor      guifg=black guibg=white ctermfg=black ctermbg=white
+hi lCursor      guifg=black guibg=NONE ctermfg=black ctermbg=NONE
 
 hi CursorLine  cterm=NONE ctermfg=NONE ctermbg=153
 hi CursorColumn ctermfg=NONE ctermbg=159
@@ -69,17 +69,18 @@ hi Ignore       guifg=bg ctermfg=bg
 
 hi TabLine      cterm=NONE ctermfg=black ctermbg=75
 hi TabLineFill  cterm=NONE ctermfg=75 ctermbg=75
-hi TabLineSel   cterm=NONE ctermfg=black  ctermbg=white
+hi TabLineSel   cterm=NONE ctermfg=black  ctermbg=NONE
 
 " Java: {{{2
 
-hi javaAnnotation ctermfg=darkgray ctermbg=white
+hi javaAnnotation ctermfg=darkgray
 hi link javaDocTags Identifier
-hi javaDocComment ctermfg=blue ctermbg=white
+hi javaDocComment ctermfg=blue
 hi link javaDocParam javaDocComment
-hi javaVarArg ctermfg=brown ctermbg=white
+hi javaVarArg ctermfg=brown
 
 " }}}2
 
 "}}}1
-"vim:setlocal fen fdm=marker
+
+" vim: set sw=2 ts=2 sts=2 et tw=80 ft=vim fdm=marker:
