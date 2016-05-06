@@ -24,7 +24,7 @@ Plug 'tpope/vim-repeat'
 " Useful commands and mappings {{{4
 Plug 'qpkorr/vim-bufkill'
 Plug 'mbbill/undotree'
-Plug 'vasconcellos/vim-foldfocus'
+" Plug 'lfv89/vim-foldfocus'
 "}}}4
 " Text objects {{{4
 Plug 'wellle/targets.vim'
@@ -71,7 +71,9 @@ Plug 'glts/vim-texlog'
 Plug 'sheerun/vim-polyglot'
 "}}}4
 " Git {{{4
-Plug 'tpope/vim-fugitive' | Plug 'idanarye/vim-merginal'
+Plug 'tpope/vim-fugitive'
+    \ | Plug 'idanarye/vim-merginal'
+    \ | Plug 'gregsexton/gitv'
 Plug 'airblade/vim-gitgutter'
 "}}}4
 " Vimscript development {{{4
@@ -535,6 +537,10 @@ let g:thematic#themes = {
 \              'background': 'light',
 \              'airline-theme': 'zenburn',
 \            },
+\ 'greenscreen': { 'colorscheme': 'base16-greenscreen',
+\                  'background': 'dark',
+\                  'airline-theme': 'base16_greenscreen',
+\                },
 \ }
 
 let g:thematic#theme_name = 'gruvbox'
@@ -587,6 +593,12 @@ onoremap ah <Plug>GitGutterTextObjectOuterPending
 xnoremap ih <Plug>GitGutterTextObjectInnerVisual
 xnoremap ah <Plug>GitGutterTextObjectOuterVisual
 "}}}3
+"}}}2
+" Pencil {{{2
+nnoremap <silent> <leader>p :PencilToggle<CR>
+"}}}2
+" FoldFocus {{{2
+nnoremap <leader><CR> :call FoldFocus('vnew')<CR>
 "}}}2
 
 "}}}1
