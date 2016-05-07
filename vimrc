@@ -25,6 +25,7 @@ Plug 'tpope/vim-repeat'
 Plug 'qpkorr/vim-bufkill'
 Plug 'mbbill/undotree'
 " Plug 'lfv89/vim-foldfocus'
+Plug 'ctrlpvim/ctrlp.vim'
 "}}}4
 " Text objects {{{4
 Plug 'wellle/targets.vim'
@@ -89,6 +90,9 @@ Plug 'majutsushi/tagbar'
 " Plug 'vim-scripts/OutlookVim'
 Plug '~/.vim/bundle/eclim'
 Plug 'rking/ag.vim' | Plug 'Chun-Yang/vim-action-ag'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'}
+        \ | Plug 'junegunn/fzf.vim'
+Plug '~/git/vim-decompile'
 "}}}4
 
 call plug#end()
@@ -592,6 +596,9 @@ onoremap ih <Plug>GitGutterTextObjectInnerPending
 onoremap ah <Plug>GitGutterTextObjectOuterPending
 xnoremap ih <Plug>GitGutterTextObjectInnerVisual
 xnoremap ah <Plug>GitGutterTextObjectOuterVisual
+
+nnoremap [h <Plug>GitGutterPrevHunk
+nnoremap ]h <Plug>GitGutterNextHunk
 "}}}3
 "}}}2
 " Pencil {{{2
@@ -599,6 +606,23 @@ nnoremap <silent> <leader>p :PencilToggle<CR>
 "}}}2
 " FoldFocus {{{2
 nnoremap <leader><CR> :call FoldFocus('vnew')<CR>
+"}}}2
+" CtrlP {{{2
+let g:ctrlp_regexp = 1
+let g:ctrlp_show_hidden = 1
+let g:ctrlp_follow_symlinks = 1
+"}}}2
+" FZF {{{2
+let g:fzf_command_prefix = 'F'
+nmap <leader><tab> <plug>(fzf-maps-n)
+xmap <leader><tab> <plug>(fzf-maps-x)
+omap <leader><tab> <plug>(fzf-maps-o)
+
+" Insert mode completion
+imap <c-x><c-k> <plug>(fzf-complete-word)
+imap <c-x><c-f> <plug>(fzf-complete-path)
+imap <c-x><c-j> <plug>(fzf-complete-file-ag)
+imap <c-x><c-l> <plug>(fzf-complete-line)
 "}}}2
 
 "}}}1
