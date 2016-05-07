@@ -1,0 +1,25 @@
+extends tex
+
+priority 1
+
+snippet rpac "RequirePackage" b
+\RequirePackage${2:[${3:options}]}{${1:package}}
+$0
+endsnippet
+
+snippet lc "LoadClass" b
+\LoadClass${2:[${3:options}]}{${1:classname}}
+$0
+endsnippet
+
+snippet ntf "NeedsTeXFormat" b
+\NeedsTeXFormat{${1:LaTeX2e}}
+$0
+endsnippet
+
+snippet prc "ProvidesClass" b
+\ProvidesClass{${1:classname}}${2:[`date +%Y/%m/%d` ${3:description}]}
+$0
+endsnippet
+
+# vim:ft=snippets:
