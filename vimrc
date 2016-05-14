@@ -150,6 +150,7 @@ set foldnestmax=10           " Deepest nesting is 10 levels
 "}}}3
 " Recognize shell alias commands{{{3
 let $BASH_ENV = "~/.bash_aliases"
+let $ZSH_ENV = "~/.zshenv"
 "}}}3
 " Look for project-specific tags{{{3
 set tags=./tags,tags;
@@ -210,7 +211,7 @@ endif
 set t_ut=
 "}}}2
 " Disable modifying read-only files{{{2
-function! UpdateModifiable()
+function! s:UpdateModifiable()
   if !exists("b:setmodifiable")
     let b:setmodifiable = 0
   endif
@@ -228,7 +229,7 @@ endfunction
 
 augroup update_modifiable
     autocmd!
-    autocmd BufReadPost * call UpdateModifiable()
+    autocmd BufReadPost * call <SID>UpdateModifiable()
 augroup END
 "}}}2
 " Make XML editing easier{{{2
@@ -238,45 +239,6 @@ let g:xml_syntax_folding=1
 "}}}1
 "REMAPPINGS{{{1
 
-"""" Arrow Key Mapping{{{2
-""""""" USE MAPPING TO DISABLE ARROW KEYS!{{{3
-""""""" A TOOL FOR LEARNING 'THE VIM WAY'
-"noremap <up> <nop>
-"noremap <down> <nop>
-"noremap <left> <nop>
-"noremap <right> <nop>
-
-"inoremap <up> <nop>
-"inoremap <down> <nop>
-"inoremap <left> <nop>
-"inoremap <right> <nop>
-"}}}3
-""""""" USE THIS AFTER TRAINING YOURSELF OUT OF ARROW KEYS{{{3
-" A:<[direction]>      Left and right arrow keys for moving tabs{{{4
-nnoremap <silent> <left> :tabp<CR>
-nnoremap <silent> <right> :tabn<CR>
-inoremap <silent> <ESC>[D <C-C>:tabp<CR>
-inoremap <silent> <ESC>[C <C-C>:tabn<CR>
-vnoremap <silent> <left> :tabp<CR>
-vnoremap <silent> <right> :tabn<CR>
-"}}}4
-" A:<[direction]>      Up and down arrow keys for moving buffers [DISABLED]{{{4
-" nnoremap <silent> <up> :bp<CR>
-" nnoremap <silent> <down> :bn<CR>
-" inoremap <silent> <ESC>[A <C-C>:bp<CR>
-" inoremap <silent> <ESC>[B <C-C>:bn<CR>
-" vnoremap <silent> <left> :bp<CR>
-" vnoremap <silent> <right> :bn<CR>
-"}}}4
-" N:<leader><[direction]>  Use arrow keys to move windows{{{4
-" It's really up to you how you use them!
-nnoremap <silent> <leader><left>  <C-W>h
-nnoremap <silent> <leader><right> <C-W>l
-nnoremap <silent> <leader><up>    <C-W>j
-nnoremap <silent> <leader><down>  <C-W>k
-"}}}4
-"}}}3
-"}}}2
 """" vimrc commands{{{2
 " N:<leader>sv  _s_ource my _v_imrc file{{{3
 nnoremap <silent> <leader>sv :call functions#RefreshVim()<CR>
@@ -289,21 +251,22 @@ nnoremap <silent> <leader>ev :tabnew $MYVIMRC <CR>
 noremap <silent> <F2> :retab <CR>
 "}}}2
 " N:;         Remap command starter to save button presses{{{2
-"""""" THIS IS MY SECOND FAVORITE MAPPING IN THE UNIVERSE
 nore ; :
 "}}}2
 " N::         Remap semicolon for repeat f,F,t,T{{{2
 nore : ;
 "}}}2
 " N:N   n     Next found in search centers on line{{{2
-noremap N Nzz
-noremap n nzz
+" zz centers, zv opens folds to required depth
+noremap N Nzzzv
+noremap n nzzzv
 "}}}2
 " N:Y         Copy until end of line; aligns with C, A, and D{{{2
 nore Y y$
 "}}}2
-" N:<C-\>     Open tag definition in a new tab with ctrl+\{{{2
-noremap <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
+" N:<C-\>     Open tag definition in a new tab with <C-W>a {{{2
+" No good mneumonic but not many available <C-W> mappings
+noremap <C-W>a :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
 "}}}2
 " N:<Space>   Insert a single character{{{2
 nnoremap <Space> i_<C-C>r
@@ -313,7 +276,6 @@ nnoremap <Space> i_<C-C>r
 vnoremap <Space> I_<ESC>gvr
 "}}}2
 " I:jk        Escape with jk{{{2
-"""""" THIS IS MY FAVORITE MAPPING IN THE UNIVERSE
 inoremap jk <ESC>
 inoremap JK <ESC>
 inoremap jK <ESC>
@@ -326,12 +288,6 @@ inoremap Jk <ESC>
 "}}}2
 " N:gb        Quickly navigate through buffers{{{2
 nnoremap gb :ls<cr>:b<space>
-"}}}2
-" N:gl        'Go long' to tag under cursor{{{2
-" nnoremap gl <c-]>
-"}}}2
-" N:gy         Return from tag{{{2
-" nnoremap gy <c-t>
 "}}}2
 " N:zp         Fix the next misspelled word and return{{{2
 nnoremap <silent> zp ]s1z=
