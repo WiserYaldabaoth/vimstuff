@@ -10,93 +10,96 @@ endif
 "}}}2
 """" Vim-Plug{{{2
 
-call plug#begin('~/.vim/plugged') "{{{3
+call plug#begin('~/.vim/plugged')
 
-" Tpope {{{4
+" Tpope {{{3
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-abolish'
+Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-repeat'
-"}}}4
-" Useful commands and mappings {{{4
+"}}}3
+" Useful commands and mappings {{{3
 Plug 'qpkorr/vim-bufkill'
+Plug 'danro/rename.vim', { 'on': 'Rename' }
 Plug 'mbbill/undotree'
 " Plug 'lfv89/vim-foldfocus'
 Plug 'ctrlpvim/ctrlp.vim'
-"}}}4
-" Text objects {{{4
+"}}}3
+" Text objects {{{3
 Plug 'wellle/targets.vim'
 Plug 'coderifous/textobj-word-column.vim'
-
 Plug 'kana/vim-textobj-user'
     \ | Plug 'kana/vim-textobj-entire'
-    \ | Plug 'rbonvall/vim-textobj-latex'
-"}}}4
-" Writing {{{4
-Plug 'lervag/vimtex'
-Plug 'reedes/vim-wordy'
+    \ | Plug 'rbonvall/vim-textobj-latex', { 'for': [ 'tex', 'plaintex', 'latex', 'dtx' ] }
+"}}}3
+" Writing {{{3
+Plug 'lervag/vimtex', { 'for': [ 'tex', 'plaintex', 'latex', 'dtx' ] }
+Plug 'reedes/vim-wordy', { 'on': 'Wordy' }
 Plug 'reedes/vim-lexical'
-Plug 'reedes/vim-pencil'
-Plug 'junegunn/goyo.vim' | Plug 'amix/vim-zenroom2'
-"}}}4
-" Visual effects/colorscheme {{{4
+Plug 'reedes/vim-pencil', { 'on': [ 'Pencil', 'PencilToggle' ] }
+Plug 'junegunn/goyo.vim' | Plug 'amix/vim-zenroom2', { 'on': 'Goyo' }
+"}}}3
+" Visual effects/colorscheme {{{3
 Plug 'morhetz/gruvbox'
 Plug 'altercation/vim-colors-solarized'
+Plug 'romainl/Apprentice'
 Plug 'ipsod/nes.vim'
 Plug 'freeo/vim-kalisi'
 Plug 'Lokaltog/vim-distinguished'
 Plug 'sjl/badwolf'
 Plug 'chriskempson/base16-vim'
 Plug 'reedes/vim-colors-pencil'
-Plug '~/.vim/plugged/vim-colors-eclipse'
-
+Plug 'whatyouhide/vim-gotham'
+Plug '~/git/vim-colors-eclipse'
 Plug 'vim-airline/vim-airline'
         \ | Plug 'vim-airline/vim-airline-themes'
         \ | Plug 'reedes/vim-thematic'
-        \ | Plug 'edkolev/promptline.vim'
-
+        " \ | Plug 'edkolev/promptline.vim', { 'for': 'PromptlineSnapshot' }
 Plug 'bling/vim-bufferline'
-Plug 'ashisha/image.vim'
+" Plug 'ashisha/image.vim'
 " Plug 'godlygeek/csapprox'
-"}}}4
-" Autocomplete and snippets {{{4
+"}}}3
+" Autocomplete and snippets {{{3
 Plug 'ervandew/supertab'
 Plug 'sirver/ultisnips' | Plug 'honza/vim-snippets'
-"}}}4
-" Syntax {{{4
-Plug 'othree/xml.vim'
-Plug 'glts/vim-texlog'
+"}}}3
+" Syntax {{{3
+Plug 'othree/xml.vim', { 'for': 'xml' }
+Plug 'glts/vim-texlog', { 'for': 'log' }
 Plug 'sheerun/vim-polyglot'
-"}}}4
-" Git {{{4
+"}}}3
+" Git {{{3
 Plug 'tpope/vim-fugitive'
     \ | Plug 'idanarye/vim-merginal'
     \ | Plug 'gregsexton/gitv'
 Plug 'airblade/vim-gitgutter'
-"}}}4
-" Vimscript development {{{4
-" Plug 'junegunn/vader.vim'
-Plug '~/.vim/plugged/vader.vim'
-Plug 'tpope/vim-scriptease'
+"}}}3
+" Vimscript development {{{3
+" Plug 'junegunn/vader.vim', { 'on': 'Vader', 'for': 'vader' }
+Plug '~/.vim/plugged/vader.vim', { 'on': 'Vader', 'for': 'vader' }
+Plug 'tpope/vim-scriptease', { 'for': 'vim' }
 " Plug 'dsummersl/vimunit'
-"}}}4
-" Tags {{{4
+"}}}3
+" Tags {{{3
 Plug 'majutsushi/tagbar'
-"}}}4
-" External program interaction {{{4
+" Plug 'xolox/vim-misc' | Plug 'xolox/vim-shell' | Plug 'xolox/vim-easytags'
+"}}}3
+" External program interaction {{{3
 " Plug 'vim-scripts/OutlookVim'
-Plug '~/.vim/bundle/eclim'
+Plug '~/.vim/bundle/eclim', { 'for': [ 'java', 'xml' ] }
 Plug 'rking/ag.vim' | Plug 'Chun-Yang/vim-action-ag'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'}
         \ | Plug 'junegunn/fzf.vim'
+" Plug 'jpalardy/vim-slime'
 Plug '~/git/vim-decompile'
-"}}}4
+"}}}3
 
 call plug#end()
-"}}}3
 
 "}}}2
 """" Options{{{2
