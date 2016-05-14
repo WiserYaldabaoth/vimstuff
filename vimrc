@@ -578,15 +578,31 @@ let g:ctrlp_follow_symlinks = 1
 "}}}2
 " FZF {{{2
 let g:fzf_command_prefix = 'F'
-nmap <leader><tab> <plug>(fzf-maps-n)
-xmap <leader><tab> <plug>(fzf-maps-x)
-omap <leader><tab> <plug>(fzf-maps-o)
+" nnoremap <leader><tab> <plug>(fzf-maps-n)
+" inoremap <leader><tab> <plug>(fzf-maps-i)
+" xnoremap <leader><tab> <plug>(fzf-maps-x)
+" onoremap <leader><tab> <plug>(fzf-maps-o)
+nnoremap <leader>ff. :exec g:fzf_command_prefix . "Files"<CR>
+nnoremap <leader>ff~ :exec g:fzf_command_prefix . "Files ~"<CR>
+nnoremap <leader>ff/ :exec g:fzf_command_prefix . "Files /"<CR>
+nnoremap <leader>fs  :exec g:fzf_command_prefix . "Snippets"<CR>
+nnoremap <leader>fg  :exec g:fzf_command_prefix . "GitFiles"<CR>
+nnoremap <leader>ft :exec g:fzf_command_prefix . "Tags"<CR>
+nnoremap <leader>fm :exec g:fzf_command_prefix . "Maps"<CR>
+nnoremap <leader>fh :exec g:fzf_command_prefix . "Helptags"<CR>
+nnoremap <leader>fc :exec g:fzf_command_prefix . "Commits"<CR>
 
 " Insert mode completion
-imap <c-x><c-k> <plug>(fzf-complete-word)
-imap <c-x><c-f> <plug>(fzf-complete-path)
-imap <c-x><c-j> <plug>(fzf-complete-file-ag)
-imap <c-x><c-l> <plug>(fzf-complete-line)
+inoremap <c-x><c-k> <plug>(fzf-complete-word)
+inoremap <c-x><c-f> <plug>(fzf-complete-path)
+inoremap <c-x><c-j> <plug>(fzf-complete-file-ag)
+inoremap <c-x><c-l> <plug>(fzf-complete-line)
+"}}}2
+" Easytags {{{2
+let g:easytags_async = 1
+"}}}2
+" SLIME {{{2
+let g:slime_target = "tmux"
 "}}}2
 
 "}}}1
