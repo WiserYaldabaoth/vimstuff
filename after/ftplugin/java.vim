@@ -39,4 +39,26 @@ syn region foldImports start=/\(^\s*\n^import\)\@<= .\+;/ end=+^\s*$+ transparen
 " hi def link javaComment Comment
 ""}}}2
 
+" Add command to generate Serial Version ID {{{2
+" WARNING: Untested. May not work.
+
+" s:InputSerial
+" Generates a SerialVer number and inputs it. {{{3
+fun! s:InputSerial(classpath, classname) abort
+    " r! serialver -classpath bin $(echo %:r | sed -e 's/src\///' -e 's/\//\./g')
+    let l:command = "r! serialver "
+
+    if( exists( 'a:classpath' ) && a:classpath !=# '' )
+        let l:command .= "-classpath " . a:classpath . " "
+    endif
+
+    let l:command .= "$(echo " . a:classname . " | sed -e 's@src\/@@' -e 's@\/@\.@g')"
+    exec l:command
+endfun
+"}}}3
+
+command! -nargs=? -complete=dir Serial call <SID>InputSerial(expand("<args>"), expand("<afile>:r"))
+
+"}}}2
+
 "}}}1
