@@ -55,6 +55,8 @@ fun! functions#EnterEclim() "{{{2
     nnoremap <silent> <leader>ecc :ProjectLCD<CR>
     nnoremap <silent> <leader>ecb :Buffers<CR>
     nnoremap <silent> <leader>ecl :LocateFile<CR>
+    nnoremap <silent> <leader>eca :Ant<CR>
+    nnoremap <silent> <leader>ect :ProjectTodo<CR>
     "}}}3
 
     " Eclim Java         <leader>ja{{{3
@@ -85,6 +87,15 @@ fun! functions#EnterEclim() "{{{2
 endfun
 "}}}2
 
+
+" Break
+"
+" The polar opposite of J.
+fun! functions#Break() " {{{2
+    s/^\(\s*\)\(.\{-}\)\(\s*\)\(\%#\)\(\s*\)\(.*\)/\1\2\r\1\4\6
+    call histdel("/", -1)
+endfun
+"}}}2
 
 
 "}}}1
