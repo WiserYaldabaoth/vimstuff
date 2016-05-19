@@ -465,12 +465,21 @@ let g:SuperTabContextTextOmniPrecedence = ['&omnifunc', '&completefunc']
 "}}}2
 " Themes {{{2
 
-let g:thematic#defaults = {
-\ 'typeface': 'Inconsolata',
-\ 'font-size': 11,
-\ 'background': 'dark',
-\ 'laststatus': 2,
+if has( 'linux' )
+    let g:thematic#defaults = {
+\       'typeface': 'Inconsolata',
+\       'font-size': 11,
+\       'background': 'dark',
+\       'laststatus': 2,
 \ }
+elseif has ('win32unix')
+    let g:thematic#defaults = {
+\       'typeface': 'Deja Vu Sans Mono',
+\       'font-size': 10,
+\       'background': 'dark',
+\       'laststatus': 2,
+\ }
+endif
 
 let g:thematic#themes = {
 \ 'gruvbox' : { 'colorscheme': 'gruvbox',
