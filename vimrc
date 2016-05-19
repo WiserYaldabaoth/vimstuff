@@ -608,6 +608,42 @@ let g:easytags_async = 1
 " SLIME {{{2
 let g:slime_target = "tmux"
 "}}}2
+" Rainbow Parentheses {{{2
+let g:rainbow_active = 1
+nnoremap <silent> <leader>( :RainbowToggle<CR>
+
+" Configure rainbow options {{{3
+
+" Explanation {{{4
+" guifgs: colors for gui interface, will be used in order
+" ctermfgs: colors for terminals, will be used in order
+" operators: describe operators you want to highlight
+" parentheses:  describe what will be processed as parentheses
+" separately: configure for filetypes. Use '0' as value to disable for that filetype
+" Empty field uses the default
+"}}}4
+
+let g:rainbow_conf = {
+\   'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
+\   'separately': {
+\       '*': {},
+\       'tex': {
+\           'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/'],
+\       },
+\       'lisp': {
+\           'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick', 'darkorchid3'],
+\       },
+\       'vim': {
+\           'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/', 'start=/{/ end=/}/ fold', 'start=/(/ end=/)/ containedin=vimFuncBody', 'start=/\[/ end=/\]/ containedin=vimFuncBody', 'start=/{/ end=/}/ fold containedin=vimFuncBody'],
+\       },
+\       'html': {
+\           'parentheses': ['start=/\v\<((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1># fold'],
+\       },
+\       'css': 0,
+\   }
+\}
+"}}}3
+"}}}2
 
 "}}}1
 "EXTERNAL{{{1
