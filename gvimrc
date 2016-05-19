@@ -17,7 +17,7 @@ colo gruvbox
 "}}}2
 " Set up the font{{{2
 " TODO Remove system-dependent functionality
-set guifont=DejaVu\ Sans\ Mono\ 10
+set guifont='DejaVu\ Mono\ 10'
 "}}}2
 " MIN HEADROOM{{{2
 set ghr=0
@@ -31,6 +31,9 @@ let g:vimtex_latexmk_callback=1
 let g:vimtex_view_general_viewer = 'okular'
 let g:vimtex_view_general_options = '--unique @pdf'
 let g:vimtex_view_general_options_latexmk = '--unique'
+"}}}2
+" Themes {{{2
+
 "}}}2
 
 "}}}1
