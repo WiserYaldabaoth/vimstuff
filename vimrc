@@ -29,6 +29,7 @@ Plug 'danro/rename.vim', { 'on': 'Rename' }
 Plug 'mbbill/undotree'
 " Plug 'lfv89/vim-foldfocus'
 Plug 'ctrlpvim/ctrlp.vim'
+" Plug 'easymotion/vim-easymotion'
 "}}}3
 " Text objects {{{3
 Plug 'wellle/targets.vim'
@@ -63,6 +64,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'bling/vim-bufferline'
 " Plug 'ashisha/image.vim'
 " Plug 'godlygeek/csapprox'
+Plug 'luochen1990/rainbow'
 "}}}3
 " Autocomplete and snippets {{{3
 Plug 'ervandew/supertab'
@@ -91,7 +93,7 @@ Plug 'majutsushi/tagbar'
 "}}}3
 " External program interaction {{{3
 " Plug 'vim-scripts/OutlookVim'
-Plug '~/.vim/bundle/eclim', { 'for': [ 'java', 'xml' ] }
+Plug '~/.vim/bundle/eclim'
 Plug 'rking/ag.vim' | Plug 'Chun-Yang/vim-action-ag'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'}
         \ | Plug 'junegunn/fzf.vim'
