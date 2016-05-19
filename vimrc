@@ -237,20 +237,20 @@ augroup END
 " Make XML editing easier{{{2
 let g:xml_syntax_folding=1
 "}}}2
+" Fix <M-[> behavior first {{{2
+set <M-]>=^[]
+"}}}2
 
 "}}}1
 "REMAPPINGS{{{1
 
-"""" vimrc commands{{{2
-" N:<leader>sv  _s_ource my _v_imrc file{{{3
-nnoremap <silent> <leader>sv :call functions#RefreshVim()<CR>
-"}}}3
-" N:<leader>ev  _e_dit my _v_imrc file in a new tab {{{3
-nnoremap <silent> <leader>ev :tabnew $MYVIMRC <CR>
-"}}}3
-"}}}2
 " N:<F2>      Retab automatically reconfigures tabs to spaces{{{2
 noremap <silent> <F2> :retab <CR>
+"}}}2
+" N:-         Insta-open explorer to show adjacent files{{{2
+" This provides seamless browsing of complex directory structures,
+" as the same button moves up one directory!
+nnoremap - :Explore<CR>
 "}}}2
 " N:;         Remap command starter to save button presses{{{2
 nore ; :
@@ -266,7 +266,7 @@ noremap n nzzzv
 " N:Y         Copy until end of line; aligns with C, A, and D{{{2
 nore Y y$
 "}}}2
-" N:<C-\>     Open tag definition in a new tab with <C-W>a {{{2
+" N:<C-W>a    Open tag definition in a new tab with <C-W>a {{{2
 " No good mneumonic but not many available <C-W> mappings
 noremap <C-W>a :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
 "}}}2
@@ -283,6 +283,7 @@ inoremap JK <ESC>
 inoremap jK <ESC>
 inoremap Jk <ESC>
 
+" We can dance if we want to
 "inoremap kj <ESC>
 "inoremap Kj <ESC>
 "inoremap kJ <ESC>
@@ -291,26 +292,20 @@ inoremap Jk <ESC>
 " N:gb        Quickly navigate through buffers{{{2
 nnoremap gb :ls<cr>:b<space>
 "}}}2
-" N:zp         Fix the next misspelled word and return{{{2
+" N:zp        Fix the next misspelled word and return{{{2
 nnoremap <silent> zp ]s1z=
 "}}}2
-" N:zq         Fix the previous misspelled word and return{{{2
+" N:zq        Fix the previous misspelled word and return{{{2
 nnoremap <silent> zq [s1z=
 "}}}2
-" N:<M-]>     Open tag definition in vertical split with alt+]{{{2
-" Fix <M-[> behavior first
-set <M-]>=^[]
-noremap <M-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
+" N:<C-W>e    Open tag definition in vertical split with alt+]{{{2
+noremap <C-W>a :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 "}}}2
-" I:<Esc>     DISABLE ESC IN INSERT MODE{{{2
-" 'If Escape is your friend, why is it so far away from you?'
-inoremap <ESC> <nop>
+" N:<leader>sv   _s_ource my _v_imrc file{{{2
+nnoremap <silent> <leader>sv :call functions#RefreshVim()<CR>
 "}}}2
-" N:<leader>"    Surround word in quotes{{{2
-nnoremap <silent> <leader>" viW<ESC>a"<ESC>hbi"<ESC>lel
-"}}}2
-" V:<leader>"    Surround a word in quotes in visual mode{{{2
-"vnoremap <leader>" i`<
+" N:<leader>ev   _e_dit my _v_imrc file in a new tab {{{2
+nnoremap <silent> <leader>ev :tabnew $MYVIMRC <CR>
 "}}}2
 " N:<leader>ss   Replace end-of-line whitespace {{{2
 nnoremap <silent> <leader>ss :%s/\s\+$<CR>
@@ -318,25 +313,23 @@ nnoremap <silent> <leader>ss :%s/\s\+$<CR>
 " N:<leader>ses  Save current session{{{2
 nnoremap <silent> <leader>ses :mkses!<CR>
 "}}}2
-" N:<localleader>m    Make{{{2
-nnoremap <silent> <localleader>m :make<CR>
-"}}}2
 " N:<leader>w    Switch windows quickly{{{2
 nnoremap <silent> <leader>w <C-W>
-"}}}2
-" I:<leader><leader>    Suggestions pop up{{{2
-inoremap <silent> <leader><leader> <C-P>
 "}}}2
 " N:<leader>cc   Center cursor automagically{{{2
 nnoremap <silent> <leader>cc  :call functions#CenterToggle()<CR>
 "}}}2
+" N:<leader>/    Clear the search register {{{2
+nnoremap <silent> <leader>/ :let @/=''<CR>
+"}}}2
+" N:<leader>r    Redraw! The screen! Now! Do it! {{{2
+nnoremap <silent> <leader>r :redraw!<CR>
+"}}}2
 " N:<leader>ffffuuuuuu{{{2
 nnoremap <leader>fuuuuu qqqqqifuu<Esc>h@qq@q
 "}}}2
-" N:-         Insta-open explorer to show adjacent files{{{2
-" This provides seamless browsing of complex directory structures,
-" as the same button moves up one directory!
-nnoremap - :Explore<CR>
+" N:<localleader>m    Make{{{2
+nnoremap <silent> <localleader>m :make<CR>
 "}}}2
 
 "}}}1
