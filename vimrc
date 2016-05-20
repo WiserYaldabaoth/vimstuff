@@ -44,6 +44,7 @@ Plug 'reedes/vim-wordy', { 'on': 'Wordy' }
 Plug 'reedes/vim-lexical'
 Plug 'reedes/vim-pencil', { 'on': [ 'Pencil', 'PencilToggle' ] }
 Plug 'junegunn/goyo.vim' | Plug 'amix/vim-zenroom2', { 'on': 'Goyo' }
+Plug 'drougas/vim-pythesaurus'
 "}}}3
 " Visual effects/colorscheme {{{3
 Plug 'morhetz/gruvbox'
@@ -643,6 +644,9 @@ let g:rainbow_conf = {
 \   }
 \}
 "}}}3
+"}}}2
+" Thesaurus {{{2
+nnoremap <silent> <localleader>K :PyThesaurusCurrentWord<CR>
 "}}}2
 
 "}}}1
