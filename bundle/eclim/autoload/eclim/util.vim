@@ -1374,7 +1374,9 @@ function! eclim#util#System(cmd, ...)
     set shelltemp
     set shellxquote=
   else
-    if executable('/bin/bash')
+    if executable('/bin/zsh')
+        set shell=/bin/zsh
+    elseif executable('/bin/bash')
       set shell=/bin/bash
     else
       set shell=/bin/sh
