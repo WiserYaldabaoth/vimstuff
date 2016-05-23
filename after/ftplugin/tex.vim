@@ -14,7 +14,8 @@ setlocal spell
 "}}}2
 
 " Define a command for pdflatex compilation {{{2
-command! TexC new | r!pdflatex --interaction=nonstopmode --output-directory=build $(cygpath -w #:p) >> temp 2>&1 && cygstart #:p:h/build/#:r.pdf || cat temp ; rm ./temp
+command! TexC new | exec " r!pdflatex --interaction=nonstopmode --output-directory=build $(cygpath -w " . expand( '#:p' ) . ") >> temp 2>&1 && cygstart " . expand( '#:p:h' ) . "/build/" . expand( '#:r' ) . ".pdf || cat temp ; rm ./temp"
+command! TexCr exec "Dispatch pdflatex --interaction=nonstopmode --output-directory=build $(cygpath -w " . expand( '%:p' ) . ")"
 "}}}2
 
 "}}}1
