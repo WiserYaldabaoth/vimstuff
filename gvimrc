@@ -17,7 +17,13 @@ colo gruvbox
 "}}}2
 " Set up the font{{{2
 " TODO Remove system-dependent functionality
-set guifont='DejaVu\ Mono\ 10'
+if(  has( 'win32unix' ) )
+    set guifont='DejaVu\ Mono\ 10'
+elseif( has( 'win32' )
+    set guifont='Consolas'
+else
+    set guifont='Inconsolata'
+endif
 "}}}2
 " MIN HEADROOM{{{2
 set ghr=0
