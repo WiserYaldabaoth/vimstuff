@@ -98,7 +98,7 @@ Plug '~/.vim/bundle/eclim'
 Plug 'rking/ag.vim' | Plug 'Chun-Yang/vim-action-ag'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'}
         \ | Plug 'junegunn/fzf.vim'
-" Plug 'jpalardy/vim-slime'
+Plug 'jpalardy/vim-slime'
 Plug '~/git/vim-decompile'
 "}}}3
 
@@ -311,9 +311,6 @@ nnoremap <silent> <leader>ev :tabnew $MYVIMRC <CR>
 " N:<leader>ss   Replace end-of-line whitespace {{{2
 nnoremap <silent> <leader>ss :%s/\s\+$<CR>
 "}}}2
-" N:<leader>ses  Save current session{{{2
-nnoremap <silent> <leader>ses :mkses!<CR>
-"}}}2
 " N:<leader>w    Switch windows quickly{{{2
 nnoremap <silent> <leader>w <C-W>
 "}}}2
@@ -523,7 +520,7 @@ let g:thematic#themes = {
 \            },
 \ }
 
-let g:thematic#theme_name = 'gruvbox'
+let g:thematic#theme_name = 'inkpot'
 
 " }}}2
 " UndoTree {{{2
