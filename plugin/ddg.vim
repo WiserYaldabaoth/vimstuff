@@ -2,8 +2,8 @@
 " Description: Search for the selection via ddg.gg with dK.
 " Maintainer: Brian A Mejorado <bam9523@rit.edu>
 
-nnoremap dK :set operatorfunc=<SID>DuckDuckGo<CR>g@
-vnoremap dK :<c-u>call <SID>DuckDuckGo(visualmode())<cr>
+nnoremap gK :set operatorfunc=<SID>DuckDuckGo<CR>g@
+vnoremap gK :<c-u>call <SID>DuckDuckGo(visualmode())<cr>
 
 " ToQuery
 "
@@ -16,19 +16,9 @@ fun! s:ToQuery(input) "{{{1
     " Then turn delimiters into query splitters
     " Then eliminate plus sign duplicates
     return substitute(
-                \ substitute(
-                \     substitute(
-                \         shellescape(expand(a:input)),
-                \         "[^a-zA-Z0-9{}()+. ]",
-                \         "",
-                \         'g'
-                \         ),
-                \     "[{}() ]",
-                \     "+",
-                \     'g'
-                \     ),
-                \ "+\{2,}",
-                \ "+",
+                \ '"' . @0 . '"',
+                \ '[^A-Za-z0-9_.~-]',
+                \ '\="%".printf("%02X", char2nr(submatch(0)))',
                 \ 'g'
                 \ )
 endfun!
@@ -61,6 +51,8 @@ fun! s:DuckDuckGo(curmode) "{{{1
         execute '!start "' . l:url . '"'
     elseif( executable( 'cygstart' ) )
         execute '!cygstart "' . l:url . '"'
+    elseif( ! exists( ORDER ) )
+        execute ORDER 66
     endif
 endfun
 " }}}1
