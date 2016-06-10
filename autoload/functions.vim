@@ -62,7 +62,8 @@ fun! functions#EnterEclim() "{{{2
     " Eclim Java         <leader>ja{{{3
     nnoremap <silent> <leader>jaf :%JavaFormat<CR>
     nnoremap <silent> <leader>jai :JavaImportOrganize<CR>
-    nnoremap <silent> <leader>jan :JavaRename<CR>
+    nnoremap <silent> <leader>jan q:GiJavaRename <esc>a
+    nnoremap <silent> <leader>jad :JavaDocComment<CR>
     "}}}3
 
     " Eclim Java Debug   <leader>jd{{{3
