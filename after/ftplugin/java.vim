@@ -61,4 +61,8 @@ command! -nargs=? -complete=dir Serial call <SID>InputSerial(expand("<args>"), e
 
 "}}}2
 
+" Command for creating spaces in tight areas {{{2
+nnoremap <silent> <leader>tss :execute '%s/\v(\()@<=([^ ]).*([^ ])\)@=/ & /g'<CR>
+"}}}2
+
 "}}}1
