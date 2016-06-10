@@ -1,4 +1,4 @@
-" Vim syntax file 
+" Vim syntax file
 " Language:	  Java
 " Maintainer:	Claudio Fleiner <claudio@fleiner.com>
 " URL:		http://www.fleiner.com/vim/syntax/java.vim
@@ -49,7 +49,8 @@ syn keyword javaOperator	new instanceof
 syn keyword javaType		boolean char byte short int long float double Thread System Integer String Double Byte Float Long Boolean Char Short
 syn keyword javaType		void
 syn keyword javaStatement	return
-syn keyword javaStorageClass	static synchronized transient volatile final strictfp serializable
+syn keyword javaStorageClass	static synchronized transient volatile strictfp serializable
+syn keyword javaDescriptor	final
 syn keyword javaExceptions	throw try catch finally
 syn keyword javaAssert		assert
 syn keyword javaMethodDecl	synchronized throws
@@ -69,7 +70,7 @@ syn keyword javaScopeDecl	public protected private abstract
 if exists("java_highlight_java_lang_ids")
   let java_highlight_all=1
 endif
-if exists("java_highlight_all")  || exists("java_highlight_java")  || exists("java_highlight_java_lang") 
+if exists("java_highlight_all")  || exists("java_highlight_java")  || exists("java_highlight_java_lang")
   " java.lang.*
   syn match javaLangClass "\<System\>"
   syn keyword javaR_JavaLang NegativeArraySizeException ArrayStoreException IllegalStateException RuntimeException IndexOutOfBoundsException UnsupportedOperationException ArrayIndexOutOfBoundsException ArithmeticException ClassCastException EnumConstantNotPresentException StringIndexOutOfBoundsException IllegalArgumentException IllegalMonitorStateException IllegalThreadStateException NumberFormatException NullPointerException TypeNotPresentException SecurityException
@@ -299,6 +300,7 @@ if version >= 508 || !exists("did_java_syn_inits")
   JavaHiLink javaMethodDecl		javaStorageClass
   JavaHiLink javaClassDecl		javaStorageClass
   JavaHiLink javaScopeDecl		javaStorageClass
+  JavaHiLink javaDescriptor		Comment
   JavaHiLink javaBoolean		Boolean
   JavaHiLink javaSpecial		Special
   JavaHiLink javaSpecialError		Error
