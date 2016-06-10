@@ -11,7 +11,6 @@ endif
 """" Vim-Plug{{{2
 
 call plug#begin('~/.vim/plugged')
-
 " Tpope {{{3
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-commentary'
@@ -53,10 +52,15 @@ Plug 'romainl/Apprentice'
 Plug 'ipsod/nes.vim'
 Plug 'freeo/vim-kalisi'
 Plug 'Lokaltog/vim-distinguished'
+Plug 'rking/vim-detailed'
 Plug 'sjl/badwolf'
 Plug 'chriskempson/base16-vim'
 Plug 'reedes/vim-colors-pencil'
 Plug 'whatyouhide/vim-gotham'
+Plug 'trapd00r/neverland-vim-theme'
+Plug 'abra/vim-abra'
+Plug 'joshdick/onedark.vim'
+        \ | Plug 'joshdick/airline-onedark.vim'
 Plug '~/git/vim-colors-eclipse'
 Plug 'vim-airline/vim-airline'
         \ | Plug 'vim-airline/vim-airline-themes'
@@ -74,10 +78,12 @@ Plug 'sirver/ultisnips' | Plug 'honza/vim-snippets'
 " Syntax {{{3
 Plug 'othree/xml.vim', { 'for': 'xml' }
 Plug 'glts/vim-texlog', { 'for': 'log' }
+Plug 'adimit/prolog.vim', { 'for': 'prolog' }
 Plug 'sheerun/vim-polyglot'
 "}}}3
 " Git {{{3
 Plug 'tpope/vim-fugitive'
+    \ | Plug 'tpope/vim-rhubarb'
     \ | Plug 'idanarye/vim-merginal'
     \ | Plug 'gregsexton/gitv'
 Plug 'airblade/vim-gitgutter'
@@ -85,7 +91,7 @@ Plug 'airblade/vim-gitgutter'
 " Vimscript development {{{3
 " Plug 'junegunn/vader.vim', { 'on': 'Vader', 'for': 'vader' }
 Plug '~/.vim/plugged/vader.vim', { 'on': 'Vader', 'for': 'vader' }
-Plug 'tpope/vim-scriptease', { 'for': 'vim' }
+Plug 'tpope/vim-scriptease'
 " Plug 'dsummersl/vimunit'
 "}}}3
 " Tags {{{3
@@ -99,9 +105,9 @@ Plug 'rking/ag.vim' | Plug 'Chun-Yang/vim-action-ag'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'}
         \ | Plug 'junegunn/fzf.vim'
 Plug 'jpalardy/vim-slime'
+Plug 'neilagabriel/vim-geeknote'
 Plug '~/git/vim-decompile'
 "}}}3
-
 call plug#end()
 
 "}}}2
@@ -146,9 +152,10 @@ set vb t_vb=
 " zo - opens a fold
 " zR - opens all folds
 " zM - closes all folds
+" zv - open a fold to cursor
 "set foldmethod=syntax        " Fold based on syntax files
 set foldnestmax=10           " Deepest nesting is 10 levels
-"set nofoldenable             " Don't automatically fold
+set nofoldenable             " Don't automatically fold
 "set foldlevel=1
 "}}}3
 " Recognize shell alias commands{{{3
@@ -229,7 +236,7 @@ function! s:UpdateModifiable()
     endif
   endif
 endfunction
-
+"
 augroup update_modifiable
     autocmd!
     autocmd BufReadPost * call <SID>UpdateModifiable()
@@ -274,7 +281,7 @@ noremap <C-W>a :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
 " N:<Space>   Insert a single character{{{2
 nnoremap <Space> i_<C-C>r
 "}}}2
-" N:<Space>   Insert a single character into a block selection{{{2
+" V:<Space>   Insert a single character into a block selection{{{2
 " OR: Replace an entire selection with a single selection
 vnoremap <Space> I_<ESC>gvr
 "}}}2
@@ -283,7 +290,7 @@ inoremap jk <ESC>
 inoremap JK <ESC>
 inoremap jK <ESC>
 inoremap Jk <ESC>
-
+"
 " We can dance if we want to
 "inoremap kj <ESC>
 "inoremap Kj <ESC>
@@ -518,9 +525,15 @@ let g:thematic#themes = {
 \             'background': 'dark',
 \             'airline-theme': 'gotham256',
 \            },
+\ 'detailed': { 'colorscheme': 'detailed',
+\               'airline-theme': 'dark',
+\             },
+\ 'atom': { 'colorscheme': 'onedark',
+\           'airline-theme': 'onedark',
+\         },
 \ }
 
-let g:thematic#theme_name = 'inkpot'
+let g:thematic#theme_name = 'gruvbox'
 
 " }}}2
 " UndoTree {{{2
@@ -574,7 +587,7 @@ nnoremap <silent> <leader>p :PencilToggle<CR>
 nnoremap <leader><CR> :call FoldFocus('vnew')<CR>
 "}}}2
 " CtrlP {{{2
-let g:ctrlp_regexp = 1
+" let g:ctrlp_regexp = 1
 let g:ctrlp_show_hidden = 1
 let g:ctrlp_follow_symlinks = 1
 "}}}2
