@@ -38,7 +38,7 @@ Plug 'kana/vim-textobj-user'
     \ | Plug 'rbonvall/vim-textobj-latex', { 'for': [ 'tex', 'plaintex', 'latex', 'dtx' ] }
 "}}}3
 " Writing {{{3
-Plug 'lervag/vimtex', { 'for': [ 'tex', 'plaintex', 'latex', 'dtx' ] }
+Plug 'lervag/vimtex'
 Plug 'reedes/vim-wordy', { 'on': 'Wordy' }
 Plug 'reedes/vim-lexical'
 Plug 'reedes/vim-pencil', { 'on': [ 'Pencil', 'PencilToggle' ] }
@@ -73,7 +73,12 @@ Plug 'luochen1990/rainbow'
 "}}}3
 " Autocomplete and snippets {{{3
 Plug 'ervandew/supertab'
-Plug 'sirver/ultisnips' | Plug 'honza/vim-snippets'
+
+if version > 703
+    Plug 'sirver/ultisnips' | Plug 'honza/vim-snippets'
+else
+    Plug 'MarcWeber/vim-addon-mw-utils' | Plug 'tomtom/tlib_vim' | Plug 'garbas/vim-snipmate' | Plug 'honza/vim-snippets'
+endif
 "}}}3
 " Syntax {{{3
 Plug 'othree/xml.vim', { 'for': 'xml' }
