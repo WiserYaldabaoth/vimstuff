@@ -11,4 +11,6 @@ endif
 setlocal foldmethod=syntax
 "}}}2
 
+setlocal tabstop=2 shiftwidth=2
+
 "}}}1
