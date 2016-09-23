@@ -479,7 +479,7 @@ let g:SuperTabContextTextOmniPrecedence = ['&omnifunc', '&completefunc']
 "}}}2
 " Themes {{{2
 
-if has( 'linux' )
+if has( 'unix' )
     let g:thematic#defaults = {
 \       'typeface': 'Inconsolata',
 \       'font-size': 11,
