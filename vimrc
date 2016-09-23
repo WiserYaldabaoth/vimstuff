@@ -82,7 +82,7 @@ endif
 "}}}3
 " Syntax {{{3
 Plug 'othree/xml.vim', { 'for': 'xml' }
-Plug 'glts/vim-texlog', { 'for': 'log' }
+Plug 'glts/vim-texlog'
 Plug 'adimit/prolog.vim', { 'for': 'prolog' }
 Plug 'sheerun/vim-polyglot'
 "}}}3
@@ -302,6 +302,10 @@ inoremap Jk <ESC>
 "inoremap kJ <ESC>
 "inoremap KJ <ESC>
 "}}}2
+" I:j;w       Save if I mess up{{{2
+"  It's embarrassing how many times this happens
+inoremap j;w <ESC>:w<CR>
+"}}}2
 " N:gb        Quickly navigate through buffers{{{2
 nnoremap gb :ls<cr>:b<space>
 "}}}2
@@ -311,7 +315,7 @@ nnoremap <silent> zp ]s1z=
 " N:zq        Fix the previous misspelled word and return{{{2
 nnoremap <silent> zq [s1z=
 "}}}2
-" N:<C-W>e    Open tag definition in vertical split with alt+]{{{2
+" N:<C-W>e    Open tag definition in vertical split with <C-W>e{{{2
 noremap <C-W>a :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 "}}}2
 " N:<leader>sv   _s_ource my _v_imrc file{{{2
@@ -431,7 +435,7 @@ nnoremap <silent> <leader>me :Merginal<CR>
 " Idea borrowed from https://stackoverflow.com/q/26145505.
 " Note that this requires a .ctags file that is appropriately prepared.
 let g:tagbar_type_tex = {
-    \ 'ctagstype' : 'plaintex',
+    \ 'ctagstype' : 'tex',
     \ 'kinds'     : [
         \ 's:sections',
         \ 'g:graphics:0:0',
