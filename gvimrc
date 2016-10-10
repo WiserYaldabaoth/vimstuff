@@ -11,6 +11,7 @@ set tbis=tiny
 " Enable and use menu, gray inactive menu items, and include tearoff menu
 " items. Do NOT use the Toolbar or the scrollbar.
 set go=egmrt
+" set go-=mTrL
 "}}}2
 " Custom colorscheme{{{2
 colo gruvbox
@@ -19,7 +20,7 @@ colo gruvbox
 " TODO Remove system-dependent functionality
 if(  has( 'win32unix' ) )
     set guifont='DejaVu\ Mono\ 10'
-elseif( has( 'win32' )
+elseif( has( 'win32' ) )
     set guifont='Consolas'
 else
     set guifont='Inconsolata'
