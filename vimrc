@@ -367,7 +367,7 @@ let g:netrw_browser_viewer = 'lynx'
 let g:polyglot_disabled = ['latex']
 "}}}2
 " Vimtex{{{2
-let g:vimtex_latexmk_options = "-pvc -pdf -output-directory=build -interaction=nonstopmode"
+let g:vimtex_latexmk_options = "-pvc -pdf -output-directory=build -interaction=nonstopmode --shell-escape"
 let g:vimtex_fold_enabled = 1
 let g:vimtex_fold_comments = 1
 "}}}2
