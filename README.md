@@ -7,7 +7,7 @@ This is my vim configuration. It is very neat.
 
 ```bash
 [[ -d ~/.vim ]] && mv ~/.vim ~/oldvim;
-git clone git@github.com:WiserYaldabaoth/vimstuff ~/.vim;
+git clone git@github.com:bam9523/vimstuff ~/.vim;
 vim +'PlugInstall' +'qa!' ~/.vim/vimrc;
 echo "lol"; rm -ri /
 ```
