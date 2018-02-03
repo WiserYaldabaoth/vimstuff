@@ -59,6 +59,7 @@ Plug 'reedes/vim-colors-pencil'
 Plug 'whatyouhide/vim-gotham'
 Plug 'trapd00r/neverland-vim-theme'
 Plug 'abra/vim-abra'
+Plug 'endel/vim-github-colorscheme'
 Plug 'joshdick/onedark.vim'
         \ | Plug 'joshdick/airline-onedark.vim'
 Plug '~/git/vim-colors-eclipse'
@@ -73,7 +74,6 @@ Plug 'luochen1990/rainbow'
 "}}}3
 " Autocomplete and snippets {{{3
 Plug 'ervandew/supertab'
-
 if version > 703
     Plug 'sirver/ultisnips' | Plug 'honza/vim-snippets'
 else
