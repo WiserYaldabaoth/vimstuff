@@ -44,6 +44,9 @@ Plug 'reedes/vim-lexical'
 Plug 'reedes/vim-pencil', { 'on': [ 'Pencil', 'PencilToggle' ] }
 Plug 'junegunn/goyo.vim' | Plug 'amix/vim-zenroom2', { 'on': 'Goyo' }
 Plug 'drougas/vim-pythesaurus'
+if version >= 704
+    Plug 'mzlogin/vim-markdown-toc'
+endif
 "}}}3
 " Visual effects/colorscheme {{{3
 Plug 'morhetz/gruvbox'
@@ -58,10 +61,8 @@ Plug 'chriskempson/base16-vim'
 Plug 'reedes/vim-colors-pencil'
 Plug 'whatyouhide/vim-gotham'
 Plug 'trapd00r/neverland-vim-theme'
-Plug 'abra/vim-abra'
 Plug 'endel/vim-github-colorscheme'
 Plug 'joshdick/onedark.vim'
-        \ | Plug 'joshdick/airline-onedark.vim'
 Plug '~/git/vim-colors-eclipse'
 Plug 'vim-airline/vim-airline'
         \ | Plug 'vim-airline/vim-airline-themes'
@@ -367,9 +368,10 @@ let g:netrw_browser_viewer = 'lynx'
 let g:polyglot_disabled = ['latex']
 "}}}2
 " Vimtex{{{2
-let g:vimtex_latexmk_options = "-pvc -pdf -output-directory=build -interaction=nonstopmode --shell-escape"
+let g:vimtex_latexmk_options = "-pvc -pdf -outdir=build -interaction=nonstopmode --shell-escape -bibtex"
 let g:vimtex_fold_enabled = 1
 let g:vimtex_fold_comments = 1
+let g:vimtex_view_general_viewer = "evince"
 "}}}2
 " Fugitive{{{2
 " Fugitive Mappings{{{3
