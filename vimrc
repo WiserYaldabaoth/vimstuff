@@ -21,6 +21,8 @@ Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-ragtag'
 "}}}3
 " Useful commands and mappings {{{3
 Plug 'qpkorr/vim-bufkill'
@@ -29,6 +31,7 @@ Plug 'mbbill/undotree'
 " Plug 'lfv89/vim-foldfocus'
 Plug 'ctrlpvim/ctrlp.vim'
 " Plug 'easymotion/vim-easymotion'
+Plug 'justinmk/vim-sneak'
 "}}}3
 " Text objects {{{3
 Plug 'wellle/targets.vim'
@@ -83,6 +86,7 @@ endif
 "}}}3
 " Syntax {{{3
 Plug 'othree/xml.vim', { 'for': 'xml' }
+Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'glts/vim-texlog'
 Plug 'adimit/prolog.vim', { 'for': 'prolog' }
 Plug 'sheerun/vim-polyglot'
@@ -118,6 +122,7 @@ call plug#end()
 
 "}}}2
 """" Options{{{2
+
 " For my sanity when loading modified vimrc in Sessions{{{3
 set ssop-=options            " DO NOT STORE GLOBAL/LOCAL VARIABLES IN SESSION
 set ssop-=folds              " DO NOT STORE FOLDS IN SESSION
@@ -137,7 +142,7 @@ set relativenumber           " Numbers relative to cursorline
 "}}}3
 " Indenting{{{3
 set ai                       " Autoindent
-set si                       " Smartindent
+" set si                       " Smartindent
 set copyindent               " Copy indent of last line
 set preserveindent           " Keep indent at same level
 "}}}3
@@ -180,6 +185,7 @@ set listchars+=trail:X
 " Display tab choices {{{3
 set wildmenu " you make my heart a venue????
 "}}}3
+
 "}}}2
 " Preparations{{{2
 set nocompatible             " VIM ONLY, NO VI ALLOWED
@@ -669,6 +675,9 @@ let g:rainbow_conf = {
 " Thesaurus {{{2
 nnoremap <silent> <localleader>K :PyThesaurusCurrentWord<CR>
 "}}}2
+" vim-sneak {{{2
+let g:sneak#s_next = 1
+"}}}2
 
 "}}}1
 "EXTERNAL{{{1
@@ -715,10 +724,4 @@ augroup vertspl
 augroup END
 "}}}2
 
-"}}}1
-" NOTES {{{1
-" TODO Create a function for C-style languages :NewFunct
-" usage will be :NewFunct [name] [returntype] [param1] [param2] ...
-" In Java, will be :NewFunct [name] [returntype] [visibility] [params] ...
-" Automatically produces docs and prototype
 "}}}1
