@@ -1,4 +1,4 @@
-"vim:setlocal fen fdm=marker
+" vim: fen:fdm=marker:
 
 "SETTINGS{{{1
 
@@ -23,13 +23,14 @@ Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-ragtag'
+Plug 'tpope/vim-rails'
 "}}}3
 " Useful commands and mappings {{{3
 Plug 'qpkorr/vim-bufkill'
 Plug 'danro/rename.vim', { 'on': 'Rename' }
 Plug 'mbbill/undotree'
 " Plug 'lfv89/vim-foldfocus'
-Plug 'ctrlpvim/ctrlp.vim'
+" Plug 'ctrlpvim/ctrlp.vim'
 " Plug 'easymotion/vim-easymotion'
 Plug 'justinmk/vim-sneak'
 "}}}3
@@ -44,8 +45,8 @@ Plug 'kana/vim-textobj-user'
 Plug 'lervag/vimtex'
 Plug 'reedes/vim-wordy', { 'on': 'Wordy' }
 Plug 'reedes/vim-lexical'
-Plug 'reedes/vim-pencil', { 'on': [ 'Pencil', 'PencilToggle' ] }
-Plug 'junegunn/goyo.vim' | Plug 'amix/vim-zenroom2', { 'on': 'Goyo' }
+" Plug 'reedes/vim-pencil', { 'on': [ 'Pencil', 'PencilToggle' ] }
+" Plug 'junegunn/goyo.vim' | Plug 'amix/vim-zenroom2', { 'on': 'Goyo' }
 Plug 'drougas/vim-pythesaurus'
 if version >= 704
     Plug 'mzlogin/vim-markdown-toc'
@@ -53,7 +54,7 @@ endif
 "}}}3
 " Visual effects/colorscheme {{{3
 Plug 'morhetz/gruvbox'
-Plug 'altercation/vim-colors-solarized'
+Plug 'romainl/flattened' " Solarized
 Plug 'romainl/Apprentice'
 Plug 'ipsod/nes.vim'
 Plug 'freeo/vim-kalisi'
@@ -111,11 +112,11 @@ Plug 'majutsushi/tagbar'
 " External program interaction {{{3
 " Plug 'vim-scripts/OutlookVim'
 Plug '~/.vim/bundle/eclim'
-Plug 'rking/ag.vim' | Plug 'Chun-Yang/vim-action-ag'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'}
-        \ | Plug 'junegunn/fzf.vim'
+" Plug 'rking/ag.vim' | Plug 'Chun-Yang/vim-action-ag'
+" Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'}
+"         \ | Plug 'junegunn/fzf.vim'
 Plug 'jpalardy/vim-slime'
-Plug 'neilagabriel/vim-geeknote'
+" Plug 'neilagabriel/vim-geeknote'
 Plug '~/git/vim-decompile'
 "}}}3
 call plug#end()
@@ -137,14 +138,16 @@ set showmatch                " Show matching pairs of brackets
 " Numbering{{{3
 set ruler                    " Show line number on the bar
 set number                   " Show lines on side of screen
-set relativenumber           " Numbers relative to cursorline
-" Note: relativenumber can result in a performance hit
+if v:version > 703
+    set relativenumber           " Numbers relative to cursorline
+endif
 "}}}3
 " Indenting{{{3
 set ai                       " Autoindent
 " set si                       " Smartindent
 set copyindent               " Copy indent of last line
 set preserveindent           " Keep indent at same level
+set listchars=eol:$,trail:#,tab:→_
 "}}}3
 " Highlighting{{{3
 set cul                      " Highlight current line
@@ -182,15 +185,20 @@ set backspace=2  " Fix backspace behavior in vim
 " List EOL chars as an unsightly X {{{3
 set listchars+=trail:X
 "}}}3
+" Enable recursive directory search {{{3
+" Eliminates the need for fuzzy-finding!
+set path+=**
+"}}}3
 " Display tab choices {{{3
 set wildmenu " you make my heart a venue????
+"}}}3
+" ag for grep {{{3
+" Invalidates need for Ag.vim
+set grepprg="ag --vimgrep -n $* /dev/null"
 "}}}3
 
 "}}}2
 " Preparations{{{2
-set nocompatible             " VIM ONLY, NO VI ALLOWED
-syntax on                    " Set syntax highlighting
-filetype plugin indent on
 let mapleader = ","          " Leader for mapping
 set shell=zsh
 "}}}2
@@ -352,6 +360,12 @@ nnoremap <leader>fuuuuu qqqqqifuu<Esc>h@qq@q
 " N:<localleader>m    Make{{{2
 nnoremap <silent> <localleader>m :make<CR>
 "}}}2
+" N:gz    Go zazzlegrep! {{{2
+" TODO: Maybe expand this functionality into a plugin?
+" I could see using it like gzw for 'go zazzlegrep a word'
+" or Vgz for 'go zazzlegrep selected line'
+nnoremap <silent> gz q:ilv // %<ESC>F/i
+"}}}2
 
 "}}}1
 "ABBREVIATIONS{{{1
@@ -369,6 +383,8 @@ iabbrev mname  Brian Alexander Mejorado
 " netrw {{{2
 " Assuming it still counts as a plugin, anyways...
 let g:netrw_browser_viewer = 'lynx'
+let g:netrw_liststyle = 3  " tree view for netrw
+let g:netrw_banner = 0 " disable annoying banner
 " }}}2
 " Polyglot {{{2
 let g:polyglot_disabled = ['latex']
@@ -467,13 +483,13 @@ augroup enter_eclim
     au VimEnter * try | call functions#EnterEclim() | catch /.*/ | echom "No Eclim installation." | endtry
 augroup END
 "}}}2
-" Supertab{{{2
+" Supertab {{{2
 " Set up omnifunc                                                         {{{3
 if has("autocmd") && exists("+omnifunc") " prepare omnifunc
-autocmd Filetype *
-        \   if &omnifunc == "" |
-        \       setlocal omnifunc=syntaxcomplete#Complete |
-        \   endif
+    autocmd Filetype *
+            \   if &omnifunc == "" |
+            \       setlocal omnifunc=syntaxcomplete#Complete |
+            \   endif
 endif
 "}}}3
 " Disable preview window{{{3
@@ -602,36 +618,6 @@ nnoremap <silent> <leader>p :PencilToggle<CR>
 "}}}2
 " FoldFocus {{{2
 nnoremap <leader><CR> :call FoldFocus('vnew')<CR>
-"}}}2
-" CtrlP {{{2
-" let g:ctrlp_regexp = 1
-let g:ctrlp_show_hidden = 1
-let g:ctrlp_follow_symlinks = 1
-"}}}2
-" FZF {{{2
-let g:fzf_command_prefix = 'F'
-" nnoremap <leader><tab> <plug>(fzf-maps-n)
-" inoremap <leader><tab> <plug>(fzf-maps-i)
-" xnoremap <leader><tab> <plug>(fzf-maps-x)
-" onoremap <leader><tab> <plug>(fzf-maps-o)
-nnoremap <leader>ff. :exec g:fzf_command_prefix . "Files"<CR>
-nnoremap <leader>ff~ :exec g:fzf_command_prefix . "Files ~"<CR>
-nnoremap <leader>ff/ :exec g:fzf_command_prefix . "Files /"<CR>
-nnoremap <leader>fs  :exec g:fzf_command_prefix . "Snippets"<CR>
-nnoremap <leader>fg  :exec g:fzf_command_prefix . "GitFiles"<CR>
-nnoremap <leader>ft :exec g:fzf_command_prefix . "Tags"<CR>
-nnoremap <leader>fm :exec g:fzf_command_prefix . "Maps"<CR>
-nnoremap <leader>fh :exec g:fzf_command_prefix . "Helptags"<CR>
-nnoremap <leader>fc :exec g:fzf_command_prefix . "Commits"<CR>
-
-" Insert mode completion
-inoremap <c-x><c-k> <plug>(fzf-complete-word)
-inoremap <c-x><c-f> <plug>(fzf-complete-path)
-inoremap <c-x><c-j> <plug>(fzf-complete-file-ag)
-inoremap <c-x><c-l> <plug>(fzf-complete-line)
-"}}}2
-" Easytags {{{2
-let g:easytags_async = 1
 "}}}2
 " SLIME {{{2
 let g:slime_target = "tmux"
