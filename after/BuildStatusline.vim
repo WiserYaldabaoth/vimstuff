@@ -3,24 +3,23 @@
 
 " Create default statusline
 fun! DefaultStatusline() "{{{2
-    set statusline=%t       "tail of the filename
-    set statusline+=[%{strlen(&fenc)?&fenc:'none'}, "file encoding
-    set statusline+=%{&ff}] "file format
-    set statusline+=%h      "help file flag
-    set statusline+=%m      "modified flag
-    set statusline+=%r      "read only flag
-    set statusline+=%y      "filetype
-
+    set statusline=
+    set statusline+=%#PmenuSel#
+    set statusline+=\ %n\ %* " Buffer number
+    set statusline+=\ %f     " Filename
+    set statusline+=%#ErrorMsg#
+    set statusline+=\%m      " Modified flag
+    set statusline+=\ %#TabLine#
+    set statusline+=\ %y     " Filetype
     if( exists('g:loaded_fugitive') && g:loaded_fugitive ==# 1 )
         set statusline+=%{fugitive#statusline()} " Add fugitive info
     endif
-
-    set statusline+=%{eclim#project#util#ProjectStatusLine()}]
-
-    set statusline+=%=      "left/right separator
-    set statusline+=%c,     "cursor column
-    set statusline+=%l/%L   "cursor line/total lines
-    set statusline+=\ %P    "percent through file
+    set statusline+=%=       "left/right separator
+    set statusline+=%c\      "cursor column
+    set statusline+=%*
+    set statusline+=\ %l/%L  "cursor line/total lines
+    set statusline+=\ %P     "percent through file
+    set statusline+=\        " Deliberate space
 endfun
 "}}}2
 
