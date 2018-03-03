@@ -69,7 +69,7 @@ Plug 'freeo/vim-kalisi'
 Plug 'Lokaltog/vim-distinguished'
 Plug 'rking/vim-detailed'
 Plug 'sjl/badwolf'
-Plug 'chriskempson/base16-vim'
+" Plug 'chriskempson/base16-vim'
 Plug 'reedes/vim-colors-pencil'
 Plug 'whatyouhide/vim-gotham'
 Plug 'trapd00r/neverland-vim-theme'
@@ -530,7 +530,6 @@ let g:sneak#s_next = 1
 "}}}1
 "EXTERNAL{{{1
 
-runtime CPrototypes.vim      " Prototype generation for C headers
 runtime ModeAwareCursor.vim
 
 "}}}1
@@ -539,27 +538,15 @@ runtime ModeAwareCursor.vim
 colorscheme gruvbox
 
 " Highlights{{{2
-" Set highlighting for default colorscheme{{{3
-if( (!exists('g:colors_name') || g:colors_name ==# 'default') && (exists('&bg') && &bg ==# 'light' ))
-    hi Comment ctermfg=Cyan
-    hi Search cterm=NONE ctermfg=black ctermbg=blue
-    hi Visual cterm=NONE ctermfg=black ctermbg=130
-    hi Folded cterm=NONE ctermfg=93 ctermbg=black
-endif
-"}}}3
-
-" augroup highlights{{{3
-augroup highlights
+augroup highlights "{{{3
     autocmd!
     au ColorScheme default hi Comment ctermfg=Cyan
     au ColorScheme default hi Search cterm=NONE ctermfg=black ctermbg=blue
     au ColorScheme default hi Visual cterm=NONE ctermfg=black ctermbg=130
     au ColorScheme default hi Folded cterm=NONE ctermfg=93 ctermbg=black
 augroup END
-
 "}}}3
 "}}}2
-
 " Tmux-like splitscreen{{{2
 
 " Override color scheme to make split the same color as tmux's default
@@ -568,11 +555,9 @@ augroup vertspl
     au ColorScheme * highlight VertSplit cterm=NONE ctermbg=NONE
 augroup END
 "}}}2
-
 " Mktmpdir recreates dir{{{2
 command! Mktmpdir call mkdir(fnamemodify(tempname(),":p:h"),"",0700)
 "}}}2
-
 " Set up command expansion for LaTeX{{{2
 augroup LaTeXexp "{{{3
     autocmd!
@@ -580,13 +565,11 @@ augroup LaTeXexp "{{{3
 augroup END
 "}}}3
 "}}}2
-
 augroup fixcomments "{{{2
     autocmd!
     au Filetype <buffer> set fo-=c fo-=r fo-=o
 augroup END
 "}}}2
-
 " Disable modifying read-only files{{{2
 function! s:UpdateModifiable()
   if !exists("b:setmodifiable")
