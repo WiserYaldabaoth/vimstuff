@@ -528,11 +528,6 @@ let g:sneak#s_next = 1
 "}}}2
 
 "}}}1
-"EXTERNAL{{{1
-
-runtime ModeAwareCursor.vim
-
-"}}}1
 " AFTER{{{1
 
 colorscheme gruvbox

@@ -11,7 +11,6 @@ set tbis=tiny
 " Enable and use menu, gray inactive menu items, and include tearoff menu
 " items. Do NOT use the Toolbar or the scrollbar.
 set go=egmrt
-" set go-=mTrL
 "}}}2
 " Custom colorscheme{{{2
 colo gruvbox
@@ -39,18 +38,26 @@ let g:vimtex_view_general_viewer = 'okular'
 let g:vimtex_view_general_options = '--unique @pdf'
 let g:vimtex_view_general_options_latexmk = '--unique'
 "}}}2
-" Themes {{{2
-
-"}}}2
 
 "}}}1
-"AFTER{{{1
-
-" NOTHING HERE
-
-"}}}1
-"NOTES{{{1
-
-" Nothing here
-
-" }}}1
+"{{{ Cursor Color Customizations → 
+"These are based on blaenkdenum's cool
+"mode aware cursor hack. For more, visit
+"http://www.blaenkdenum.com/posts/a-simpler-vim-statusline/
+"Set the cursor color according to the mode.
+"This one should work for most Dark Themes 
+hi ModeMsg guifg=#FD971F guibg=NONE gui=NONE
+"set gcr=a:block
+" mode aware cursors
+set gcr+=o:hor50-Cursor
+set gcr+=n:Cursor
+set gcr+=i-ci-sm:InsertCursor
+set gcr+=r-cr:ReplaceCursor-hor20
+set gcr+=c:CommandCursor
+set gcr+=v-ve:VisualCursor
+hi InsertCursor  ctermfg=White guifg=#fdf6e3 ctermbg=Black guibg=#FD971F
+hi VisualCursor  ctermfg=White guifg=#000000 ctermbg=Cyan guibg=#AE81FF
+hi ReplaceCursor ctermfg=White guifg=#fdf6e3 ctermbg=Darkred guibg=#66D9EF
+hi CommandCursor ctermfg=White guifg=#fdf6e3 ctermbg=Yellow guibg=#A6E22E
+"--------------------------------------------------------------
+"}}}
