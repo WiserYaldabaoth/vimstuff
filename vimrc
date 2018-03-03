@@ -117,44 +117,42 @@ call plug#end()
 "}}}1
 "SETTINGS{{{1
 
-"""" Options{{{2
-
-" For my sanity when loading modified vimrc in Sessions{{{3
+" For my sanity when loading modified vimrc in Sessions{{{2
 set ssop-=options            " DO NOT STORE GLOBAL/LOCAL VARIABLES IN SESSION
 set ssop-=folds              " DO NOT STORE FOLDS IN SESSION
-"}}}3
-" Modify commandline{{{3
+"}}}2
+" Modify commandline{{{2
 set showcmd                  " Show typed commands
 set cmdheight=1              " Commandline height of 1 lines
-"}}}3
-" Bracket matching{{{3
+"}}}2
+" Bracket matching{{{2
 set showmatch                " Show matching pairs of brackets
-"}}}3
-" Numbering{{{3
+"}}}2
+" Numbering{{{2
 set ruler                    " Show line number on the bar
 set number                   " Show lines on side of screen
 if v:version > 703
     set relativenumber           " Numbers relative to cursorline
 endif
-"}}}3
-" Indenting{{{3
+"}}}2
+" Indenting{{{2
 set ai                       " Autoindent
 " set si                       " Smartindent
 set copyindent               " Copy indent of last line
 set preserveindent           " Keep indent at same level
 set listchars=eol:$,trail:#,tab:→_
-"}}}3
-" Highlighting{{{3
+"}}}2
+" Highlighting{{{2
 set cul                      " Highlight current line
 set incsearch                " Highlight matched regexps during search entry
-"}}}3
-" Configure scrolloff{{{3
+"}}}2
+" Configure scrolloff{{{2
 set scrolloff=0              " Don't keep cursor in center
-"}}}3
-" Disable beeps{{{3
+"}}}2
+" Disable beeps{{{2
 set vb t_vb=
-"}}}3
-" Folding{{{3
+"}}}2
+" Folding{{{2
 " Common key bindings:
 " za - toggles folding
 " zc - closes a fold
@@ -166,32 +164,30 @@ set vb t_vb=
 set foldnestmax=10           " Deepest nesting is 10 levels
 set nofoldenable             " Don't automatically fold
 "set foldlevel=1
-"}}}3
-" Recognize shell alias commands{{{3
+"}}}2
+" Recognize shell alias commands{{{2
 let $BASH_ENV = "~/.bash_aliases"
 let $ZSH_ENV = "~/.zshenv"
-"}}}3
-" Look for project-specific tags{{{3
+"}}}2
+" Look for project-specific tags{{{2
 set tags=./tags,tags;
-"}}}3
-" Fix backspace behavior{{{3
+"}}}2
+" Fix backspace behavior{{{2
 set backspace=2  " Fix backspace behavior in vim
-"}}}3
-" List EOL chars as an unsightly X {{{3
+"}}}2
+" List EOL chars as an unsightly X {{{2
 set listchars+=trail:X
-"}}}3
-" Enable recursive directory search {{{3
+"}}}2
+" Enable recursive directory search {{{2
 " Eliminates the need for fuzzy-finding!
 set path+=**
-"}}}3
-" Display tab choices {{{3
+"}}}2
+" Display tab choices {{{2
 set wildmenu " you make my heart a venue????
-"}}}3
-" ag for grep {{{3
+"}}}2
+" ag for grep {{{2
 " Invalidates need for Ag.vim
 set grepprg="ag --vimgrep -n $* /dev/null"
-"}}}3
-
 "}}}2
 " Preparations{{{2
 let mapleader = ","          " Leader for mapping
