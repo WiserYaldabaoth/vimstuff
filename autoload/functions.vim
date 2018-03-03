@@ -35,7 +35,7 @@ endfun
 if !exists("*RefreshVim") "{{{2
     fun! functions#RefreshVim()
         source $MYVIMRC
-        if( g:loaded_airline ==# 1 )
+        if exists('g:loaded_airline') && g:loaded_airline ==# 1
             AirlineRefresh
         endif
     endfun

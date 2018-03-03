@@ -1,59 +1,67 @@
 " vim: fen:fdm=marker:
 
-"SETTINGS{{{1
-
-" Source local vimrc before ANYTHING{{{2
+" SOURCE LOCAL VIMRC {{{1
 let s:host_vimrc = $HOME . '/.' . hostname() . '.vimrc'
 if filereadable(s:host_vimrc)
     execute 'source ' . s:host_vimrc
 endif
-"}}}2
-"""" Vim-Plug{{{2
-
+"}}}1
+" PLUGINS {{{1
 call plug#begin('~/.vim/plugged')
-" Tpope {{{3
+
+" 1: Must-have {{{2
+" Plugins I rely on for everyday usage.
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-vinegar'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-abolish'
-Plug 'tpope/vim-dispatch'
-Plug 'tpope/vim-eunuch'
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-endwise'
-Plug 'tpope/vim-ragtag'
-Plug 'tpope/vim-rails'
-"}}}3
-" Useful commands and mappings {{{3
-Plug 'qpkorr/vim-bufkill'
-Plug 'danro/rename.vim', { 'on': 'Rename' }
-Plug 'mbbill/undotree'
-" Plug 'lfv89/vim-foldfocus'
-" Plug 'ctrlpvim/ctrlp.vim'
-" Plug 'easymotion/vim-easymotion'
-Plug 'justinmk/vim-sneak'
-"}}}3
-" Text objects {{{3
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
 Plug 'wellle/targets.vim'
-Plug 'coderifous/textobj-word-column.vim'
-Plug 'kana/vim-textobj-user'
-    \ | Plug 'kana/vim-textobj-entire'
-    \ | Plug 'rbonvall/vim-textobj-latex', { 'for': [ 'tex', 'plaintex', 'latex', 'dtx' ] }
-"}}}3
-" Writing {{{3
-Plug 'lervag/vimtex'
-Plug 'reedes/vim-wordy', { 'on': 'Wordy' }
-Plug 'reedes/vim-lexical'
-" Plug 'reedes/vim-pencil', { 'on': [ 'Pencil', 'PencilToggle' ] }
-" Plug 'junegunn/goyo.vim' | Plug 'amix/vim-zenroom2', { 'on': 'Goyo' }
-Plug 'drougas/vim-pythesaurus'
-if version >= 704
-    Plug 'mzlogin/vim-markdown-toc'
+Plug 'kana/vim-textobj-user' | Plug 'kana/vim-textobj-entire'
+Plug 'romainl/vim-qf'
+Plug 'morhetz/gruvbox'
+"}}}2
+
+" 2: Nice-to-have {{{2
+" Cool plugins I don't *need*, but do things I like.
+Plug 'tpope/vim-vinegar'
+Plug 'mbbill/undotree'
+Plug 'ervandew/supertab'
+Plug 'majutsushi/tagbar'
+Plug 'justinmk/vim-sneak'
+Plug 'jpalardy/vim-slime'
+Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-repeat'
+"}}}2
+
+" 3: Fluff {{{2
+" Neat plugins that I could easily do without.
+Plug 'luochen1990/rainbow'
+Plug 'bling/vim-bufferline'
+Plug 'sheerun/vim-polyglot'
+Plug 'tpope/vim-eunuch'
+Plug 'neilagabriel/vim-geeknote'
+Plug 'ervandew/supertab'
+" Autocomplete and snippets {{{3
+if version > 703
+    Plug 'sirver/ultisnips'
+                \ | Plug 'honza/vim-snippets'
+else
+    Plug 'MarcWeber/vim-addon-mw-utils'
+                \ | Plug 'tomtom/tlib_vim'
+                \ | Plug 'garbas/vim-snipmate'
+                \ | Plug 'honza/vim-snippets'
 endif
 "}}}3
-" Visual effects/colorscheme {{{3
-Plug 'morhetz/gruvbox'
+" Writing-related {{{3
+Plug 'drougas/vim-pythesaurus'
+Plug 'reedes/vim-wordy', { 'on': 'Wordy' }
+Plug 'reedes/vim-lexical'
+Plug 'reedes/vim-pencil', { 'on': [ 'Pencil', 'PencilToggle' ] }
+Plug 'junegunn/goyo.vim' | Plug 'amix/vim-zenroom2', { 'on': 'Goyo' }
+" }}}3
+" Colorschemes {{{3
 Plug 'romainl/flattened' " Solarized
 Plug 'romainl/Apprentice'
 Plug 'ipsod/nes.vim'
@@ -67,61 +75,48 @@ Plug 'whatyouhide/vim-gotham'
 Plug 'trapd00r/neverland-vim-theme'
 Plug 'endel/vim-github-colorscheme'
 Plug 'joshdick/onedark.vim'
-Plug '~/git/vim-colors-eclipse'
-Plug 'vim-airline/vim-airline'
-        \ | Plug 'vim-airline/vim-airline-themes'
-        \ | Plug 'reedes/vim-thematic'
-        " \ | Plug 'edkolev/promptline.vim', { 'for': 'PromptlineSnapshot' }
-Plug 'bling/vim-bufferline'
-" Plug 'ashisha/image.vim'
-" Plug 'godlygeek/csapprox'
-Plug 'luochen1990/rainbow'
 "}}}3
-" Autocomplete and snippets {{{3
-Plug 'ervandew/supertab'
-if version > 703
-    Plug 'sirver/ultisnips' | Plug 'honza/vim-snippets'
-else
-    Plug 'MarcWeber/vim-addon-mw-utils' | Plug 'tomtom/tlib_vim' | Plug 'garbas/vim-snipmate' | Plug 'honza/vim-snippets'
-endif
-"}}}3
-" Syntax {{{3
+"}}}2
+
+" tools: Tool-specific {{{2
+" Plugins to make working with certain tools or languages easier.
+Plug 'adimit/prolog.vim', { 'for': 'prolog' }
 Plug 'othree/xml.vim', { 'for': 'xml' }
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
+Plug 'mzlogin/vim-markdown-toc', { 'for': 'markdown' }
+Plug 'junegunn/vader.vim', { 'on': 'Vader', 'for': 'vader' }
+Plug 'tpope/vim-scriptease'
+Plug 'tpope/vim-rails'
+Plug 'tpope/vim-ragtag', { 'for': [ 'eruby', 'xml', 'html', 'xhtml' ] }
+Plug '~/git/vim-decompile'
+" LaTeX {{{3
+Plug 'lervag/vimtex'
 Plug 'glts/vim-texlog'
-Plug 'adimit/prolog.vim', { 'for': 'prolog' }
-Plug 'sheerun/vim-polyglot'
+Plug 'rbonvall/vim-textobj-latex', { 'for': [ 'tex', 'plaintex', 'latex', 'dtx' ] }
 "}}}3
 " Git {{{3
-Plug 'tpope/vim-fugitive'
-    \ | Plug 'tpope/vim-rhubarb'
-    \ | Plug 'idanarye/vim-merginal'
-    \ | Plug 'gregsexton/gitv'
 Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-rhubarb'
+Plug 'idanarye/vim-merginal'
+Plug 'gregsexton/gitv'
 "}}}3
-" Vimscript development {{{3
-" Plug 'junegunn/vader.vim', { 'on': 'Vader', 'for': 'vader' }
-Plug '~/.vim/plugged/vader.vim', { 'on': 'Vader', 'for': 'vader' }
-Plug 'tpope/vim-scriptease'
-" Plug 'dsummersl/vimunit'
-"}}}3
-" Tags {{{3
-Plug 'majutsushi/tagbar'
-" Plug 'xolox/vim-misc' | Plug 'xolox/vim-shell' | Plug 'xolox/vim-easytags'
-"}}}3
-" External program interaction {{{3
-" Plug 'vim-scripts/OutlookVim'
-Plug '~/.vim/bundle/eclim'
-" Plug 'rking/ag.vim' | Plug 'Chun-Yang/vim-action-ag'
+"}}}2
+
+" none: Pointless {{{2
+" Graveyard of plugins I used to use until I learned more about vim.
+" Plug 'ctrlpvim/ctrlp.vim'
 " Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'}
 "         \ | Plug 'junegunn/fzf.vim'
-Plug 'jpalardy/vim-slime'
-" Plug 'neilagabriel/vim-geeknote'
-Plug '~/git/vim-decompile'
-"}}}3
-call plug#end()
-
+" Plug 'rking/ag.vim' | Plug 'Chun-Yang/vim-action-ag'
+" Plug 'vim-airline/vim-airline'
+"             \ | Plug 'vim-airline/vim-airline-themes'
+"             \ | Plug 'reedes/vim-thematic'
 "}}}2
+
+call plug#end()
+"}}}1
+"SETTINGS{{{1
+
 """" Options{{{2
 
 " For my sanity when loading modified vimrc in Sessions{{{3
@@ -378,7 +373,7 @@ iabbrev mname  Brian Alexander Mejorado
 "}}}2
 
 "}}}1
-"PLUGINS{{{1
+" PLUGIN SETTINGS {{{1
 
 " netrw {{{2
 " Assuming it still counts as a plugin, anyways...
@@ -675,6 +670,8 @@ runtime ModeAwareCursor.vim
 
 "}}}1
 " AFTER{{{1
+
+colorscheme gruvbox
 
 " Highlights{{{2
 " Set highlighting for default colorscheme{{{3
