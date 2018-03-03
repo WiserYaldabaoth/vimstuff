@@ -353,6 +353,45 @@ command! VgTd grep "(TODO\|HACK\|XXX\|FIXME)"
 "}}}2
 
 "}}}1
+" AUGROUPS {{{1
+
+augroup highlights "{{{2
+    autocmd!
+    au ColorScheme default hi Comment ctermfg=Cyan
+    au ColorScheme default hi Search cterm=NONE ctermfg=black ctermbg=blue
+    au ColorScheme default hi Visual cterm=NONE ctermfg=black ctermbg=130
+    au ColorScheme default hi Folded cterm=NONE ctermfg=93 ctermbg=black
+augroup END
+"}}}2
+augroup fixcomments "{{{2
+    autocmd!
+    au Filetype <buffer> set fo-=c fo-=r fo-=o
+augroup END
+"}}}2
+" Disable modifying read-only files{{{2
+function! s:UpdateModifiable()
+  if !exists("b:setmodifiable")
+    let b:setmodifiable = 0
+  endif
+  if &readonly
+    if &modifiable
+      setlocal nomodifiable
+      let b:setmodifiable = 1
+    endif
+  else
+    if b:setmodifiable
+      setlocal modifiable
+    endif
+  endif
+endfunction
+"
+augroup update_modifiable
+    autocmd!
+    autocmd BufReadPost * call <SID>UpdateModifiable()
+augroup END
+"}}}2
+
+"}}}1
 " PLUGIN SETTINGS {{{1
 
 " netrw {{{2
@@ -539,47 +578,5 @@ let g:sneak#s_next = 1
 "}}}2
 
 "}}}1
-" AFTER{{{1
 
 colorscheme gruvbox
-
-" Highlights{{{2
-augroup highlights "{{{3
-    autocmd!
-    au ColorScheme default hi Comment ctermfg=Cyan
-    au ColorScheme default hi Search cterm=NONE ctermfg=black ctermbg=blue
-    au ColorScheme default hi Visual cterm=NONE ctermfg=black ctermbg=130
-    au ColorScheme default hi Folded cterm=NONE ctermfg=93 ctermbg=black
-augroup END
-"}}}3
-"}}}2
-"}}}2
-augroup fixcomments "{{{2
-    autocmd!
-    au Filetype <buffer> set fo-=c fo-=r fo-=o
-augroup END
-"}}}2
-" Disable modifying read-only files{{{2
-function! s:UpdateModifiable()
-  if !exists("b:setmodifiable")
-    let b:setmodifiable = 0
-  endif
-  if &readonly
-    if &modifiable
-      setlocal nomodifiable
-      let b:setmodifiable = 1
-    endif
-  else
-    if b:setmodifiable
-      setlocal modifiable
-    endif
-  endif
-endfunction
-"
-augroup update_modifiable
-    autocmd!
-    autocmd BufReadPost * call <SID>UpdateModifiable()
-augroup END
-"}}}2
-
-"}}}1
