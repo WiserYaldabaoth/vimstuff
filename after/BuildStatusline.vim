@@ -4,13 +4,13 @@
 " Create default statusline
 fun! DefaultStatusline() "{{{2
     set statusline=
-    set statusline+=%#PmenuSel#
+    set statusline+=%#ToolbarButton#
     set statusline+=\ %n\ %* " Buffer number
+    set statusline+=%<
     set statusline+=\ %f     " Filename
-    set statusline+=%#ErrorMsg#
-    set statusline+=\%m      " Modified flag
     set statusline+=\ %#TabLine#
-    set statusline+=\ %y     " Filetype
+    set statusline+=\ %m      " Modified flag
+    set statusline+=%y     " Filetype
     if( exists('g:loaded_fugitive') && g:loaded_fugitive ==# 1 )
         set statusline+=%{fugitive#statusline()} " Add fugitive info
     endif
