@@ -315,16 +315,6 @@ nnoremap <silent> gz q:ilv // %<ESC>F/i
 "}}}2
 
 "}}}1
-"ABBREVIATIONS{{{1
-
-" I:@@        Email abbrevation{{{2
-iabbrev @@     bam9523@rit.edu
-"}}}2
-" I:mname     Name abbreviation{{{2
-iabbrev mname  Brian Alexander Mejorado
-"}}}2
-
-"}}}1
 " PLUGIN SETTINGS {{{1
 
 " netrw {{{2
