@@ -131,39 +131,33 @@ set showmatch                " Show matching pairs of brackets
 " Numbering{{{2
 set ruler                    " Show line number on the bar
 set number                   " Show lines on side of screen
-if v:version > 703
-    set relativenumber           " Numbers relative to cursorline
+if exists('&relativenumber')
+    set relativenumber       " Numbers relative to cursorline
 endif
 "}}}2
 " Indenting{{{2
-set ai                       " Autoindent
-" set si                       " Smartindent
+set autoindent               " Autoindent
 set copyindent               " Copy indent of last line
 set preserveindent           " Keep indent at same level
-set listchars=eol:$,trail:#,tab:→_
+"}}}2
+" List characters{{{2
+set listchars=eol:$,trail:X,tab:→_
 "}}}2
 " Highlighting{{{2
-set cul                      " Highlight current line
+set cursorline               " Highlight current line
 set incsearch                " Highlight matched regexps during search entry
 "}}}2
 " Configure scrolloff{{{2
 set scrolloff=0              " Don't keep cursor in center
 "}}}2
 " Disable beeps{{{2
-set vb t_vb=
+set visualbell
+set t_vb=
 "}}}2
 " Folding{{{2
-" Common key bindings:
-" za - toggles folding
-" zc - closes a fold
-" zo - opens a fold
-" zR - opens all folds
-" zM - closes all folds
-" zv - open a fold to cursor
 "set foldmethod=syntax        " Fold based on syntax files
 set foldnestmax=10           " Deepest nesting is 10 levels
 set nofoldenable             " Don't automatically fold
-"set foldlevel=1
 "}}}2
 " Recognize shell alias commands{{{2
 let $BASH_ENV = "~/.bash_aliases"
@@ -175,89 +169,51 @@ set tags=./tags,tags;
 " Fix backspace behavior{{{2
 set backspace=2  " Fix backspace behavior in vim
 "}}}2
-" List EOL chars as an unsightly X {{{2
-set listchars+=trail:X
-"}}}2
 " Enable recursive directory search {{{2
 " Eliminates the need for fuzzy-finding!
 set path+=**
 "}}}2
 " Display tab choices {{{2
-set wildmenu " you make my heart a venue????
+set wildmenu
 "}}}2
 " ag for grep {{{2
 " Invalidates need for Ag.vim
 set grepprg="ag --vimgrep -n $* /dev/null"
 "}}}2
-" Preparations{{{2
-let mapleader = ","          " Leader for mapping
-set shell=zsh
+" Leaders{{{2
+let mapleader = ","
+let localleader = "/"
 "}}}2
-" Mktmpdir recreates dir{{{2
-command! Mktmpdir call mkdir(fnamemodify(tempname(),":p:h"),"",0700)
+" Shell {{{2
+set shell=zsh
 "}}}2
 " GUI Check{{{2
 if has("gui_running")
-    "echo "Yes, we have a GUI"
     set mouse=a
 else
-    "echo "Just a boring console"
     set mouse=
 endif
 "}}}2
-" Set up command expansion for LaTeX{{{2
-augroup LaTeXexp "{{{3
-    autocmd!
-    autocmd FileType * :exec("setlocal dictionary+=".$HOME."/.vim/dictionaries/".expand('<amatch>'))
-augroup END
-"}}}3
-set completeopt=menuone,longest,preview
+" Set split separator to Unicode box drawing character {{{2
+set encoding=utf8
+set fillchars=vert:│
+" }}}2
+" Prepare completion options {{{2
+set completeopt=menuone,longest
 set complete+=k
 "}}}2
-augroup fixcomments "{{{2
-    autocmd!
-    au Filetype <buffer> set fo-=c fo-=r fo-=o
-augroup END
-"}}}2
-" Makefile tab handling{{{2
-let _curfile = expand("%:t")
-if _curfile =~ "Makefile" || _curfile =~ "makefile" || _curfile =~ ".*\.mk"
-    set noexpandtab              " We want proper tabs in makefiles!
-else                             " but if it isn't a makefile...
-    set expandtab                " turn tabs into spaces
-    set tabstop=4 shiftwidth=4   " tab length is 4
-endif
+" Tab handling{{{2
+set expandtab                              " turn tabs into spaces
+set tabstop=4 softtabstop=4 shiftwidth=4   " tab length is 4
 "}}}2
 " Make vim behave with tmux!{{{2
 set t_ut=
 "}}}2
-" Disable modifying read-only files{{{2
-function! s:UpdateModifiable()
-  if !exists("b:setmodifiable")
-    let b:setmodifiable = 0
-  endif
-  if &readonly
-    if &modifiable
-      setlocal nomodifiable
-      let b:setmodifiable = 1
-    endif
-  else
-    if b:setmodifiable
-      setlocal modifiable
-    endif
-  endif
-endfunction
-"
-augroup update_modifiable
-    autocmd!
-    autocmd BufReadPost * call <SID>UpdateModifiable()
-augroup END
+" Fix <M-[> behavior{{{2
+set <M-]>=^[]
 "}}}2
 " Make XML editing easier{{{2
 let g:xml_syntax_folding=1
-"}}}2
-" Fix <M-[> behavior first {{{2
-set <M-]>=^[]
 "}}}2
 
 "}}}1
@@ -483,9 +439,6 @@ if has("autocmd") && exists("+omnifunc") " prepare omnifunc
             \   endif
 endif
 "}}}3
-" Disable preview window{{{3
-set completeopt-=preview
-"}}}3
 " Use context for completion{{{3
 let g:SuperTabDefaultCompletionType = "context"
 let g:SuperTabCompletionContexts = ['s:ContextText']
@@ -563,39 +516,6 @@ let g:thematic#theme_name = 'gruvbox'
 " UndoTree {{{2
 nnoremap <silent> <leader>uu :UndotreeToggle<CR>
 " }}}2
-" Promptline {{{2
-" sections (a, b, c, x, y, z, warn) are optional
-if( exists( 'g:loaded_promptline' ) )
-    let g:promptline_preset = {
-            \'a' : [ promptline#slices#host() ],
-            \'b' : [ promptline#slices#user() ],
-            \'c' : [ promptline#slices#cwd() ],
-            \'y' : [ promptline#slices#vcs_branch() ],
-            \'z' : [ promptline#slices#git_status() ],
-            \'warn' : [ promptline#slices#last_exit_code() ]}
-
-    " available slices:
-    "
-    " promptline#slices#cwd() - current dir, truncated to 3 dirs. To configure: promptline#slices#cwd({ 'dir_limit': 4 })
-    " promptline#slices#vcs_branch() - branch name only. By default, only git branch is enabled. Use promptline#slices#vcs_branch({ 'hg': 1, 'svn': 1, 'fossil': 1}) to enable check for svn, mercurial and fossil branches. Note that always checking if inside a branch slows down the prompt
-    " promptline#slices#last_exit_code() - display exit code of last command if not zero
-    " promptline#slices#jobs() - display number of shell jobs if more than zero
-    " promptline#slices#battery() - display battery percentage (on OSX and linux) only if below 10%. Configure the threshold with promptline#slices#battery({ 'threshold': 25 })
-    " promptline#slices#host() - current hostname.  To hide the hostname unless connected via SSH, use promptline#slices#host({ 'only_if_ssh': 1 })
-    " promptline#slices#user()
-    " promptline#slices#python_virtualenv() - display which virtual env is active (empty is none)
-    " promptline#slices#git_status() - count of commits ahead/behind upstream, count of modified/added/unmerged files, symbol for clean branch and symbol for existing untraced files
-    "
-    " any command can be used in a slice, for example to print the output of whoami in section 'b':
-    "       \'b' : [ '$(whoami)'],
-    "
-    " more than one slice can be placed in a section, e.g. print both host and user in section 'a':
-    "       \'a': [ promptline#slices#host(), promptline#slices#user() ],
-    "
-    " to disable powerline symbols
-    let g:promptline_powerline_symbols = 0
-endif
-"}}}2
 " Gitgutter {{{2
 " N:<leader>gg   Toggle GitGutter {{{3
 nnoremap <silent> <leader>gg :GitGutterToggle<CR>
@@ -692,14 +612,52 @@ augroup END
 "}}}2
 
 " Tmux-like splitscreen{{{2
-" Set split separator to Unicode box drawing character
-set encoding=utf8
-set fillchars=vert:│
 
 " Override color scheme to make split the same color as tmux's default
 augroup vertspl
     autocmd!
     au ColorScheme * highlight VertSplit cterm=NONE ctermbg=NONE
+augroup END
+"}}}2
+
+" Mktmpdir recreates dir{{{2
+command! Mktmpdir call mkdir(fnamemodify(tempname(),":p:h"),"",0700)
+"}}}2
+
+" Set up command expansion for LaTeX{{{2
+augroup LaTeXexp "{{{3
+    autocmd!
+    autocmd FileType * :exec("setlocal dictionary+=".$HOME."/.vim/dictionaries/".expand('<amatch>'))
+augroup END
+"}}}3
+"}}}2
+
+augroup fixcomments "{{{2
+    autocmd!
+    au Filetype <buffer> set fo-=c fo-=r fo-=o
+augroup END
+"}}}2
+
+" Disable modifying read-only files{{{2
+function! s:UpdateModifiable()
+  if !exists("b:setmodifiable")
+    let b:setmodifiable = 0
+  endif
+  if &readonly
+    if &modifiable
+      setlocal nomodifiable
+      let b:setmodifiable = 1
+    endif
+  else
+    if b:setmodifiable
+      setlocal modifiable
+    endif
+  endif
+endfunction
+"
+augroup update_modifiable
+    autocmd!
+    autocmd BufReadPost * call <SID>UpdateModifiable()
 augroup END
 "}}}2
 
