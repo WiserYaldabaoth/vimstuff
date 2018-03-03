@@ -184,7 +184,8 @@ set wildchar=<Tab>
 "}}}2
 " ag for grep {{{2
 " Invalidates need for Ag.vim
-set grepprg="ag --vimgrep -n $* /dev/null"
+set grepprg=ag\ --vimgrep\ $*
+set grepformat=%f:%l:%c:%m
 "}}}2
 " Leaders{{{2
 let mapleader = ","
@@ -339,6 +340,16 @@ nnoremap <silent> <localleader>m :make<CR>
 " I could see using it like gzw for 'go zazzlegrep a word'
 " or Vgz for 'go zazzlegrep selected line'
 nnoremap <silent> gz q:ilv // %<ESC>F/i
+"}}}2
+
+"}}}1
+" COMMANDS {{{1
+
+" Cmd:Mktmpdir    Recreates dir {{{2
+command! Mktmpdir call mkdir(fnamemodify(tempname(),":p:h"),"",0700)
+"}}}2
+" Cmd:VgTd    Load stuff to be done in qf {{{2
+command! VgTd grep "(TODO\|HACK\|XXX\|FIXME)"
 "}}}2
 
 "}}}1
@@ -541,9 +552,6 @@ augroup highlights "{{{3
     au ColorScheme default hi Folded cterm=NONE ctermfg=93 ctermbg=black
 augroup END
 "}}}3
-"}}}2
-" Mktmpdir recreates dir{{{2
-command! Mktmpdir call mkdir(fnamemodify(tempname(),":p:h"),"",0700)
 "}}}2
 "}}}2
 augroup fixcomments "{{{2
