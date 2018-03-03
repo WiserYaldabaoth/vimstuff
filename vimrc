@@ -147,6 +147,10 @@ set listchars=eol:$,trail:X,tab:→_
 set cursorline               " Highlight current line
 set incsearch                " Highlight matched regexps during search entry
 "}}}2
+" Ignore case if lowercase {{{2
+set ignorecase
+set smartcase
+"}}}2
 " Configure scrolloff{{{2
 set scrolloff=0              " Don't keep cursor in center
 "}}}2
@@ -175,6 +179,8 @@ set path+=**
 "}}}2
 " Display tab choices {{{2
 set wildmenu
+set wildmode=longest,full
+set wildchar=<Tab>
 "}}}2
 " ag for grep {{{2
 " Invalidates need for Ag.vim
@@ -355,44 +361,42 @@ let g:vimtex_view_general_viewer = "evince"
 "}}}2
 " Fugitive{{{2
 " Fugitive Mappings{{{3
-" if(exists('g:loaded_fugitive') && g:loaded_fugitive ==# 1)
-    " N:<leader>gs    git status{{{4
-    nnoremap <silent> <leader>gs :Gstatus<CR>
-    "}}}4
-    " N:<leader>gd    git diff{{{4
-    nnoremap <silent> <leader>gd :Gdiff<CR>
-    "}}}4
-    " N:<leader>gc    git commit{{{4
-    nnoremap <silent> <leader>gc :Gcommit<CR>
-    "}}}4
-    " N:<leader>gb    git blame{{{4
-    nnoremap <silent> <leader>gb :Gblame<CR>
-    "}}}4
-    " N:<leader>glo   git log{{{4
-    nnoremap <silent> <leader>glo :Glog<CR>
-    "}}}4
-    " N:<leader>glc   git lcd{{{4
-    nnoremap <silent> <leader>glc :Glcd<CR>
-    "}}}4
-    " N:<leader>gp    git push{{{4
-    nnoremap <silent> <leader>gp :Git push<CR>
-    "}}}4
-    " N:<leader>gr    git read{{{4
-    nnoremap <silent> <leader>gr :Gread<CR>
-    "}}}4
-    " N:<leader>gw    git write{{{4
-    nnoremap <silent> <leader>gw :Gwrite<CR>
-    "}}}4
-    " N:<leader>ge    git edit{{{4
-    nnoremap <silent> <leader>ge :Gedit<CR>
-    "}}}4
-    " N:<leader>ga    git add %:p{{{4
-    nnoremap <silent> <leader>ga :Git add %:p<CR>
-    "}}}4
-    " N:<leader>gfl   git fl{{{4
-    nnoremap <silent> <leader>gfl :Git fl<CR>
-    "}}}4
-" endif
+" N:<leader>gs    git status{{{4
+nnoremap <silent> <leader>gs :Gstatus<CR>
+"}}}4
+" N:<leader>gd    git diff{{{4
+nnoremap <silent> <leader>gd :Gdiff<CR>
+"}}}4
+" N:<leader>gc    git commit{{{4
+nnoremap <silent> <leader>gc :Gcommit<CR>
+"}}}4
+" N:<leader>gb    git blame{{{4
+nnoremap <silent> <leader>gb :Gblame<CR>
+"}}}4
+" N:<leader>glo   git log{{{4
+nnoremap <silent> <leader>glo :Glog<CR>
+"}}}4
+" N:<leader>glc   git lcd{{{4
+nnoremap <silent> <leader>glc :Glcd<CR>
+"}}}4
+" N:<leader>gp    git push{{{4
+nnoremap <silent> <leader>gp :Git push<CR>
+"}}}4
+" N:<leader>gr    git read{{{4
+nnoremap <silent> <leader>gr :Gread<CR>
+"}}}4
+" N:<leader>gw    git write{{{4
+nnoremap <silent> <leader>gw :Gwrite<CR>
+"}}}4
+" N:<leader>ge    git edit{{{4
+nnoremap <silent> <leader>ge :Gedit<CR>
+"}}}4
+" N:<leader>ga    git add %:p{{{4
+nnoremap <silent> <leader>ga :Git add %:p<CR>
+"}}}4
+" N:<leader>gfl   git fl{{{4
+nnoremap <silent> <leader>gfl :Git fl<CR>
+"}}}4
 "}}}3
 "}}}2
 " Merginal{{{2
@@ -456,74 +460,6 @@ let g:SuperTabCompletionContexts = ['s:ContextText']
 let g:SuperTabContextTextOmniPrecedence = ['&omnifunc', '&completefunc']
 "}}}3
 "}}}2
-" Themes {{{2
-
-if has( 'unix' )
-    let g:thematic#defaults = {
-\       'typeface': 'Inconsolata',
-\       'font-size': 11,
-\       'background': 'dark',
-\       'laststatus': 2,
-\ }
-elseif has ('win32unix')
-    let g:thematic#defaults = {
-\       'typeface': 'Deja Vu Sans Mono',
-\       'font-size': 10,
-\       'background': 'dark',
-\       'laststatus': 2,
-\ }
-endif
-
-let g:thematic#themes = {
-\ 'gruvbox' : { 'colorscheme': 'gruvbox',
-\               'background': 'dark',
-\               'airline-theme': 'gruvbox',
-\             },
-\ 'inkpot' : { 'colorscheme': 'inkpot',
-\              'airline-theme': 'jellybeans',
-\              'fold-column-color-mute': 1,
-\            },
-\ 'solarized' : { 'colorscheme': 'solarized',
-\                 'background': 'dark',
-\                 'airline-theme': 'solarized',
-\               },
-\ 'eclipse' : { 'colorscheme': 'eclipse',
-\               'background': 'light',
-\               'airline-theme': 'light',
-\               'sign-color-column-fix': 1,
-\               'diff-color-fix': 0,
-\             },
-\ 'github' : { 'colorscheme': 'github',
-\              'background': 'light',
-\              'airline-theme': 'zenburn',
-\            },
-\ 'greenscreen': { 'colorscheme': 'base16-greenscreen',
-\                  'background': 'dark',
-\                  'airline-theme': 'base16_greenscreen',
-\                },
-\ 'distinguished': { 'colorscheme': 'distinguished',
-\                    'background': 'dark',
-\                    'airline-theme': 'distinguished',
-\                  },
-\ 'apprentice': { 'colorscheme': 'apprentice',
-\                 'background': 'dark',
-\                 'airline-theme': 'apprentice',
-\               },
-\ 'gotham': { 'colorscheme': 'gotham256',
-\             'background': 'dark',
-\             'airline-theme': 'gotham256',
-\            },
-\ 'detailed': { 'colorscheme': 'detailed',
-\               'airline-theme': 'dark',
-\             },
-\ 'atom': { 'colorscheme': 'onedark',
-\           'airline-theme': 'onedark',
-\         },
-\ }
-
-let g:thematic#theme_name = 'gruvbox'
-
-" }}}2
 " UndoTree {{{2
 nnoremap <silent> <leader>uu :UndotreeToggle<CR>
 " }}}2
@@ -536,10 +472,14 @@ nnoremap <leader>gu :GitGutterAll<CR>
 "}}}3
 "}}}2
 " Pencil {{{2
+" N:<leader>p    Toggle pencil {{{3
 nnoremap <silent> <leader>p :PencilToggle<CR>
+"}}}3
 "}}}2
 " FoldFocus {{{2
+" N:<leader><CR> Focus on the fold {{{3
 nnoremap <leader><CR> :call FoldFocus('vnew')<CR>
+"}}}3
 "}}}2
 " SLIME {{{2
 let g:slime_target = "tmux"
@@ -581,7 +521,7 @@ let g:rainbow_conf = {
 "}}}3
 "}}}2
 " Thesaurus {{{2
-nnoremap <silent> <localleader>K :PyThesaurusCurrentWord<CR>
+nnoremap <silent> <leader>K :PyThesaurusCurrentWord<CR>
 "}}}2
 " vim-sneak {{{2
 let g:sneak#s_next = 1
