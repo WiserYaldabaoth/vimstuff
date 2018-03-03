@@ -18,4 +18,8 @@ command! TexC new | exec " r!pdflatex --interaction=nonstopmode --output-directo
 command! TexCr exec "Dispatch pdflatex --interaction=nonstopmode --output-directory=build $(cygpath -w " . expand( '%:p' ) . ")"
 "}}}2
 
+" Set up command expansion {{{2
+exec "setlocal dictionary+=" . $HOME . "/.vim/dictionaries/" . expand('<amatch>')
+"}}}2
+
 "}}}1

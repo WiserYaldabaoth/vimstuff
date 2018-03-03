@@ -547,23 +547,9 @@ augroup highlights "{{{3
 augroup END
 "}}}3
 "}}}2
-" Tmux-like splitscreen{{{2
-
-" Override color scheme to make split the same color as tmux's default
-augroup vertspl
-    autocmd!
-    au ColorScheme * highlight VertSplit cterm=NONE ctermbg=NONE
-augroup END
-"}}}2
 " Mktmpdir recreates dir{{{2
 command! Mktmpdir call mkdir(fnamemodify(tempname(),":p:h"),"",0700)
 "}}}2
-" Set up command expansion for LaTeX{{{2
-augroup LaTeXexp "{{{3
-    autocmd!
-    autocmd FileType * :exec("setlocal dictionary+=".$HOME."/.vim/dictionaries/".expand('<amatch>'))
-augroup END
-"}}}3
 "}}}2
 augroup fixcomments "{{{2
     autocmd!
