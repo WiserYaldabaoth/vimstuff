@@ -1,11 +1,5 @@
 " vim: fen:fdm=marker:
 
-" SOURCE LOCAL VIMRC {{{1
-let s:host_vimrc = $HOME . '/.' . hostname() . '.vimrc'
-if filereadable(s:host_vimrc)
-    execute 'source ' . s:host_vimrc
-endif
-"}}}1
 " PLUGINS {{{1
 call plug#begin('~/.vim/plugged')
 
@@ -256,10 +250,10 @@ noremap <silent> <F2> :retab <CR>
 nnoremap - :Explore<CR>
 "}}}2
 " N:;         Remap command starter to save button presses{{{2
-nore ; :
+noremap ; :
 "}}}2
 " N::         Remap semicolon for repeat f,F,t,T{{{2
-nore : ;
+noremap : ;
 "}}}2
 " N:N   n     Next found in search centers on line{{{2
 " zz centers, zv opens folds to required depth
@@ -285,15 +279,8 @@ inoremap jk <ESC>
 inoremap JK <ESC>
 inoremap jK <ESC>
 inoremap Jk <ESC>
-"
-" We can dance if we want to
-"inoremap kj <ESC>
-"inoremap Kj <ESC>
-"inoremap kJ <ESC>
-"inoremap KJ <ESC>
 "}}}2
 " I:j;w       Save if I mess up{{{2
-"  It's embarrassing how many times this happens
 inoremap j;w <ESC>:w<CR>
 "}}}2
 " N:gb        Quickly navigate through buffers{{{2
@@ -308,10 +295,10 @@ nnoremap <silent> zq [s1z=
 " N:<C-W>e    Open tag definition in vertical split with <C-W>e{{{2
 noremap <C-W>a :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 "}}}2
-" N:<leader>sv   _s_ource my _v_imrc file{{{2
+" N:<leader>sv   source my vimrc file{{{2
 nnoremap <silent> <leader>sv :call functions#RefreshVim()<CR>
 "}}}2
-" N:<leader>ev   _e_dit my _v_imrc file in a new tab {{{2
+" N:<leader>ev   edit my vimrc file in a new tab {{{2
 nnoremap <silent> <leader>ev :tabnew $MYVIMRC <CR>
 "}}}2
 " N:<leader>ss   Replace end-of-line whitespace {{{2
@@ -329,11 +316,8 @@ nnoremap <silent> <leader>/ :let @/=''<CR>
 " N:<leader>r    Redraw! The screen! Now! Do it! {{{2
 nnoremap <silent> <leader>r :redraw!<CR>
 "}}}2
-" N:<leader>ffffuuuuuu{{{2
-nnoremap <leader>fuuuuu qqqqqifuu<Esc>h@qq@q
-"}}}2
-" N:<localleader>m    Make{{{2
-nnoremap <silent> <localleader>m :make<CR>
+" N:<leader>m    Make{{{2
+nnoremap <silent> <leader>m :make<CR>
 "}}}2
 " N:gz    Go zazzlegrep! {{{2
 " TODO: Maybe expand this functionality into a plugin?
@@ -577,6 +561,12 @@ nnoremap <silent> <leader>K :PyThesaurusCurrentWord<CR>
 let g:sneak#s_next = 1
 "}}}2
 
+"}}}1
+" SOURCE LOCAL VIMRC {{{1
+let s:host_vimrc = $HOME . '/.' . hostname() . '.vimrc'
+if filereadable(s:host_vimrc)
+    execute 'source ' . s:host_vimrc
+endif
 "}}}1
 
 colorscheme gruvbox
