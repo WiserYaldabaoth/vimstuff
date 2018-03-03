@@ -215,6 +215,27 @@ set <M-]>=^[]
 " Make XML editing easier{{{2
 let g:xml_syntax_folding=1
 "}}}2
+" Statusline {{{2
+set statusline=          " Clear it out
+set statusline+=%#ToolbarButton#
+set statusline+=\ %n\ %* " Buffer number
+set statusline+=%<       " Truncate here plox
+set statusline+=\ %f     " Filename
+set statusline+=\ %#TabLine#
+set statusline+=\ %m     " Modified flag
+set statusline+=%y       " Filetype
+if( exists('g:loaded_fugitive') && g:loaded_fugitive ==# 1 )
+    set statusline+=%{fugitive#statusline()}
+endif
+set statusline+=%=       " Left/right separator
+set statusline+=%c\      " Cursor column
+set statusline+=%*
+set statusline+=\ %l/%L  " Cursor line/total lines
+set statusline+=\ %P     " Percent through file
+set statusline+=\        " Deliberate space
+
+set laststatus=2
+"}}}2
 
 "}}}1
 "REMAPPINGS{{{1
@@ -570,9 +591,7 @@ let g:sneak#s_next = 1
 "EXTERNAL{{{1
 
 runtime CPrototypes.vim      " Prototype generation for C headers
-runtime BuildStatusline.vim  " Load up custom statusline
 runtime ModeAwareCursor.vim
-" runtime LoadColorScheme.vim
 
 "}}}1
 " AFTER{{{1
