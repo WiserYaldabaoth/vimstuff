@@ -217,9 +217,31 @@ set <M-]>=^[]
 let g:xml_syntax_folding=1
 "}}}2
 " Statusline {{{2
+let g:currentmode={
+    \ 'n'  : 'N',
+    \ 'no' : 'N·OP',
+    \ 'v'  : 'V',
+    \ 'V'  : 'V·L',
+    \ '^V' : 'V·B',
+    \ 's'  : 'S',
+    \ 'S'  : 'S·L',
+    \ '^S' : 'S·B',
+    \ 'i'  : 'I',
+    \ 'R'  : 'R',
+    \ 'Rv' : 'V·R',
+    \ 'c'  : 'C',
+    \ 'cv' : 'Ex·V',
+    \ 'ce' : 'Ex',
+    \ 'r'  : 'P',
+    \ 'rm' : 'M',
+    \ 'r?' : '?',
+    \ '!'  : '!',
+    \ 't'  : 'T'
+    \}
+
 set statusline=          " Clear it out
 set statusline+=%#ToolbarButton#
-set statusline+=\ %n\ %* " Buffer number
+set statusline+=\ %{g:currentmode[mode()]}\ %* " Show mode
 set statusline+=%<       " Truncate here plox
 set statusline+=\ %f     " Filename
 set statusline+=\ %#TabLine#
