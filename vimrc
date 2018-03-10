@@ -1,6 +1,6 @@
 " vim: fen:fdm=marker:
 
-" PLUGINS {{{1
+" Plugins: {{{1
 call plug#begin('~/.vim/plugged')
 
 " 1: Must-have {{{2
@@ -109,7 +109,7 @@ Plug 'gregsexton/gitv'
 
 call plug#end()
 "}}}1
-"SETTINGS{{{1
+" Settings: {{{1
 
 " For my sanity when loading modified vimrc in Sessions{{{2
 set ssop-=options            " DO NOT STORE GLOBAL/LOCAL VARIABLES IN SESSION
@@ -261,7 +261,7 @@ set laststatus=2
 "}}}2
 
 "}}}1
-"REMAPPINGS{{{1
+" Remappings: {{{1
 
 " N:<F2>      Retab automatically reconfigures tabs to spaces{{{2
 noremap <silent> <F2> :retab <CR>
@@ -349,7 +349,7 @@ nnoremap <silent> gz q:ilv // %<ESC>F/i
 "}}}2
 
 "}}}1
-" COMMANDS {{{1
+" Commands: {{{1
 
 " Cmd:Mktmpdir    Recreates dir {{{2
 command! Mktmpdir call mkdir(fnamemodify(tempname(),":p:h"),"",0700)
@@ -359,7 +359,7 @@ command! VgTd grep "(TODO\|HACK\|XXX\|FIXME)"
 "}}}2
 
 "}}}1
-" AUGROUPS {{{1
+" Augroups: {{{1
 
 augroup highlights "{{{2
     autocmd!
@@ -398,7 +398,7 @@ augroup END
 "}}}2
 
 "}}}1
-" PLUGIN SETTINGS {{{1
+" Plugin Settings: {{{1
 
 " netrw {{{2
 " Assuming it still counts as a plugin, anyways...
@@ -584,7 +584,7 @@ let g:sneak#s_next = 1
 "}}}2
 
 "}}}1
-" SOURCE LOCAL VIMRC {{{1
+" Source Local Files: {{{1
 let s:host_vimrc = $HOME . '/.' . hostname() . '.vimrc'
 if filereadable(s:host_vimrc)
     execute 'source ' . s:host_vimrc
