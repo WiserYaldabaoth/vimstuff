@@ -216,13 +216,22 @@ set <M-]>=^[]
 " Make XML editing easier{{{2
 let g:xml_syntax_folding=1
 "}}}2
-" Statusline {{{2
+" Statusline: {{{2
+" Colors: {{{3
+augroup UserHighlights
+	autocmd!
+	autocmd ColorScheme * hi User1 ctermfg=235 ctermbg=247 term=bold
+	autocmd ColorScheme * hi User2 ctermfg=229 ctermbg=239
+	autocmd ColorScheme * hi User3 ctermfg=239 ctermbg=237
+augroup END
+"}}}3
+" Modes: {{{3
 let g:currentmode={
     \ 'n'  : 'N',
     \ 'no' : 'N·OP',
     \ 'v'  : 'V',
     \ 'V'  : 'V·L',
-    \ '^V' : 'V·B',
+    \ '' : 'V·B',
     \ 's'  : 'S',
     \ 'S'  : 'S·L',
     \ '^S' : 'S·B',
@@ -230,21 +239,22 @@ let g:currentmode={
     \ 'R'  : 'R',
     \ 'Rv' : 'V·R',
     \ 'c'  : 'C',
-    \ 'cv' : 'Ex·V',
-    \ 'ce' : 'Ex',
+    \ 'cv' : 'E·V',
+    \ 'ce' : 'E',
     \ 'r'  : 'P',
-    \ 'rm' : 'M',
+    \ 'rm' : 'More',
     \ 'r?' : '?',
     \ '!'  : '!',
     \ 't'  : 'T'
     \}
-
+"}}}3
+" Set Statusline: {{{3
 set statusline=          " Clear it out
-set statusline+=%#ToolbarButton#
-set statusline+=\ %{g:currentmode[mode()]}\ %* " Show mode
+set statusline+=%1*
+set statusline+=\ %{g:currentmode[mode()]}\ %2* " Show mode
 set statusline+=%<       " Truncate here plox
 set statusline+=\ %f     " Filename
-set statusline+=\ %#TabLine#
+set statusline+=\ %3*
 set statusline+=\ %m     " Modified flag
 set statusline+=%y       " Filetype
 if( exists('g:loaded_fugitive') && g:loaded_fugitive ==# 1 )
@@ -252,12 +262,13 @@ if( exists('g:loaded_fugitive') && g:loaded_fugitive ==# 1 )
 endif
 set statusline+=%=       " Left/right separator
 set statusline+=%c\      " Cursor column
-set statusline+=%*
+set statusline+=%2*
 set statusline+=\ %l/%L  " Cursor line/total lines
+set statusline+=\ %1*
 set statusline+=\ %P     " Percent through file
 set statusline+=\        " Deliberate space
-
 set laststatus=2
+"}}}3
 "}}}2
 
 "}}}1
