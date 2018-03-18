@@ -207,6 +207,9 @@ set complete+=k
 set expandtab                              " turn tabs into spaces
 set tabstop=4 softtabstop=4 shiftwidth=4   " tab length is 4
 "}}}2
+" Make tilde behave sanely{{{2
+set tildeop
+"}}}2
 " Make vim behave with tmux!{{{2
 set t_ut=
 "}}}2
