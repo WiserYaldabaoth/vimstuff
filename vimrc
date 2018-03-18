@@ -219,10 +219,14 @@ let g:xml_syntax_folding=1
 " Statusline: {{{2
 " Colors: {{{3
 augroup UserHighlights
-	autocmd!
-	autocmd ColorScheme gruvbox hi User1 ctermfg=235 ctermbg=247 term=bold
-	autocmd ColorScheme gruvbox hi User2 ctermfg=223 ctermbg=239
-	autocmd ColorScheme gruvbox hi User3 ctermfg=243  ctermbg=237
+    autocmd!
+    autocmd ColorScheme gruvbox hi User1 ctermfg=235 ctermbg=247 cterm=bold
+    autocmd ColorScheme gruvbox hi User2 ctermfg=223 ctermbg=239
+    autocmd ColorScheme gruvbox hi User3 ctermfg=243 ctermbg=237
+
+    autocmd ColorScheme default hi User1 term=bold,reverse cterm=bold,reverse gui=bold,reverse
+    autocmd ColorScheme default hi User2 term=reverse ctermbg=248 guibg=Grey
+    autocmd ColorScheme default hi User3 term=none ctermfg=7 ctermbg=242 guifg=LightGrey guibg=DarkGrey
 augroup END
 "}}}3
 " Modes: {{{3
