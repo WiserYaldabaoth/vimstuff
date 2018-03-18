@@ -173,7 +173,7 @@ set path+=**
 "}}}2
 " Display tab choices {{{2
 set wildmenu
-set wildmode=longest,full
+set wildmode=list:longest,full
 set wildchar=<Tab>
 "}}}2
 " ag for grep {{{2
@@ -220,9 +220,9 @@ let g:xml_syntax_folding=1
 " Colors: {{{3
 augroup UserHighlights
 	autocmd!
-	autocmd ColorScheme * hi User1 ctermfg=235 ctermbg=247 term=bold
-	autocmd ColorScheme * hi User2 ctermfg=229 ctermbg=239
-	autocmd ColorScheme * hi User3 ctermfg=239 ctermbg=237
+	autocmd ColorScheme gruvbox hi User1 ctermfg=235 ctermbg=247 term=bold
+	autocmd ColorScheme gruvbox hi User2 ctermfg=223 ctermbg=239
+	autocmd ColorScheme gruvbox hi User3 ctermfg=243  ctermbg=237
 augroup END
 "}}}3
 " Modes: {{{3
@@ -234,12 +234,12 @@ let g:currentmode={
     \ '' : 'V·B',
     \ 's'  : 'S',
     \ 'S'  : 'S·L',
-    \ '^S' : 'S·B',
+    \ '' : 'S·B',
     \ 'i'  : 'I',
     \ 'R'  : 'R',
     \ 'Rv' : 'V·R',
     \ 'c'  : 'C',
-    \ 'cv' : 'E·V',
+    \ 'cv' : 'E·Vi',
     \ 'ce' : 'E',
     \ 'r'  : 'P',
     \ 'rm' : 'More',
@@ -257,9 +257,7 @@ set statusline+=\ %f     " Filename
 set statusline+=\ %3*
 set statusline+=\ %m     " Modified flag
 set statusline+=%y       " Filetype
-if( exists('g:loaded_fugitive') && g:loaded_fugitive ==# 1 )
-    set statusline+=%{fugitive#statusline()}
-endif
+set statusline+=[%{fugitive#head()}]
 set statusline+=%=       " Left/right separator
 set statusline+=%c\      " Cursor column
 set statusline+=%2*
@@ -375,7 +373,7 @@ command! VgTd grep "(TODO\|HACK\|XXX\|FIXME)"
 augroup highlights "{{{2
     autocmd!
     au ColorScheme default hi Comment ctermfg=Cyan
-    au ColorScheme default hi Search cterm=NONE ctermfg=black ctermbg=blue
+    au ColorScheme default hi Search cterm=NONE ctermfg=black ctermbg=cyan
     au ColorScheme default hi Visual cterm=NONE ctermfg=black ctermbg=130
     au ColorScheme default hi Folded cterm=NONE ctermfg=93 ctermbg=black
 augroup END
