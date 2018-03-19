@@ -264,7 +264,7 @@ set statusline+=\ %f     " Filename
 set statusline+=\ %3*
 set statusline+=\ %m     " Modified flag
 set statusline+=%y       " Filetype
-set statusline+=[%{fugitive#head()}]
+set statusline+=%{empty(fugitive#head())\ ?\ \'\'\ \:\ \'[\'.fugitive#head().\']\'}
 set statusline+=%=       " Left/right separator
 set statusline+=%c\      " Cursor column
 set statusline+=%2*
