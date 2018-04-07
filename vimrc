@@ -224,7 +224,7 @@ let g:xml_syntax_folding=1
 augroup UserHighlights
     autocmd!
     autocmd ColorScheme gruvbox hi User1 ctermfg=235 ctermbg=247 cterm=bold
-    autocmd ColorScheme gruvbox hi User2 ctermfg=223 ctermbg=239
+	autocmd ColorScheme gruvbox hi User2 ctermfg=246 ctermbg=239
     autocmd ColorScheme gruvbox hi User3 ctermfg=243 ctermbg=237
 
     autocmd ColorScheme default hi User1 term=bold,reverse cterm=bold,reverse gui=bold,reverse
